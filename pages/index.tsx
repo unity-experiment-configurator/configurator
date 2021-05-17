@@ -1,16 +1,5 @@
 import { useControls } from 'leva'
 
-function DistractorsCount() {
-  const { distractorsCount } = useControls({ 
-    distractorsCount: {
-      min: 0,
-      max: 50,
-      value: 0,
-    }
-  })
-  return <>{distractorsCount}</>
-}
-
 function TargetColor() {
   const { targetColor } = useControls({
     targetColor: {
@@ -49,11 +38,24 @@ function TargetSound() {
   )
 }
 
+function DistractorsCount() {
+  const { distractorsCount } = useControls({ 
+    distractorsCount: {
+      min: 0,
+      max: 50,
+      step: 1,
+      value: 0,
+    }
+  })
+  return <>{distractorsCount}</>
+}
+
 function DistractorTypes() {
   const { distractorTypes } = useControls({
     distractorTypes: {
       min: 1,
       max: 3,
+      step: 1,
       value: 1,
     },
   })
