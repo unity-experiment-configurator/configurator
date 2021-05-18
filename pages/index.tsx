@@ -64,6 +64,13 @@ export default function Home() {
   const primitives = ["Cone", "Cube", "Sphere"];
   const colors = ["Red", "Green", "Blue"];
   const targetSounds = ["Beep", "Boop"];
+  const uxfSettings = {
+    "UXF": {
+      "trials_per_block": 10,
+      "catch_trials_per_block": 3,
+      "delay_time": 0.6
+    }
+  };
 
   const { register, handleSubmit, control, getValues, formState: { errors } } = useForm({
     defaultValues: {
@@ -77,9 +84,13 @@ export default function Home() {
   });
   
   const onSubmit = data => {
-    download(JSON.stringify(data), "config.json", "text/plain");
-    console.log(data);
-  }
+    const config = {
+      ...data,
+      ...uxfSettings
+    };
+    download(JSON.stringify(config), "config.json", "text/plain");
+    console.log(config);
+  };
 
   // console.log(watch("title")); // watch input value by passing the name of it
 
