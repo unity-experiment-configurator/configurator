@@ -57,18 +57,23 @@ export default function Home() {
   const colors = ["Red", "Green", "Blue"];
   const targetSounds = ["Beep", "Boop"];
 
-  const { register, handleSubmit, control, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, control, getValues, formState: { errors } } = useForm({
     defaultValues: {
       TargetColor: colors[0],
       TargetType: primitives[0],
       TargetSound: targetSounds[0],
-      DistractorCount: 1
+      DistractorCount: 1,
+      DistractorTypes: primitives[0]
     },
     mode: "onChange"
   });
+  
   const onSubmit = data => console.log(data);
 
   // console.log(watch("title")); // watch input value by passing the name of it
+
+  const atLeastOneDistractorType = () =>
+    getValues("DistractorTypes").length ? true : "Please select one Distractor Type.";
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -87,7 +92,27 @@ export default function Home() {
 
       <NumberInput control={control} label="Distractor Count" min={1} max={50} name="DistractorCount" rules={{ required: true }}  />
 
-      <CheckboxListInput control={control} options={primitives} label="Distractor Types" name="DistractorTypes" rules={{ required: true }}  />
+      <div className="block mt-8">
+        <span className="text-gray-700">Distractor Types</span>
+        <div className="mt-2">
+          {
+            primitives.map((option, idx) => {
+              return <div key={idx}>
+                <label className="inline-flex items-center">
+                  <input className="form-checkbox" type="checkbox" value={option} {...register("DistractorTypes", { validate: atLeastOneDistractorType})} />
+                  <span className="ml-2">{ option }</span>
+                </label>
+              </div>
+            })
+          }
+        </div>
+      </div>
+
+      {errors.DistractorTypes && <span>Please select one</span>} 
+
+      {/* {...register("DistractorTypes", { validate: atLeastOneDistractorType})} */}
+
+      {/* <CheckboxListInput control={control} options={primitives} label="Distractor Types" name="DistractorTypes" rules={{ required: true }}  /> */}
 
       {/* <input type="text" {...register("exampleRequired", { required: true })} />
       {errors.exampleRequired && <span>This field is required</span>} */}
