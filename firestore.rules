@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      match /users/{userId} {
+        allow read;
+        allow create: if isValidUser(userId);
+      }
+      match /experiments/{experimentId} {
+        // listing experiments is forbidden
+        // must have been given access to the edit id to get this far
+        // allow get: if true; 
+        // creating is only permitted for authenticated users 
+        allow create: if request.auth != null;
+        // updating is only permitted for authenticated users 
+        // allow update: if request.auth != null;
+      }
+
+      function isValidUser(userId) {
+        let isOwner = request.auth.uid == userId;
+        return isOwner;
+      }
+    }
+  }
+}

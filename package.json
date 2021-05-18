@@ -5,18 +5,31 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "firebase deploy --only firestore,functions,storage"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.1",
+    "@svgr/webpack": "^5.5.0",
     "@tailwindcss/forms": "^0.3.2",
-    "leva": "^0.9.10",
+    "classnames": "^2.3.1",
+    "dompurify": "^2.2.7",
+    "firebase": "^8.3.1",
     "next": "10.2.0",
-    "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.6.0"
+    "react-firebase-hooks": "^3.0.3",
+    "react-google-recaptcha": "^2.1.0",
+    "react-hook-form": "^7.6.0",
+    "react-hot-toast": "^1.0.2",
+    "react-quill": "^2.0.0-beta.2",
+    "react-use": "^17.1.1",
+    "react": "17.0.2",
+    "sanitize-html": "^2.3.3",
+    "striptags": "^3.1.1"
   },
   "devDependencies": {
     "@tailwindcss/jit": "0.1.18",
+    "@types/node": "^14.14.35",
     "@types/react": "^17.0.5",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.15",
