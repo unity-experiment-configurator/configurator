@@ -29,27 +29,35 @@ function SelectInput(props) {
   );
 }
 
-function CheckboxListInput(props) {
-  const { field, fieldState } = useController(props);
+// function CheckboxListInput(props) {
+//   const { field, fieldState } = useController(props);
 
-  return (
-    <div className="block mt-8">
-      <span className="text-gray-700">{ props.label }</span>
-      <div className="mt-2">
-        {
-          props.options.map((option, idx) => {
-            return <div key={idx}>
-              <label className="inline-flex items-center">
-                <input className="form-checkbox" {...field} type="checkbox" name="sameName" />
-                <span className="ml-2">{ option }</span>
-              </label>
-            </div>
-          })
-        }
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="block mt-8">
+//       <span className="text-gray-700">{ props.label }</span>
+//       <div className="mt-2">
+//         {
+//           props.options.map((option, idx) => {
+//             return <div key={idx}>
+//               <label className="inline-flex items-center">
+//                 <input className="form-checkbox" {...field} type="checkbox" value={option} />
+//                 <span className="ml-2">{ option }</span>
+//               </label>
+//             </div>
+//           })
+//         }
+//       </div>
+//     </div>
+//   );
+// }
+
+function download(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+ }
 
 export default function Home() {
 
@@ -68,7 +76,10 @@ export default function Home() {
     mode: "onChange"
   });
   
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    download(JSON.stringify(data), "config.json", "text/plain");
+    console.log(data);
+  }
 
   // console.log(watch("title")); // watch input value by passing the name of it
 
@@ -108,11 +119,13 @@ export default function Home() {
         </div>
       </div>
 
-      {errors.DistractorTypes && <span>Please select one</span>} 
+      {errors.DistractorTypes && <span className="text-red-600">Please select one</span>} 
+
+      {/* {errors.DistractorTypes && <span>Please select one</span>}  */}
 
       {/* {...register("DistractorTypes", { validate: atLeastOneDistractorType})} */}
 
-      {/* <CheckboxListInput control={control} options={primitives} label="Distractor Types" name="DistractorTypes" rules={{ required: true }}  /> */}
+      {/* <CheckboxListInput control={control} options={primitives} label="Distractor Types" name="DistractorTypes" validate={atLeastOneDistractorType}  /> */}
 
       {/* <input type="text" {...register("exampleRequired", { required: true })} />
       {errors.exampleRequired && <span>This field is required</span>} */}
