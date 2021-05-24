@@ -3,17 +3,17 @@ import "firebase/functions";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import { isProduction } from "./Exhibit";
+import { isProduction } from "./Utils";
 typeof window === "object" ? require("firebase/analytics") : () => false;
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyC3pM0EKK4NfX21KMsOU-ldkBVshdDmDkE",
-  authDomain: "exhibit-staging-eea8b.firebaseapp.com",
-  projectId: "exhibit-staging-eea8b",
-  storageBucket: "exhibit-staging-eea8b.appspot.com",
-  messagingSenderId: "42800390262",
-  appId: "1:42800390262:web:995f90928d11097ff9bf57",
-  measurementId: "G-B9XHV5TCNJ",
+  apiKey: "AIzaSyATd9M_zQ0raUl9K1jvyDktMRiZ2aAR-rQ",
+  authDomain: "interaction-design-76dc8.firebaseapp.com",
+  projectId: "interaction-design-76dc8",
+  storageBucket: "interaction-design-76dc8.appspot.com",
+  messagingSenderId: "925035894657",
+  appId: "1:925035894657:web:47b83de8998de908997a80",
+  measurementId: "G-GP3T5GP395",
 };
 
 let functions: firebase.functions.Functions;
@@ -73,15 +73,9 @@ export const getStats = async () => {
   return fn();
 };
 
-export const getExhibit = async (publicId: string) => {
+export const getExperiment = async (publicId: string) => {
   // @ts-ignore
-  const fn = functions.httpsCallable("getExhibit");
-  return fn({ publicId });
-};
-
-export const getExhibitWithoutItems = async (publicId: string) => {
-  // @ts-ignore
-  const fn = functions.httpsCallable("getExhibitWithoutItems");
+  const fn = functions.httpsCallable("getExperiment");
   return fn({ publicId });
 };
 
@@ -95,11 +89,8 @@ export const setCurrentScreen = (screen: string) => {
 
 export type AnalyticsEvent =
   | "page_view"
-  | "create_exhibit"
-  | "duplicate_exhibit"
-  | "import_iiif"
-  | "add_item"
-  | "update_details"
+  | "create_experiment"
+  | "duplicate_experiment"
   | "open_share_panel";
 
 // https://developers.google.com/gtagjs/reference/event

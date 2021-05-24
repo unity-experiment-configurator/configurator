@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { getExhibit, getExhibitWithoutItems } from "../../lib/Firebase";
-import { PublicExhibit } from "../../lib/Types";
+import { getExperiment, getExperimentWithoutItems } from "../../lib/Firebase";
+import { PublicExperiment } from "../../lib/Types";
 
-const ExhibitFromPublicId = ({
+const ExperimentFromPublicId = ({
   publicId,
   withoutItems,
   onLoad,
@@ -10,12 +10,12 @@ const ExhibitFromPublicId = ({
 }: {
   publicId: string;
   withoutItems?: boolean;
-  onLoad: (exhibit: PublicExhibit) => void;
+  onLoad: (experiment: PublicExperiment) => void;
   onError: () => void;
 }) => {
   useEffect(() => {
     if (withoutItems) {
-      getExhibitWithoutItems(publicId).then(({ data }) => {
+      getExperimentWithoutItems(publicId).then(({ data }) => {
         if (data.error) {
           onError();
         } else {
@@ -23,7 +23,7 @@ const ExhibitFromPublicId = ({
         }
       });
     } else {
-      getExhibit(publicId).then(({ data }) => {
+      getExperiment(publicId).then(({ data }) => {
         if (data.error) {
           onError();
         } else {
@@ -37,4 +37,4 @@ const ExhibitFromPublicId = ({
   return <></>;
 };
 
-export default ExhibitFromPublicId;
+export default ExperimentFromPublicId;

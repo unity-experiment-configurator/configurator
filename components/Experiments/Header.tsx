@@ -32,7 +32,7 @@ const Header = ({ children }: { children?: any }) => {
               className="text-black no-underline hover:no-underline font-bold text-xl lg:text-2xl"
               href="/"
             >
-              Exhibit.
+              Experiment.
             </a>
           </div>
           <div

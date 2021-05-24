@@ -177,13 +177,13 @@ export default function Doc(props) {
             </li>
             <li>
               <p>
-                <strong>Website</strong> refers to Exhibit, accessible from{" "}
+                <strong>Website</strong> refers to Experiment, accessible from{" "}
                 <a
-                  href="https://exhibit.so"
+                  href="https://experiment.so"
                   rel="nofollow noopener"
                   target="_blank"
                 >
-                  https://exhibit.so
+                  https://experiment.so
                 </a>
               </p>
             </li>
@@ -1025,11 +1025,11 @@ export default function Doc(props) {
               <p>
                 By visiting this page on our website:{" "}
                 <a
-                  href="https://exhibit.so/docs/contact"
+                  href="https://experiment.so/docs/contact"
                   rel="external nofollow noopener"
                   target="_blank"
                 >
-                  https://exhibit.so/docs/contact
+                  https://experiment.so/docs/contact
                 </a>
               </p>
             </li>

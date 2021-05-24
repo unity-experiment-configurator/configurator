@@ -80,8 +80,8 @@ const SideMenu = () => {
           <SideMenuItem path="/docs/" text="Home" />
           <SideMenuItem path="/docs/getting-started" text="Getting Started" />
           <SideMenuItem
-            path="/docs/creating-an-exhibit"
-            text="Creating an Exhibit"
+            path="/docs/creating-an-experiment"
+            text="Creating an Experiment"
           />
           <SideMenuItem
             path="/docs/additional-features"

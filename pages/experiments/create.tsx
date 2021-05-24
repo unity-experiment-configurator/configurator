@@ -1,47 +1,46 @@
 import { useReducer, useCallback } from "react";
 import AuthCheck from "../../components/AuthCheck";
-import LeftCol from "../../components/Exhibits/LeftCol";
-import RightCol from "../../components/Exhibits/RightCol";
-import Main from "../../components/Exhibits/Main";
-import Footer from "../../components/Exhibits/Footer";
-import Header from "../../components/Exhibits/Header";
-import ExhibitFromPublicId from "../../components/Exhibits/ExhibitFromPublicId";
-import { AnnotationValue, ExhibitImport, ExhibitImports, ItemValue, PublicExhibit } from "../../lib/Types";
-import Metadata from "../../components/Exhibits/Metadata";
+import LeftCol from "../../components/Experiments/LeftCol";
+import RightCol from "../../components/Experiments/RightCol";
+import Main from "../../components/Experiments/Main";
+import Footer from "../../components/Experiments/Footer";
+import Header from "../../components/Experiments/Header";
+import ExperimentFromPublicId from "../../components/Experiments/ExperimentFromPublicId";
+import { PublicExperiment } from "../../lib/Types";
+import Metadata from "../../components/Experiments/Metadata";
 import Message from "../../components/Message";
-import UV from "../../components/Exhibits/UV";
 import { firestore, logEvent, timestamp } from "../../lib/Firebase";
 import { useRouter } from "next/router";
-import { useWindowSize } from "react-use";
-import { importItem, md } from "../../lib/Utils";
+// import { useWindowSize } from "react-use";
+// import { md } from "../../lib/Utils";
 
-export default function CreateExhibitPage(props) {
+export default function CreateExperimentPage(props) {
   return (
     <AuthCheck>
-      <CreateExhibit />
+      <CreateExperiment />
     </AuthCheck>
   );
 }
 
-function CreateExhibit() {
+function CreateExperiment() {
   const router = useRouter();
   const { item, duplicate } = router.query;
 
   type State = {
-    exhibitToDuplicate: PublicExhibit | null;
+    experimentToDuplicate: PublicExperiment | null;
     initialised: boolean;
     syncing: boolean;
   };
 
   const initialState: State = {
-    exhibitToDuplicate: null,
+    experimentToDuplicate: null,
     initialised: false,
     syncing: false,
   };
 
   type Action =
     | { type: "reset" }
-    | { type: "setExhibitToDuplicate"; payload: PublicExhibit };
+    | { type: "setExperimentToDuplicate"; payload: PublicExperiment };
 
   const reducer = (state: State, action: Action): State => {
     if (action.type === "reset") {
@@ -49,10 +48,10 @@ function CreateExhibit() {
     }
 
     switch (action.type) {
-      case "setExhibitToDuplicate":
+      case "setExperimentToDuplicate":
         return {
           ...state,
-          exhibitToDuplicate: action.payload,
+          experimentToDuplicate: action.payload,
         };
       default:
         throw new Error();
@@ -62,99 +61,39 @@ function CreateExhibit() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const [state, dispatch] = useReducer(useCallback(reducer, []), initialState);
 
-  const { width } = useWindowSize();
+  // const { width } = useWindowSize();
 
-  const editExhibit = (id: string) => {
-    // fixes https://github.com/UniversalViewer/exhibit/issues/64
-    // why can't we use history.push(`/exhibits/edit/${id}`) ?
-    window.location.href = `/exhibits/edit/${id}`;
+  const editExperiment = (id: string) => {
+    // fixes https://github.com/UniversalViewer/experiment/issues/64
+    // why can't we use history.push(`/experiments/edit/${id}`) ?
+    window.location.href = `/experiments/edit/${id}`;
   };
 
-  const createExhibit = async (values: any) => {
-    const { id } = await firestore.collection("exhibits").add({
+  const createExperiment = async (values: any) => {
+    const { id } = await firestore.collection("experiments").add({
       ...values,
-      publicId: firestore.collection("exhibits").doc().id,
-      duplicatedFrom: state.exhibitToDuplicate
-        ? state.exhibitToDuplicate.publicId
+      publicId: firestore.collection("experiments").doc().id,
+      duplicatedFrom: state.experimentToDuplicate
+        ? state.experimentToDuplicate.publicId
         : null,
       created: timestamp(),
     });
-
-    let batch: any;
-
-    // if an exhibit to duplicate was passed in the qs, copy its items and annotations
-    if (state.exhibitToDuplicate) {
-      batch = firestore.batch();
-
-      Array.from(state.exhibitToDuplicate.items).forEach((item: ItemValue) => {
-        const docRef = firestore.collection(`exhibits/${id}/items/`).doc();
-        batch.set(docRef, {
-          ...item,
-          id: docRef.id,
-          modified: timestamp(),
-          created: timestamp(),
-        });
-      });
-
-      await batch.commit();
-
-      batch = firestore.batch();
-
-      Array.from(state.exhibitToDuplicate.annotations).forEach(
-        (annotation: AnnotationValue) => {
-          const docRef = firestore
-            .collection(`exhibits/${id}/annotations/`)
-            .doc();
-          batch.set(docRef, {
-            ...annotation,
-            id: docRef.id,
-            modified: timestamp(),
-            created: timestamp(),
-          });
-        }
-      );
-
-      await batch.commit();
-
-      logEvent("duplicate_exhibit", {
-        publicId: state.exhibitToDuplicate.publicId,
-      });
-    } else if (item) {
-      // if an item was passed in the qs, add that to the exhibit's items collection
-
-      const result: ExhibitImports = await importItem(item as string);
-      batch = firestore.batch();
-
-      result.forEach((exhibitImport: ExhibitImport) => {
-        const docRef = firestore.collection(`exhibits/${id}/items/`).doc();
-        batch.set(docRef, {
-          ...exhibitImport,
-          created: timestamp(),
-        });
-      });
-
-      await batch.commit();
-    }
-
-    logEvent("create_exhibit", { id });
-
-    editExhibit(id);
   };
 
   return (
     <>
       {duplicate && (
-        <ExhibitFromPublicId
+        <ExperimentFromPublicId
           publicId={duplicate as string}
-          onLoad={(exhibit: PublicExhibit) => {
+          onLoad={(experiment: PublicExperiment) => {
             dispatch({
-              type: "setExhibitToDuplicate",
-              payload: exhibit,
+              type: "setExperimentToDuplicate",
+              payload: experiment,
             });
           }}
           onError={() => {
             // eslint-disable-next-line no-console
-            console.warn("couldn't duplicate exhibit");
+            console.warn("couldn't duplicate experiment");
           }}
         />
       )}
@@ -162,30 +101,30 @@ function CreateExhibit() {
       <Main>
         <LeftCol>
           {/* <h1 className="pb-8">Details</h1> */}
-          {(duplicate && state.exhibitToDuplicate) ||
+          {(duplicate && state.experimentToDuplicate) ||
           duplicate === undefined ? (
             <Metadata
               title={
-                state.exhibitToDuplicate ? state.exhibitToDuplicate.title : ""
+                state.experimentToDuplicate ? state.experimentToDuplicate.title : ""
               }
               description={
-                state.exhibitToDuplicate
-                  ? state.exhibitToDuplicate.description
+                state.experimentToDuplicate
+                  ? state.experimentToDuplicate.description
                   : ""
               }
               rights={
-                state.exhibitToDuplicate ? state.exhibitToDuplicate.rights : ""
+                state.experimentToDuplicate ? state.experimentToDuplicate.rights : ""
               }
               presentationType={
-                state.exhibitToDuplicate
-                  ? state.exhibitToDuplicate.presentationType || "slides"
+                state.experimentToDuplicate
+                  ? state.experimentToDuplicate.presentationType || "slides"
                   : "slides"
               }
               duplicationEnabled
-              submitText="Create Exhibit"
+              submitText="Create Experiment"
               disabled={state.syncing}
               onSubmit={(values) => {
-                createExhibit(values);
+                createExperiment(values);
               }}
             />
           ) : (
@@ -193,37 +132,11 @@ function CreateExhibit() {
           )}
         </LeftCol>
         <RightCol>
-          {
-            // todo: in future not all items will be IIIF manifests
-            // use Utils.importItem to get the item's mediatype
-            // if it's a IIIF manifest set UV.partOf to the manifest url.
-            // if it's anything else, set UV.target
-            width > md &&
-              (item ||
-                (state.exhibitToDuplicate &&
-                  state.exhibitToDuplicate.items.length > 0)) && (
-                <UV
-                  manifest={item as string || state.exhibitToDuplicate!.items[0].url}
-                  width="100%"
-                  height="100%"
-                />
-              )
-          }
+
         </RightCol>
       </Main>
       <Footer>
-        {/* {!isProduction && (
-          <SVGLinkButton
-            label="Exhibits"
-            classes="mr-8"
-            onClick={() => {
-              history.push(`/exhibits`);
-            }}
-          >
-            <IconBookOpenBlue className="fill-current w-5 h-5 mr-2" />
-            {SVGLinkButtonText("Exhibits")}
-          </SVGLinkButton>
-        )} */}
+
       </Footer>
     </>
   );

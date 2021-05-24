@@ -80,7 +80,7 @@ const NavMenu = () => {
             className="text-black no-underline hover:no-underline font-bold text-xl lg:text-2xl"
             href="/"
           >
-            Exhibit.
+            Experiment.
           </a>
         </div>
 
@@ -106,7 +106,7 @@ const NavMenu = () => {
           id="nav-content"
         >
           <ul className="list-reset pl-0 lg:flex justify-end flex-1 items-center list-none">
-            {/* {!isProduction && <NavMenuItem link="/exhibits" text="Exhibits" />} */}
+            {/* {!isProduction && <NavMenuItem link="/experiments" text="Experiments" />} */}
             <NavMenuItem link="/#getting-started" text="Getting Started" />
             <NavMenuItem link="/#showcase" text="Showcase" />
             <NavMenuItem link="/#features" text="Features" />

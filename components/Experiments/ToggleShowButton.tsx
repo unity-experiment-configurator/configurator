@@ -1,8 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
 import { SVGButton } from "../FormControls";
-// import PlusIcon from "../../public/svg/plus.svg";
-// import MinusIcon from "../../public/svg/minus.svg";
 import { PlusIcon, MinusSmIcon } from "@heroicons/react/solid";
 
 const ToggleShowButton = ({

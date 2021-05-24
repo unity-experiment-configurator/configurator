@@ -1,26 +1,18 @@
 import { firebaseConfig } from "../../lib/Firebase";
-import { PresentationType, PublicExhibit } from "../../lib/Types";
+import { ExperimentType } from "../../lib/Types";
 import Message from "../../components/Message";
 import Alert from "../../components/Alert";
 import Metatags from "../../components/Metatags";
-import dynamic from "next/dynamic";
 import firebase from "firebase/app";
 const striptags = require('striptags');
 
-const SlidesExhibit = dynamic(
-  () => import("../../components/Exhibits/SlidesExhibit")
-);
-const ScrollExhibit = dynamic(
-  () => import("../../components/Exhibits/ScrollExhibit")
-);
-
-type ExhibitProps = {
+type ExperimentProps = {
   embedded: boolean;
-  exhibit: any;
-  type: PresentationType;
+  experiment: any;
+  type: ExperimentType;
 };
 
-async function getExhibit(publicId: string) {
+async function getExperiment(publicId: string) {
   return new Promise<any>((resolve) => {
     let app;
 
@@ -32,7 +24,7 @@ async function getExhibit(publicId: string) {
 
     app
       .functions("europe-west3")
-      .httpsCallable("getExhibitWithoutItems")({publicId})
+      .httpsCallable("getExperiment")({publicId})
       .then(({ data }) => {
         resolve(data);
       });
@@ -48,48 +40,46 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  const exhibit = await getExhibit(publicId);
+  const experiment = await getExperiment(publicId);
 
-  const props: ExhibitProps = {
-    exhibit: exhibit,
+  const props: ExperimentProps = {
+    experiment: experiment,
     embedded: !!embedded,
     type: type
       ? type
-      : exhibit.presentationType
-      ? exhibit.presentationType
-      : "slides",
+      : experiment.presentationType
+      ? experiment.presentationType
+      : "tables",
   };
 
   return { props };
 }
 
-function ExhibitType({ type, embedded, exhibit }) {
+function ExperimentType({ type, embedded, experiment }) {
   switch (type) {
-    case "slides":
+    case "tables":
       return (
-        <SlidesExhibit embedded={embedded} exhibit={exhibit} />
-      );
-    case "scroll":
-      return (
-        <ScrollExhibit embedded={embedded} exhibit={exhibit} />
+        <>
+          tables experiment
+        </>
       );
     default:
       return (
         <Message>
-          <Alert>{`"${type}" is not a supported story type`}</Alert>
+          <Alert>{`"${type}" is not a supported experiment type`}</Alert>
         </Message>
       );
   }
 }
 
-export default function Exhibit(props: ExhibitProps) {
-  const title: string = props.exhibit.title;
-  const description: string = striptags(props.exhibit.description);
+export default function Experiment(props: ExperimentProps) {
+  const title: string = props.experiment.title;
+  const description: string = striptags(props.experiment.description);
   return (<>
     <Metatags
       title={title}
       description={description}
     />
-    <ExhibitType {...props} />
+    <ExperimentType {...props} />
   </>);
 }

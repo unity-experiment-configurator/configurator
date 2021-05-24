@@ -32,10 +32,10 @@ const sizes: Size[] = [
 ];
 
 const Share = ({
-  exhibitId,
+  experimentId,
   publicId,
 }: {
-  exhibitId: string;
+  experimentId: string;
   publicId: string;
 }) => {
   const baseURL: URL = new URL(document.location.href);
@@ -43,12 +43,12 @@ const Share = ({
   const roles = new Map<Role, Action>();
 
   roles.set("editor", {
-    url: `${baseURL.origin}/exhibits/edit/${exhibitId}`,
+    url: `${baseURL.origin}/experiments/edit/${experimentId}`,
     verb: "edit",
   });
 
   roles.set("viewer", {
-    url: `${baseURL.origin}/exhibits/${publicId}`,
+    url: `${baseURL.origin}/experiments/${publicId}`,
     verb: "view",
   });
 
@@ -75,7 +75,7 @@ const Share = ({
         <Alert>
           <p className="font-bold">Important</p>
           <p>
-            Keep this URL safe, this enables you to edit the exhibit in future
+            Keep this URL safe, this enables you to edit the experiment in future
           </p>
         </Alert>
       )}
@@ -103,7 +103,7 @@ const Share = ({
         <CopyText id="url" text={urlToCopy()} />
       </div>
       <div className="pt-4 pb-4">
-        Use the following code to embed this Exhibit at
+        Use the following code to embed this Experiment at
         <select
           className="text-blue-600"
           defaultValue={role}

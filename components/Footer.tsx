@@ -21,7 +21,7 @@ const Footer = () => {
               className="text-white block no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
               href="/"
             >
-              Exhibit.
+              Interaction Design for the Masses.
             </a>
           </div>
 
@@ -29,19 +29,19 @@ const Footer = () => {
             <p className="uppercase md:mb-4">Links</p>
             <ul className="list-reset p-0">
               {/* {!isProduction && (
-                <FooterMenuItem link="/exhibits" text="Exhibits" />
+                <FooterMenuItem link="/experiments" text="Experiments" />
               )} */}
-              <FooterMenuItem link="#getting-started" text="Getting Started" />
+              {/* <FooterMenuItem link="#getting-started" text="Getting Started" />
               <FooterMenuItem link="#showcase" text="Showcase" />
               <FooterMenuItem link="#features" text="Features" />
-              <FooterMenuItem link="#about" text="About" />
+              <FooterMenuItem link="#about" text="About" /> */}
             </ul>
           </div>
 
           <div className="flex-1 p-4">
             <p className="uppercase md:mb-4">Help</p>
             <ul className="list-reset p-0">
-              <FooterMenuItem link="/docs" text="Docs" />
+              {/* <FooterMenuItem link="/docs" text="Docs" />
               <FooterMenuItem
                 link="/docs/terms-of-service"
                 text="Terms of Service"
@@ -58,22 +58,22 @@ const Footer = () => {
                 link="/docs/accessibility-statement"
                 text="Accessibility Statement"
               />
-              <FooterMenuItem link="/docs/contact" text="Contact" />
-              {/* <FooterMenuItem link="https://github.com/universalviewer/exhibit" text="Github" /> */}
+              <FooterMenuItem link="/docs/contact" text="Contact" /> */}
+              {/* <FooterMenuItem link="https://github.com/universalviewer/experiment" text="Github" /> */}
             </ul>
           </div>
 
           <div className="flex-1 p-4">
             <p className="uppercase md:mb-4">Social</p>
             <ul className="list-reset p-0">
-              <FooterMenuItem
+              {/* <FooterMenuItem
                 link="https://docs.google.com/forms/d/e/1FAIpQLSeHLD0kng5aXvGFsNN_tJGsZMTnp08Hv2F6kdGsJRb6bT0NWw/viewform"
                 text="Slack"
               />
               <FooterMenuItem
                 link="https://twitter.com/universalviewer"
                 text="Twitter"
-              />
+              /> */}
             </ul>
           </div>
         </div>

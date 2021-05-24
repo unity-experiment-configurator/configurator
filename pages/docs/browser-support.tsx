@@ -13,7 +13,7 @@ export default function Doc(props) {
       title="Browser Support"
       text={
         <>
-          <p>Exhibit.so supports the following browsers:</p>
+          <p>Experiment.so supports the following browsers:</p>
           <ul>
             <li>
               <a href="https://www.microsoft.com/en-us/edge">Microsoft Edge</a>

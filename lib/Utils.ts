@@ -9,6 +9,7 @@ export const md: number = 768;
 export const lg: number = 1024;
 export const xl: number = 1280;
 
+export const isProduction = process.env.NODE_ENV === "production";
 export const recaptchaSiteKey = config.recaptchaSiteKey;
 export const site = config.site;
 export const siteName = config.siteName;

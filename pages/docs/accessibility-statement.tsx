@@ -14,8 +14,8 @@ export default function Doc(props) {
       text={
         <>
           <p>
-            The University of St Andrews and Mnemoscene Ltd are committed to
-            making exhibit.so accessible to people of all levels of ability. The
+            Royal Holloway University and Mnemoscene Ltd are committed to
+            making experiment.so accessible to people of all levels of ability. The
             following statement summarises where we currently are in relation to
             the World Wide Web Consortium’s Web Content Accessibility Guidelines
             (WCAG) 2.1, and outlines where we’d like to get to.
@@ -57,15 +57,15 @@ export default function Doc(props) {
 
           <ul>
             <li>
-              The exhibits/create page has missing aria-labels on the text
+              The experiments/create page has missing aria-labels on the text
               editor buttons
             </li>
             <li>
-              The exhibits/edit page has missing aria-labels on the draggable
+              The experiments/edit page has missing aria-labels on the draggable
               list items
             </li>
             <li>
-              The exhibits/edit page uses the Universal Viewer, which has a
+              The experiments/edit page uses the Universal Viewer, which has a
               separate{" "}
               <a href="https://github.com/UniversalViewer/universalviewer/wiki/Accessibility-Statement-for-the-Universal-Viewer">
                 accessibility statement here
@@ -133,7 +133,7 @@ export default function Doc(props) {
           </h2>
 
           <p>
-            The University of St Andrews and Mnemoscene are committed to making
+            Royal Holloway University and Mnemoscene are committed to making
             this web application accessible, in accordance with the Public
             Sector Bodies (Websites and Mobile Applications) (No. 2)
             Accessibility Regulations 2018.
@@ -155,7 +155,7 @@ export default function Doc(props) {
           </p>
 
           <strong>
-            The exhibits/create page has missing aria-labels on the text editor
+            The experiments/create page has missing aria-labels on the text editor
             buttons
           </strong>
 
@@ -168,7 +168,7 @@ export default function Doc(props) {
           </p>
 
           <strong>
-            The exhibits/edit page has missing aria-labels on the draggable list
+            The experiments/edit page has missing aria-labels on the draggable list
             items
           </strong>
 
@@ -181,7 +181,7 @@ export default function Doc(props) {
           </p>
 
           <strong>
-            The exhibits/edit page uses the Universal Viewer, which has a
+            The experiments/edit page uses the Universal Viewer, which has a
             separate{" "}
             <a href="https://github.com/UniversalViewer/universalviewer/wiki/Accessibility-Statement-for-the-Universal-Viewer">
               accessibility statement here
@@ -223,7 +223,7 @@ export default function Doc(props) {
           </p>
 
           <p>
-            exhibit.so is tested on a regular basis. Some key tools used to test
+            experiment.so is tested on a regular basis. Some key tools used to test
             the site are listed below. The latest test was organised and carried
             out by Mnemoscene Ltd.
           </p>
@@ -237,7 +237,7 @@ export default function Doc(props) {
             </li>
           </ul>
 
-          <h2>What we’re doing to improve accessibility of exhibit.so</h2>
+          <h2>What we’re doing to improve accessibility of experiment.so</h2>
 
           <p>
             We are tracking outstanding accessibility issues (mentioned above)

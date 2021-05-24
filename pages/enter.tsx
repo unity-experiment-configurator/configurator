@@ -40,7 +40,7 @@ export default function Enter(props) {
 
   return (
     <>
-      <Metatags title="Enter" description="Sign in to Exhibit" />
+      <Metatags title="Enter" description="Sign in to Experiment" />
 
       <NavMenu />
 

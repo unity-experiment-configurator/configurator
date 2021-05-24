@@ -165,7 +165,7 @@ const Metadata = ({
             }}
           />
           <label htmlFor="agree-to-policies" className="text-sm align-middle">
-            I have read and agree to Exhibit's{" "}
+            I have read and agree to Experiment's{" "}
             <a
               href="/docs/terms-of-service"
               rel="noopener noreferrer"

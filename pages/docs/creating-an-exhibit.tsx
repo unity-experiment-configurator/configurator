@@ -1,7 +1,7 @@
 import React from "react";
 import Alert from "../../components/Alert";
 import Page from "../../components/Docs/Page";
-import { demoExhibit } from "../../lib/Utils";
+import { demoExperiment } from "../../lib/Utils";
 
 export async function getStaticProps(context) {
   return {
@@ -12,15 +12,15 @@ export async function getStaticProps(context) {
 export default function Doc(props) {
   return (
     <Page
-      title="Creating an Exhibit"
+      title="Creating an Experiment"
       text={
         <>
           <p>
             Go to{" "}
-            <a href="https://exhibit.so/exhibits/create">
-              exhibit.so/exhibits/create
+            <a href="https://experiment.so/experiments/create">
+              experiment.so/experiments/create
             </a>{" "}
-            to create a new Exhibit.
+            to create a new Experiment.
           </p>
 
           <h2>Providing a description</h2>
@@ -40,7 +40,7 @@ export default function Doc(props) {
                   <strong>Title</strong> (required)
                 </td>
                 <td>
-                  The title you want to give your Exhibit. (Max character count
+                  The title you want to give your Experiment. (Max character count
                   200).
                 </td>
               </tr>
@@ -49,7 +49,7 @@ export default function Doc(props) {
                   <strong>Author</strong> (required)
                 </td>
                 <td>
-                  The name of the person writing the Exhibit. (Max character
+                  The name of the person writing the Experiment. (Max character
                   count 200).
                 </td>
               </tr>
@@ -58,7 +58,7 @@ export default function Doc(props) {
                   <strong>Description</strong> (required)
                 </td>
                 <td>
-                  A description of the Exhibit. (Max character count 1000).
+                  A description of the Experiment. (Max character count 1000).
                 </td>
               </tr>
               <tr>
@@ -67,7 +67,7 @@ export default function Doc(props) {
                 </td>
                 <td>
                   This is an optional field where you can specify the copyright
-                  for your exhibit. Please see{" "}
+                  for your experiment. Please see{" "}
                   <a href="https://creativecommons.org/licenses/">
                     Creative Commons
                   </a>{" "}
@@ -78,11 +78,11 @@ export default function Doc(props) {
           </table>
           <h2>Adding Items</h2>
           <Alert>
-            Please note, Exhibit does not store user details. We recommend you
-            bookmark, or make a note of the URL for your Exhibit,{" "}
+            Please note, Experiment does not store user details. We recommend you
+            bookmark, or make a note of the URL for your Experiment,{" "}
             <strong>before</strong> you begin adding items. To find out more, go
             to{" "}
-            <a href="#save-share-embed">Save, Share, and Embed your Exhibit</a>.
+            <a href="#save-share-embed">Save, Share, and Embed your Experiment</a>.
           </Alert>
           <ul>
             <li>To add an item click 'Add item'.</li>
@@ -93,10 +93,10 @@ export default function Doc(props) {
           </ul>
           <img alt="fig 6" className="w-full max-h-full" src="/images/docs/Fig6.png" />
           <Alert>
-            Please note, if you simply want to try Exhibit we recommend you try
+            Please note, if you simply want to try Experiment we recommend you try
             our{" "}
-            <a href={`/exhibits/create?duplicate=${demoExhibit}`}>
-              Demo Exhibit
+            <a href={`/experiments/create?duplicate=${demoExperiment}`}>
+              Demo Experiment
             </a>{" "}
             where a number of items have already been added. To find out more
             about how to find IIIF manifests, please see the{" "}
@@ -109,7 +109,7 @@ export default function Doc(props) {
             </li>
             <li>
               Quickly <strong>copy</strong> an item's manifest for use in other
-              Exhibits.
+              Experiments.
             </li>
           </ul>
           <img alt="fig 7" className="w-full max-h-full" src="/images/docs/Fig7.png" />
@@ -141,14 +141,14 @@ export default function Doc(props) {
           <video className="w-full max-h-full" loop autoPlay src="/images/docs/Fig11.mp4" />
           <ul>
             <li>
-              Exhibits can be previewed at any time using the ‘Preview’ button.
+              Experiments can be previewed at any time using the ‘Preview’ button.
             </li>
           </ul>
           <img alt="fig 12" className="w-full max-h-full" src="/images/docs/Fig12.png" />
-          <h2 id="save-share-embed">Save, share, and embed your Exhibit</h2>
+          <h2 id="save-share-embed">Save, share, and embed your Experiment</h2>
           <ul>
-            <li>A unique url is generated for each Exhibit.</li>
-            <li>You can find the url under ‘share’ in the Exhibit Editor.</li>
+            <li>A unique url is generated for each Experiment.</li>
+            <li>You can find the url under ‘share’ in the Experiment Editor.</li>
           </ul>
           <img alt="fig 2" className="w-full max-h-full" src="/images/docs/Fig2.png" />
           <ul>
@@ -163,11 +163,11 @@ export default function Doc(props) {
           <Alert>
             Please note, a different url is generated when selecting either
             ‘edit’ or ‘view’ options. Ensure you save the <strong>edit</strong>{" "}
-            url so you can edit your Exhibit in future.
+            url so you can edit your Experiment in future.
           </Alert>
           <ul>
             <li>
-              Exhibits can be embedded into other websites at a variety of
+              Experiments can be embedded into other websites at a variety of
               sizes.
             </li>
           </ul>

@@ -1,16 +1,5 @@
 import { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import ReCAPTCHA from "react-google-recaptcha";
-import {
-  FormItem,
-  Label,
-  RichTextInput,
-  TextInput,
-  Button,
-  HiddenField,
-  Checkbox,
-} from "../FormControls";
 import { PresentationType } from "../../lib/Types";
 import { recaptchaSiteKey } from "../../lib/Utils";
 import { useController, useForm } from "react-hook-form";
@@ -20,8 +9,14 @@ function NumberInput(props) {
 
   return (
     <label className="block mt-8">
-      <span className="text-gray-700">{ props.label }</span>
-      <input {...field} type="number" min={props.min} max={props.max} className="form-input mt-1 block w-full" />
+      <span className="text-gray-700">{props.label}</span>
+      <input
+        {...field}
+        type="number"
+        min={props.min}
+        max={props.max}
+        className="form-input mt-1 block w-full"
+      />
       {/* <p>{fieldState.invalid ? "invalid" : "valid"}</p> */}
     </label>
   );
@@ -32,13 +27,11 @@ function SelectInput(props) {
 
   return (
     <label className="block mt-8">
-      <span className="text-gray-700">{ props.label }</span>
+      <span className="text-gray-700">{props.label}</span>
       <select {...field} className="block w-full mt-1">
-        {
-          props.options.map((option, idx) => {
-            return <option key={idx}>{option}</option>
-          })
-        }
+        {props.options.map((option, idx) => {
+          return <option key={idx}>{option}</option>;
+        })}
       </select>
     </label>
   );
@@ -80,11 +73,11 @@ const Experiment = ({
   const colors = ["Red", "Green", "Blue"];
   const targetSounds = ["Beep", "Boop"];
   const uxfSettings = {
-    "UXF": {
-      "trials_per_block": 10,
-      "catch_trials_per_block": 3,
-      "delay_time": 0.6
-    }
+    UXF: {
+      trials_per_block: 10,
+      catch_trials_per_block: 3,
+      delay_time: 0.6,
+    },
   };
 
   function download(content, fileName, contentType) {
@@ -93,23 +86,29 @@ const Experiment = ({
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
-   }
+  }
 
-  const { register, handleSubmit, control, getValues, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       TargetColor: colors[0],
       TargetType: primitives[0],
       TargetSound: targetSounds[0],
       DistractorCount: 1,
-      DistractorTypes: primitives[0]
+      DistractorTypes: primitives[0],
     },
-    mode: "onChange"
+    mode: "onChange",
   });
-  
-  const onSubmit = data => {
+
+  const onSubmitHandler = (data) => {
     const config = {
       ...data,
-      ...uxfSettings
+      ...uxfSettings,
     };
     download(JSON.stringify(config), "config.json", "text/plain");
     console.log(config);
@@ -118,8 +117,9 @@ const Experiment = ({
   // console.log(watch("title")); // watch input value by passing the name of it
 
   const atLeastOneDistractorType = () =>
-    getValues("DistractorTypes").length ? true : "Please select at least one Distractor Type.";
-
+    getValues("DistractorTypes").length
+      ? true
+      : "Please select at least one Distractor Type.";
 
   const handlePassedRecaptcha = () => {
     setPassedRecaptcha(true);
@@ -127,7 +127,10 @@ const Experiment = ({
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)} className="p-8 max-w-screen-md">
+    <form
+      onSubmit={handleSubmit(onSubmitHandler)}
+      className="p-8 max-w-screen-md"
+    >
       {/* <label className="block mt-8">
   <span className="text-gray-700">Title</span>
   <input type="text" className="mt-1 block w-full" defaultValue="test" {...register("title")} />

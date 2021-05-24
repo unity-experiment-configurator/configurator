@@ -2,21 +2,21 @@ import React, { useEffect } from "react";
 import { firestore } from "../../lib/Firebase";
 import { useCollectionData, useDocumentData } from "react-firebase-hooks/firestore";
 
-// todo: convert this to useExhibit hook
-const ExhibitFromPrivateId = ({
+// todo: convert this to useExperiment hook
+const ExperimentFromPrivateId = ({
   id,
   onLoad,
   onError,
 }: {
   id: string;
-  onLoad: (exhibit) => void;
+  onLoad: (experiment) => void;
   onError: () => void;
 }) => {
-  const exhibitRef = firestore.collection("exhibits").doc(id);
-  const [exhibit, loading, error] = useDocumentData(exhibitRef, { idField: "id" });
-  const itemsRef = firestore.collection(`exhibits/${id}/items`);
+  const experimentRef = firestore.collection("experiments").doc(id);
+  const [experiment, loading, error] = useDocumentData(experimentRef, { idField: "id" });
+  const itemsRef = firestore.collection(`experiments/${id}/items`);
   const [items] = useCollectionData(itemsRef, { idField: "id" });
-  const annotationsRef = firestore.collection(`exhibits/${id}/annotations`);
+  const annotationsRef = firestore.collection(`experiments/${id}/annotations`);
   const [annotations] = useCollectionData(annotationsRef, { idField: "id" });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const ExhibitFromPrivateId = ({
   }, [error]);
 
   useEffect(() => {
-    if (exhibit && items && annotations) {
+    if (experiment && items && annotations) {
       // parse annotations and items into maps
       const annotationsArray = [...annotations];
 
@@ -53,21 +53,21 @@ const ExhibitFromPrivateId = ({
       );
 
       const returnVal = {
-        ...exhibit,
+        ...experiment,
         items: itemsMap,
         annotations: annotationsMap,
-        presentationType: exhibit.presentationType
-          ? exhibit.presentationType
+        presentationType: experiment.presentationType
+          ? experiment.presentationType
           : "slides",
-        duplicationEnabled: !!exhibit.duplicationEnabled,
+        duplicationEnabled: !!experiment.duplicationEnabled,
       };
 
       onLoad(returnVal);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exhibit, items, annotations]);
+  }, [experiment, items, annotations]);
 
   return <></>;
 };
 
-export default ExhibitFromPrivateId;
+export default ExperimentFromPrivateId;
