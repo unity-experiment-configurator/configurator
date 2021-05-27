@@ -173,8 +173,23 @@ function CreateExperiment() {
   };
 
   const downloadConfig = async () => {
-    const config = await firestore.doc(`experiments/${state.experimentId}`).get();
-    download(JSON.stringify(config), "config.json", "text/plain");
+    const doc = await firestore.doc(`experiments/${state.experimentId}`).get();
+    const data = doc.data();
+    const uxfSettings = {
+      "UXF": {
+        "trials_per_block": 10,
+        "catch_trials_per_block": 3,
+        "delay_time": 0.6
+      }
+    };
+    const config = {
+      ...data,
+      created: data.created.toDate(),
+      url: `https://interaction-design-configurator.vercel.app/experiments/${data.publicId}`,
+      ...uxfSettings
+    };
+
+    download(JSON.stringify(config, null, 2), "config.json", "text/plain");
   }
 
   function download(content, fileName, contentType) {
