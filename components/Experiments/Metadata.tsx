@@ -34,8 +34,8 @@ const Metadata = ({
   disabled?: boolean;
   onSubmit: (values: any) => void;
 }) => {
-  const [passedRecaptcha, setPassedRecaptcha] = useState(false);
-  const [agreedToPolicies, setAgreedToPolicies] = useState(false);
+  // const [passedRecaptcha, setPassedRecaptcha] = useState(false);
+  // const [agreedToPolicies, setAgreedToPolicies] = useState(false);
 
   const validationSchema = Yup.object({
     title: Yup.string()
@@ -70,15 +70,15 @@ const Metadata = ({
     validationSchema,
     validateOnChange: false,
     onSubmit: async (values: any) => {
-      if (passedRecaptcha) {
+      // if (passedRecaptcha) {
         onSubmit(values);
-      }
+      // }
     },
   });
 
-  const handlePassedRecaptcha = () => {
-    setPassedRecaptcha(true);
-  };
+  // const handlePassedRecaptcha = () => {
+  //   setPassedRecaptcha(true);
+  // };
 
   return (
     <form
@@ -135,7 +135,7 @@ const Metadata = ({
           }
         />
       </FormItem>
-      <div className="pt-0">
+      {/* <div className="pt-0">
         <ReCAPTCHA
           sitekey={recaptchaSiteKey}
           onChange={handlePassedRecaptcha}
@@ -169,10 +169,10 @@ const Metadata = ({
               Privacy Policy
             </a>
           </label>
-        </div>
+        </div> */}
+      <div className="pt-4">
         <Button
           text={submitText}
-          disabled={disabled || !passedRecaptcha || !agreedToPolicies}
           type="submit"
           classes="md:mt-4 float-right"
         />

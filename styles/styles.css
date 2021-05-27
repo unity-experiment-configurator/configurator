@@ -32,7 +32,7 @@ h1 {
 }
 
 h2 {
-  @apply text-xl;
+  @apply text-xl font-bold;
   font-family: Inter, sans-serif;
 }
 

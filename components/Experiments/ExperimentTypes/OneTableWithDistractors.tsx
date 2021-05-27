@@ -44,7 +44,6 @@ const OneTableWithDistractors = ({
       onSubmit={handleSubmit}
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
-      one table
       <FormItem>
         <Label value="Distractor Count" />
         <NumberInput

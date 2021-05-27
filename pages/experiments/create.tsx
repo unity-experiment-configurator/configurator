@@ -78,7 +78,7 @@ function CreateExperiment() {
     | { type: "setExperimentId"; payload: string }
     | { type: "updateExperimentType"; payload: ExperimentTypeListItem }
     | { type: "setExperimentType" }
-    | { type: "setExperimentDetails"; payload: any };;
+    | { type: "setExperimentOptions" };
 
   const reducer = (state: State, action: Action): State => {
     if (action.type === "reset") {
@@ -112,7 +112,7 @@ function CreateExperiment() {
           ...state,
           step: 2,
         };
-      case "setExperimentDetails":
+      case "setExperimentOptions":
         return {
           ...state,
           step: 3,
@@ -136,9 +136,9 @@ function CreateExperiment() {
   function ExperimentType({ type }: { type: ExperimentType }) {
     switch (type) {
       case "OneTableWithDistractors":
-        return <OneTableWithDistractors onSubmit={() => {}} submitText="Next" />;
+        return <OneTableWithDistractors onSubmit={options => setExperimentOptions(options)} submitText="Next" />;
       case "TwoTablesWithDistractors":
-        return <TwoTablesWithDistractors onSubmit={() => {}} submitText="Next" />;
+        return <TwoTablesWithDistractors onSubmit={options => setExperimentOptions(options)} submitText="Next" />;
       default:
         return (
           <Message>
@@ -157,12 +157,30 @@ function CreateExperiment() {
         : null,
       created: timestamp(),
     });
-    return { id };
+
+    dispatch({
+      type: "setExperimentId",
+      payload: id,
+    });
   };
 
-  const setExperimentType = async () => {
-    await firestore.doc(`exhibits/${state.experimentId}`).update({
-      type: state.experimentType,
+  const updateExperimentType = async () => {
+    await firestore.doc(`experiments/${state.experimentId}`).update({
+      type: state.experimentType.value,
+    });
+
+    dispatch({
+      type: "setExperimentType"
+    });
+  };
+
+  const setExperimentOptions = async (options) => {
+    await firestore.doc(`experiments/${state.experimentId}`).update({
+      options: options,
+    });
+
+    dispatch({
+      type: "setExperimentOptions"
     });
   };
 
@@ -191,33 +209,33 @@ function CreateExperiment() {
             <>
               {
                 state.step === 0 && (
-                  <Metadata
-                    title={
-                      state.experimentToDuplicate
-                        ? state.experimentToDuplicate.title
-                        : ""
-                    }
-                    description={
-                      state.experimentToDuplicate
-                        ? state.experimentToDuplicate.description
-                        : ""
-                    }
-                    duplicationEnabled
-                    submitText="Next"
-                    disabled={state.syncing}
-                    onSubmit={async (values) => {
-                      const  { id } = await createExperiment(values);
-                      dispatch({
-                        type: "setExperimentId",
-                        payload: id,
-                      });
-                    }}
-                  />
+                  <>
+                    <h2 className="font-medium text-xl mb-8">Please enter some basic information about your experiment</h2>
+                    <Metadata
+                      title={
+                        state.experimentToDuplicate
+                          ? state.experimentToDuplicate.title
+                          : ""
+                      }
+                      description={
+                        state.experimentToDuplicate
+                          ? state.experimentToDuplicate.description
+                          : ""
+                      }
+                      duplicationEnabled
+                      submitText="Next"
+                      disabled={state.syncing}
+                      onSubmit={async (values) => {
+                        createExperiment(values);
+                      }}
+                    />
+                  </>
                 )
               }
               {
                 state.step === 1 && (
                   <>
+                    <h2 className="font-medium text-xl mb-8">What type of experiment would you like to conduct?</h2>
                     <Select
                       name="experimentType"
                       value={state.experimentType}
@@ -235,10 +253,7 @@ function CreateExperiment() {
                       text="Next"
                       type="submit"
                       onClick={async () => {
-                        await setExperimentType();
-                        dispatch({
-                          type: "setExperimentType"
-                        });
+                        updateExperimentType();
                       }}
                       classes="md:mt-4 float-right"
                     />
@@ -247,12 +262,18 @@ function CreateExperiment() {
               }
               {
                 state.step === 2 && (
-                  <ExperimentType type={state.experimentType.value} />
+                  <>
+                    <h2 className="font-medium text-xl mb-8">Please select which options you'd like to use for this experiment</h2>
+                    <ExperimentType type={state.experimentType.value} />
+                  </>
                 )
               }
               {
                 state.step === 3 && (
-                  <>done</>
+                  <>
+                    <h2 className="font-medium text-xl mb-8">Your experiment has been created. Please download your config file below</h2>
+                    <Button  />
+                  </>
                 )
               }
             </>
