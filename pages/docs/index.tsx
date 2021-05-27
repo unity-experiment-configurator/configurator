@@ -37,7 +37,7 @@ export default function Home(props) {
           <p>
             Join the <a href="https://docs.google.com/forms/d/e/1FAIpQLSeHLD0kng5aXvGFsNN_tJGsZMTnp08Hv2F6kdGsJRb6bT0NWw/viewform">Universal Viewer Slack</a> to keep up with new developments and
             meet our community. We have a dedicated #experiment channel for
-            discussion related to Experiment.so
+            discussion related to interaction-design-configurator.vercel.app
           </p>
 
           <p>

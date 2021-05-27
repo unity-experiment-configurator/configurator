@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { PresentationType } from "../../lib/Types";
+import { ExperimentType } from "../../lib/Types";
 import { recaptchaSiteKey } from "../../lib/Utils";
 import { useController, useForm } from "react-hook-form";
 
@@ -56,7 +56,7 @@ const Experiment = ({
   author?: string;
   description?: string;
   rights?: string;
-  presentationType: PresentationType;
+  presentationType: ExperimentType;
   duplicationEnabled: boolean;
   maxTitleChars?: number;
   maxAuthorChars?: number;

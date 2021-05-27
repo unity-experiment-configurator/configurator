@@ -17,8 +17,8 @@ export default function Doc(props) {
         <>
           <p>
             Go to{" "}
-            <a href="https://experiment.so/experiments/create">
-              experiment.so/experiments/create
+            <a href="https://interaction-design-configurator.vercel.app/experiments/create">
+              interaction-design-configurator.vercel.app/experiments/create
             </a>{" "}
             to create a new Experiment.
           </p>

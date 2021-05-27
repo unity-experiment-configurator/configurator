@@ -8,7 +8,7 @@ export interface ExperimentDBValue {
   duplicatedFrom: string | null;
   id: string;
   modified: Timestamp;
-  presentationType: ExperimentType;
+  experimentType: ExperimentType;
   duplicationEnabled: boolean;
   publicId: string;
   rights: string;
@@ -17,4 +17,8 @@ export interface ExperimentDBValue {
 
 export type PublicExperimentValue = Omit<ExperimentDBValue, "id">;
 
-export type ExperimentType = "tables";
+export interface PublicExperiment extends PublicExperimentValue {
+
+}
+
+export type ExperimentType = "OneTableWithDistractors" | "TwoTablesWithDistractors";

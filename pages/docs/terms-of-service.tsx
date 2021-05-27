@@ -97,11 +97,11 @@ export default function Doc(props) {
               <p>
                 <strong>Website</strong> refers to Experiment, accessible from{" "}
                 <a
-                  href="https://experiment.so"
+                  href="https://interaction-design-configurator.vercel.app"
                   rel="external nofollow noopener"
                   target="_blank"
                 >
-                  https://experiment.so
+                  https://interaction-design-configurator.vercel.app
                 </a>
               </p>
             </li>
@@ -497,11 +497,11 @@ export default function Doc(props) {
             <li>
               By visiting this page on our website:{" "}
               <a
-                href="https://experiment.so/docs/contact"
+                href="https://interaction-design-configurator.vercel.app/docs/contact"
                 rel="external nofollow noopener"
                 target="_blank"
               >
-                https://experiment.so/docs/contact
+                https://interaction-design-configurator.vercel.app/docs/contact
               </a>
             </li>
           </ul>

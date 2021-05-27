@@ -15,7 +15,7 @@ export default function Doc(props) {
         <>
           <p>
             Royal Holloway University and Mnemoscene Ltd are committed to
-            making experiment.so accessible to people of all levels of ability. The
+            making interaction-design-configurator.vercel.app accessible to people of all levels of ability. The
             following statement summarises where we currently are in relation to
             the World Wide Web Consortium’s Web Content Accessibility Guidelines
             (WCAG) 2.1, and outlines where we’d like to get to.
@@ -223,7 +223,7 @@ export default function Doc(props) {
           </p>
 
           <p>
-            experiment.so is tested on a regular basis. Some key tools used to test
+            interaction-design-configurator.vercel.app is tested on a regular basis. Some key tools used to test
             the site are listed below. The latest test was organised and carried
             out by Mnemoscene Ltd.
           </p>
@@ -237,7 +237,7 @@ export default function Doc(props) {
             </li>
           </ul>
 
-          <h2>What we’re doing to improve accessibility of experiment.so</h2>
+          <h2>What we’re doing to improve accessibility of interaction-design-configurator.vercel.app</h2>
 
           <p>
             We are tracking outstanding accessibility issues (mentioned above)

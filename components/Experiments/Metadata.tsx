@@ -8,36 +8,27 @@ import {
   RichTextInput,
   TextInput,
   Button,
-  HiddenField,
   Checkbox,
 } from "../FormControls";
-import { PresentationType } from "../../lib/Types";
 import { recaptchaSiteKey } from "../../lib/Utils";
 
 const Metadata = ({
   title = "",
-  author = "",
   description = "",
-  rights = "",
-  presentationType,
   duplicationEnabled,
   maxTitleChars = 200,
-  maxAuthorChars = 200,
   maxDescriptionChars = 1000,
-  maxRightsChars = 200,
+  maxInstructionsChars = 1000,
   submitText = "Submit",
   disabled,
   onSubmit,
 }: {
   title?: string;
-  author?: string;
   description?: string;
-  rights?: string;
-  presentationType: PresentationType;
   duplicationEnabled: boolean;
   maxTitleChars?: number;
-  maxAuthorChars?: number;
   maxDescriptionChars?: number;
+  maxInstructionsChars?: number;
   maxRightsChars?: number;
   submitText?: string;
   disabled?: boolean;
@@ -50,19 +41,18 @@ const Metadata = ({
     title: Yup.string()
       .max(maxTitleChars, `Please limit to ${maxTitleChars} characters`)
       .required("Please enter a value"),
-    author: Yup.string()
-      .max(maxAuthorChars, `Please limit to ${maxAuthorChars} characters`)
-      .required("Please enter a value"),
     description: Yup.string()
       .max(
         maxDescriptionChars,
         `Please limit to ${maxDescriptionChars} characters`
       )
       .required("Please enter a value"),
-    rights: Yup.string().max(
-      maxRightsChars,
-      `Please limit to ${maxRightsChars} characters`
-    ),
+    instructions: Yup.string()
+      .max(
+        maxInstructionsChars,
+        `Please limit to ${maxInstructionsChars} characters`
+      )
+      .required("Please enter a value"),
   });
 
   const {
@@ -74,10 +64,7 @@ const Metadata = ({
   } = useFormik({
     initialValues: {
       title,
-      author,
       description,
-      rights,
-      presentationType,
       duplicationEnabled,
     },
     validationSchema,
@@ -98,21 +85,11 @@ const Metadata = ({
       onSubmit={handleSubmit}
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
-      <HiddenField id="presentationType" value={values.presentationType} />
       <FormItem>
         <Label value="Title" />
         <TextInput
           id="title"
           value={values.title}
-          onChange={handleChange}
-          errors={errors}
-        />
-      </FormItem>
-      <FormItem>
-        <Label value="Author" />
-        <TextInput
-          id="author"
-          value={values.author}
           onChange={handleChange}
           errors={errors}
         />
@@ -128,6 +105,16 @@ const Metadata = ({
         />
       </FormItem>
       <FormItem>
+        <Label value="Instructions" />
+        <RichTextInput
+          id="instructions"
+          value={values.instructions}
+          // @ts-ignore
+          onChange={(e) => setFieldValue("instructions", e)}
+          errors={errors}
+        />
+      </FormItem>
+      {/* <FormItem>
         <Label value="Rights" optional />
         <TextInput
           id="rights"
@@ -136,7 +123,7 @@ const Metadata = ({
           placeholder=""
           errors={errors}
         />
-      </FormItem>
+      </FormItem> */}
       <FormItem>
         <Checkbox
           id="duplicationEnabled"
@@ -165,7 +152,7 @@ const Metadata = ({
             }}
           />
           <label htmlFor="agree-to-policies" className="text-sm align-middle">
-            I have read and agree to Experiment's{" "}
+            I have read and agree to the {" "}
             <a
               href="/docs/terms-of-service"
               rel="noopener noreferrer"

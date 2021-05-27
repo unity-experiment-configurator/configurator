@@ -1,5 +1,5 @@
 import { firebaseConfig } from "../../lib/Firebase";
-import { ExperimentType } from "../../lib/Types";
+import { ExperimentType, PublicExperiment } from "../../lib/Types";
 import Message from "../../components/Message";
 import Alert from "../../components/Alert";
 import Metatags from "../../components/Metatags";
@@ -55,9 +55,13 @@ export async function getServerSideProps(ctx) {
   return { props };
 }
 
-function ExperimentType({ type, embedded, experiment }) {
+function ExperimentType({ type, embedded, experiment } : {
+  type: ExperimentType;
+  embedded: boolean;
+  experiment: PublicExperiment;
+}) {
   switch (type) {
-    case "tables":
+    case "TwoTablesWithDistractors":
       return (
         <>
           tables experiment

@@ -15,6 +15,7 @@
     "classnames": "^2.3.1",
     "dompurify": "^2.2.7",
     "firebase": "^8.3.1",
+    "formik": "^2.1.4",
     "next": "10.2.0",
     "react-dom": "17.0.2",
     "react-firebase-hooks": "^3.0.3",
@@ -24,8 +25,10 @@
     "react-quill": "^2.0.0-beta.2",
     "react-use": "^17.1.1",
     "react": "17.0.2",
+    "react-select": "^3.1.0",
     "sanitize-html": "^2.3.3",
-    "striptags": "^3.1.1"
+    "striptags": "^3.1.1",
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "@tailwindcss/jit": "0.1.18",

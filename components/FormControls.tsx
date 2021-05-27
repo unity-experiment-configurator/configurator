@@ -29,7 +29,7 @@ export const Button = ({
 }) => {
   const c = classNames(
     classes,
-    "transition duration-300 bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring",
+    "transition duration-300 bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 focus:outline-none focus:ring",
     {
       "opacity-25": disabled,
     }
@@ -187,9 +187,9 @@ export const SVGLinkButton = ({
     {
       "opacity-25": disabled,
       "text-primary-600 bg-transparent": !primary,
-      "md:bg-primary-500 md:hover:bg-primary-700 text-white md:px-4 md:rounded md:focus:ring":
+      "md:bg-primary-500 md:hover:bg-primary-700 text-white md:px-4 md:focus:ring":
         primary && !minimizeDisabled,
-      "bg-primary-500 hover:bg-primary-700 text-white px-4 rounded focus:ring":
+      "bg-primary-500 hover:bg-primary-700 text-white px-4 focus:ring":
         primary && minimizeDisabled,
     }
   );
@@ -249,7 +249,7 @@ export const TextArea = ({
   const err: boolean = hasError(id, errors);
   const c = classNames(
     classes,
-    "shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring",
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring",
     {
       "border-red-500": err,
     }
@@ -291,7 +291,7 @@ export const TextInput = ({
   const err: boolean = hasError(id, errors);
   const c = classNames(
     classes,
-    "shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring",
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border border-gray-400",
     {
       "border-red-500": err,
     }
@@ -378,10 +378,10 @@ export const TextInputWithButton = ({
   onButtonClick?: () => void;
 }) => {
   const inputClasses = classNames(
-    "shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring w-8/12 rounded-r-none"
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring w-8/12 border border-gray-400"
   );
   const buttonClasses = classNames(
-    "transition duration-300 bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring rounded-l-none w-4/12"
+    "transition duration-300 bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 focus:outline-none focus:ring w-4/12"
   );
 
   const err: boolean = hasError(id, errors);
@@ -455,9 +455,7 @@ export const RichTextInput = ({
   ];
 
   const c = classNames(classes, {
-    border: err,
-    rounded: err,
-    "p-1": err,
+    "border": err,
     "border-red-500": err,
   });
 
@@ -487,4 +485,46 @@ export const ValidationMessage = ({
 }) => {
   const c = classNames(classes, "pt-2 text-red-500 text-xs italic");
   return <p className={c}>{message}</p>;
+};
+
+export const NumberInput = ({
+  id,
+  value,
+  min,
+  max,
+  onChange,
+  errors,
+  classes,
+}: {
+  id: string;
+  value: string;
+  min: number;
+  max: number;
+  onChange?: OnChange;
+  errors?: Errors | undefined;
+  classes?: string | undefined;
+}) => {
+  const err: boolean = hasError(id, errors);
+
+  const c = classNames(
+    classes,
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border border-gray-400",
+    {
+      "border-red-500": err,
+    }
+  );
+
+  return (
+    <>
+      <input
+        type="number"
+        id={id}
+        value={value}
+        min={min}
+        max={max}
+        className={c}
+        onChange={onChange}
+      />
+    </>
+  );
 };

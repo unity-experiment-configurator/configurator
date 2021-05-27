@@ -11,7 +11,7 @@ const Page = ({ title, text }: { title: string; text: any }) => {
             className="text-black no-underline hover:no-underline font-bold text-xl lg:text-2xl"
             href="/"
           >
-            Experiment.
+            Interaction Design Configurator
           </a>
         </div>
       </div>
