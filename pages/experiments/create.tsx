@@ -15,13 +15,7 @@ import dynamic from "next/dynamic";
 import Select from "react-select";
 import Alert from "../../components/Alert";
 import { Button } from "../../components/FormControls";
-import Experiment from "../../components/Experiments/Experiment";
-const OneTableWithDistractors = dynamic(
-  () =>
-    import(
-      "../../components/Experiments/ExperimentTypes/OneTableWithDistractors"
-    )
-);
+
 const TwoTablesWithDistractors = dynamic(
   () =>
     import(
@@ -53,10 +47,6 @@ function CreateExperiment() {
   };
 
   const experimentTypes: ExperimentTypeListItem[] = [
-    {
-      label: "One Table with Distractors",
-      value: "OneTableWithDistractors",
-    },
     {
       label: "Two Tables with Distractors",
       value: "TwoTablesWithDistractors",
@@ -135,8 +125,6 @@ function CreateExperiment() {
 
   function ExperimentType({ type }: { type: ExperimentType }) {
     switch (type) {
-      case "OneTableWithDistractors":
-        return <OneTableWithDistractors onSubmit={options => setExperimentOptions(options)} submitText="Next" />;
       case "TwoTablesWithDistractors":
         return <TwoTablesWithDistractors onSubmit={options => setExperimentOptions(options)} submitText="Next" />;
       default:
@@ -183,6 +171,19 @@ function CreateExperiment() {
       type: "setExperimentOptions"
     });
   };
+
+  const downloadConfig = async () => {
+    const config = await firestore.doc(`experiments/${state.experimentId}`).get();
+    download(JSON.stringify(config), "config.json", "text/plain");
+  }
+
+  function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
 
   return (
     <>
@@ -272,7 +273,9 @@ function CreateExperiment() {
                 state.step === 3 && (
                   <>
                     <h2 className="font-medium text-xl mb-8">Your experiment has been created. Please download your config file below</h2>
-                    <Button  />
+                    <Button text="Download Config" onClick={()=> {
+                      downloadConfig();
+                    }}  />
                   </>
                 )
               }

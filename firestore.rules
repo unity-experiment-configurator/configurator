@@ -9,7 +9,7 @@ service cloud.firestore {
       match /experiments/{experimentId} {
         // listing experiments is forbidden
         // must have been given access to the edit id to get this far
-        // allow get: if true; 
+        allow get: if true; 
         // creating is only permitted for authenticated users 
         allow create: if request.auth != null;
         // updating is only permitted for authenticated users 

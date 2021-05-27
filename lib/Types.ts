@@ -21,4 +21,4 @@ export interface PublicExperiment extends PublicExperimentValue {
 
 }
 
-export type ExperimentType = "OneTableWithDistractors" | "TwoTablesWithDistractors";
+export type ExperimentType = "TwoTablesWithDistractors";
