@@ -40,14 +40,14 @@ const Header = ({ children }: { children?: any }) => {
             id="nav-content"
           >
             <ul className="list-reset pl-0 flex justify-end flex-1 items-center list-none">
-              <li className="mr-3">
+              {/* <li className="mr-3">
                 <a
                   className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
                   href="/docs"
                 >
                   Help
                 </a>
-              </li>
+              </li> */}
               {/* <li>
                 <SignOutButton />
               </li> */}

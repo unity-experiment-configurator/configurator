@@ -1,12 +1,13 @@
-import { useFormik } from "formik";
+import { useField, useFormik } from "formik";
 import * as Yup from "yup";
 import {
   Button,
+  CustomSelect,
   FormItem,
   Label,
   NumberInput,
 } from "../../FormControls";
-import Select from "react-select";
+import Select, {ValueType, OptionsType} from "react-select";
 
 const TwoTablesWithDistractors = ({
   onSubmit,
@@ -70,13 +71,7 @@ const TwoTablesWithDistractors = ({
       .required("Please enter a value"),
   });
 
-  const {
-    setFieldValue,
-    handleSubmit,
-    handleChange,
-    values,
-    errors,
-  } = useFormik({
+  const formik = useFormik({
     initialValues: {
       targetColor,
       targetType,
@@ -91,19 +86,21 @@ const TwoTablesWithDistractors = ({
     },
   });
 
+  // const [field] = useField("distractorTypes");
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={formik.handleSubmit}
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
       <FormItem>
         <Label value="Target Colour" />
         <Select
           name="targetColor"
-          value={colors.find(x => x.value === values.targetColor)}
+          value={colors.find(x => x.value === formik.values.targetColor)}
           options={colors}
           onChange={selectedOption => {
-            setFieldValue("targetColor", selectedOption.value)
+            formik.setFieldValue("targetColor", selectedOption.value)
           }}
           className="basic-multi-select"
           classNamePrefix="select"
@@ -114,10 +111,10 @@ const TwoTablesWithDistractors = ({
         <Label value="Target Type" />
         <Select
           name="targetType"
-          value={primitives.find(x => x.value === values.targetType)}
+          value={primitives.find(x => x.value === formik.values.targetType)}
           options={primitives}
           onChange={selectedOption => {
-            setFieldValue("targetType", selectedOption.value)
+            formik.setFieldValue("targetType", selectedOption.value)
           }}
           className="basic-multi-select"
           classNamePrefix="select"
@@ -128,10 +125,10 @@ const TwoTablesWithDistractors = ({
         <Label value="Target Sound" />
         <Select
           name="targetSound"
-          value={sounds.find(x => x.value === values.targetSound)}
+          value={sounds.find(x => x.value === formik.values.targetSound)}
           options={sounds}
           onChange={selectedOption => {
-            setFieldValue("targetSound", selectedOption.value)
+            formik.setFieldValue("targetSound", selectedOption.value)
           }}
           className="basic-multi-select"
           classNamePrefix="select"
@@ -142,11 +139,11 @@ const TwoTablesWithDistractors = ({
         <Label value="Distractor Count" />
         <NumberInput
           id="distractorCount"
-          value={values.distractorCount}
+          value={formik.values.distractorCount}
           min={1}
           max={50}
-          onChange={handleChange}
-          errors={errors}
+          onChange={formik.handleChange}
+          errors={formik.errors}
         />
       </FormItem>
 
@@ -155,15 +152,38 @@ const TwoTablesWithDistractors = ({
         <Select
           name="distractorTypes"
           isMulti
-          value={primitives.find(x => x.value === values.distractorTypes)}
+          value={primitives.filter(x => formik.values["distractorTypes"].indexOf(x.value) >= 0)}
           options={primitives}
-          onChange={selectedOption => {
-            console.log(selectedOption);
-            setFieldValue("distractorTypes", selectedOption.value)
+          onChange={(option: ValueType<Option | Option[]>) => {
+            if (option) {
+              formik.setFieldValue(
+                "distractorTypes",
+                (option as Option[]).map((item: Option) => item.value)
+              );
+            } else {
+              formik.setFieldValue(
+                "distractorTypes",
+                []
+              );
+            }
           }}
           className="basic-multi-select"
           classNamePrefix="select"
         />
+        {/* @ts-ignore */}
+        {/* <CustomSelect
+          form={formik}
+          field={distractorTypesField}
+          isMulti
+          // value={primitives.find(x => x.value === formik.values.distractorTypes)}
+          options={primitives}
+          // onChange={selectedOption => {
+          //   console.log(selectedOption);
+          //   formik.setFieldValue("distractorTypes", selectedOption.value)
+          // }}
+          // className="basic-multi-select"
+          // classNamePrefix="select"
+        /> */}
       </FormItem>
 
       <Button

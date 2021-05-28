@@ -23,12 +23,6 @@ export default function Doc(props) {
 
           <h2>Using this web application</h2>
 
-          <p>
-            This web application is run by the Universal Viewer steering group.
-            We want as many people as possible to be able to use this website.
-            For example, that means you should be able to:
-          </p>
-
           <ul>
             <li>change colours, contrast levels and fonts</li>
             <li>zoom in up to 300% without the text spilling off the screen</li>
@@ -64,13 +58,6 @@ export default function Doc(props) {
               The experiments/edit page has missing aria-labels on the draggable
               list items
             </li>
-            <li>
-              The experiments/edit page uses the Universal Viewer, which has a
-              separate{" "}
-              <a href="https://github.com/UniversalViewer/universalviewer/wiki/Accessibility-Statement-for-the-Universal-Viewer">
-                accessibility statement here
-              </a>
-            </li>
           </ul>
 
           <h2>What to do if you can’t access parts of this web application</h2>
@@ -87,12 +74,6 @@ export default function Doc(props) {
 
           <p>
             We’ll consider your request and get back to you in 5 working days.
-          </p>
-
-          <p>
-            If your request pertains to third-party content, please address your
-            enquiries to the content owner. The name of the content owner is
-            usually available via the Universal Viewer’s More Information panel.
           </p>
 
           <p>
@@ -179,14 +160,6 @@ export default function Doc(props) {
             </a>{" "}
             and will implement a fix when available.
           </p>
-
-          <strong>
-            The experiments/edit page uses the Universal Viewer, which has a
-            separate{" "}
-            <a href="https://github.com/UniversalViewer/universalviewer/wiki/Accessibility-Statement-for-the-Universal-Viewer">
-              accessibility statement here
-            </a>
-          </strong>
 
           <p>
             We are following{" "}
