@@ -301,7 +301,7 @@ function CreateExperiment() {
         </LeftCol>
         <RightCol></RightCol>
       </Main>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 }

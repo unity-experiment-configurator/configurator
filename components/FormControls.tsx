@@ -300,6 +300,7 @@ export const TextArea = ({
     "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring",
     {
       "border-red-500": err,
+      "border-gray-400": !err,
     }
   );
   return (
@@ -339,9 +340,10 @@ export const TextInput = ({
   const err: boolean = hasError(id, errors);
   const c = classNames(
     classes,
-    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border border-gray-400",
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border",
     {
       "border-red-500": err,
+      "border-gray-400": !err,
     }
   );
   return (
@@ -556,9 +558,10 @@ export const NumberInput = ({
 
   const c = classNames(
     classes,
-    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border border-gray-400",
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border",
     {
       "border-red-500": err,
+      "border-gray-400": !err,
     }
   );
 
