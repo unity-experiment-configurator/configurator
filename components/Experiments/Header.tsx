@@ -2,6 +2,7 @@ import React from "react";
 import { useWindowSize } from "react-use";
 import { SVGLinkButton, SVGLinkButtonText } from "../FormControls";
 import { auth } from '../../lib/Firebase';
+import router from "next/router";
 
 function SignOutButton() {
   return (
@@ -9,7 +10,10 @@ function SignOutButton() {
       label="Log out"
       primary={true}
       classes="mr-8"
-      onClick={() => auth.signOut()}
+      onClick={() => {
+        auth.signOut();
+        router.push("/enter");
+      }}
     >
       <SVGLinkButtonText text="Sign Out" />
     </SVGLinkButton>
@@ -48,9 +52,9 @@ const Header = ({ children }: { children?: any }) => {
                   Help
                 </a>
               </li> */}
-              {/* <li>
+              <li>
                 <SignOutButton />
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>

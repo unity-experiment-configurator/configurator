@@ -1,9 +1,9 @@
-/* @import './fonts.css'; */
+@import './fonts.css';
 
 @tailwind base;
 
-/* @import './styles.css';
-@import './docs.css'; */
+@import './styles.css';
+/*@import './docs.css'; */
 
 @tailwind components;
 @tailwind utilities;

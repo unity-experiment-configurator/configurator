@@ -9,7 +9,7 @@ import ExperimentFromPublicId from "../../components/Experiments/ExperimentFromP
 import { ExperimentType, PublicExperiment } from "../../lib/Types";
 import Metadata from "../../components/Experiments/Metadata";
 import Message from "../../components/Message";
-import { firestore, logEvent, timestamp } from "../../lib/Firebase";
+import { auth, firestore, logEvent, timestamp } from "../../lib/Firebase";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Select from "react-select";
@@ -139,6 +139,7 @@ function CreateExperiment() {
   const createExperiment = async (values: any) => {
     const { id } = await firestore.collection("experiments").add({
       ...values,
+      uid: auth.currentUser.uid,
       publicId: firestore.collection("experiments").doc().id,
       duplicatedFrom: state.experimentToDuplicate
         ? state.experimentToDuplicate.publicId

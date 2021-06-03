@@ -1,32 +1,32 @@
 /* eslint-disable react/button-has-type */
 import React, { ChangeEvent } from "react";
 import { FormikErrors } from "formik";
-const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 import "react-quill/dist/quill.snow.css";
 // @ts-ignore
 import classNames from "classnames";
-import { FieldProps } from "formik";
-import Select, {ValueType, OptionsType} from "react-select";
+import ReactSelect, { ValueType } from "react-select";
 
 interface Option {
   label: string;
   value: string;
 }
 
-interface CustomSelectProps extends FieldProps {
-  options: OptionsType<Option>;
-  isMulti?: boolean;
-}
-
-export const CustomSelect = ({
-  field,
+export const Select = ({
+  name,
   form,
   options,
-  isMulti = false,
-}: CustomSelectProps) => {
+  isMulti,
+}: {
+  name: string;
+  form: any;
+  options: Option[];
+  isMulti?: boolean;
+}) => {
   const onChange = (option: ValueType<Option | Option[]>) => {
     form.setFieldValue(
-      field.name,
+      name,
       isMulti
         ? (option as Option[]).map((item: Option) => item.value)
         : (option as Option).value
@@ -36,20 +36,30 @@ export const CustomSelect = ({
   const getValue = () => {
     if (options) {
       return isMulti
-        ? options.filter(option => field.value.indexOf(option.value) >= 0)
-        : options.find(option => option.value === field.value);
+        ? options.filter(
+            (option) => form.values[name].indexOf(option.value) >= 0
+          )
+        : options.find(
+            (option) =>
+              option.value ===
+              (Array.isArray(form.values[name])
+                ? form.values[name][0]
+                : form.values[name])
+          );
     } else {
       return isMulti ? [] : ("" as any);
     }
   };
 
   return (
-    <Select
-      name={field.name}
-      value={getValue()}
-      onChange={onChange}
-      options={options}
+    <ReactSelect
+      name={name}
       isMulti={isMulti}
+      value={getValue()}
+      options={options}
+      onChange={onChange}
+      className="basic-multi-select"
+      classNamePrefix="select"
     />
   );
 };
@@ -505,7 +515,7 @@ export const RichTextInput = ({
   ];
 
   const c = classNames(classes, {
-    "border": err,
+    border: err,
     "border-red-500": err,
   });
 

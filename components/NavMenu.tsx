@@ -107,11 +107,11 @@ const NavMenu = () => {
         >
           <ul className="list-reset pl-0 lg:flex justify-end flex-1 items-center list-none">
             {/* {!isProduction && <NavMenuItem link="/experiments" text="Experiments" />} */}
-            <NavMenuItem link="/#getting-started" text="Getting Started" />
+            {/* <NavMenuItem link="/#getting-started" text="Getting Started" />
             <NavMenuItem link="/#showcase" text="Showcase" />
             <NavMenuItem link="/#features" text="Features" />
             <NavMenuItem link="/#about" text="About" />
-            <NavMenuItem link="/docs" text="Docs" />
+            <NavMenuItem link="/docs" text="Docs" /> */}
           </ul>
         </div>
       </div>

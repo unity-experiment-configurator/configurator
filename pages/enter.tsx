@@ -1,16 +1,17 @@
-import { auth } from "../lib/Firebase";
 // import { UserContext } from "../lib/Context";
 import Metatags from "../components/Metatags";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Footer from "../components/Footer";
 import NavMenu from "../components/NavMenu";
+import GoogleButton from "react-google-button";
+import { auth, googleAuthProvider } from "../lib/Firebase";
 
 export default function Enter(props) {
   // const { user } = useContext(UserContext);
   const router = useRouter();
 
-  const [signingIn, setSigningIn] = useState<boolean>(false);
+  // const [signingIn, setSigningIn] = useState<boolean>(false);
 
   // function loginWithGoogle() {
   //   return firebase
@@ -21,10 +22,14 @@ export default function Enter(props) {
   //     });
   // }
 
-  function loginAnonymously() {
-    setSigningIn(true);
-    return auth.signInAnonymously();
-  }
+  const signInWithGoogle = async () => {
+    await auth.signInWithPopup(googleAuthProvider);
+  };
+
+  // function loginAnonymously() {
+  //   setSigningIn(true);
+  //   return auth.signInAnonymously();
+  // }
 
   auth.onAuthStateChanged(async (user) => {
     if (user) {
@@ -32,11 +37,11 @@ export default function Enter(props) {
     }
   });
 
-  useEffect(() => {
-    if (auth) {
-      loginAnonymously();
-    }
-  }, [auth]);
+  // useEffect(() => {
+  //   if (auth) {
+  //     loginAnonymously();
+  //   }
+  // }, [auth]);
 
   return (
     <>
@@ -52,13 +57,14 @@ export default function Enter(props) {
             </p>
             <Button text="Sign in" onClick={loginAnonymously} />
           </>
+          */}
           <>
             <p className="w-full pb-4">
               Please sign in with your Google account to proceed.
             </p>
-            <GoogleButton onClick={loginWithGoogle} />
-          </> */}
-          <>
+            <GoogleButton onClick={signInWithGoogle} />
+          </>
+          {/* <>
             {signingIn ? (
               <span>Loading...</span>
             ) : (
@@ -66,7 +72,7 @@ export default function Enter(props) {
                 Already signed in
               </p>
             )}
-          </>
+          </> */}
         </div>
       </section>
 
