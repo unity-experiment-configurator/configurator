@@ -54,6 +54,14 @@ const TwoTablesWithDistractors = ({
       label: "Sphere",
       value: "sphere",
     },
+    {
+      label: "Torus",
+      value: "torus",
+    },
+    {
+      label: "Cylinder",
+      value: "cylinder",
+    },
   ];
 
   const globalSounds: Option[] = [
