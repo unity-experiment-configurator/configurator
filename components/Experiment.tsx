@@ -1,11 +1,9 @@
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { ExperimentType } from "../lib/Types";
-import { recaptchaSiteKey } from "../lib/Utils";
 import { useController, useForm } from "react-hook-form";
 
 function NumberInput(props) {
-  const { field, fieldState } = useController(props);
+  const { field } = useController(props);
 
   return (
     <label className="block mt-8">
@@ -23,7 +21,7 @@ function NumberInput(props) {
 }
 
 function SelectInput(props) {
-  const { field, fieldState } = useController(props);
+  const { field } = useController(props);
 
   return (
     <label className="block mt-8">
@@ -67,7 +65,7 @@ const Experiment = ({
   onSubmit: (values: any) => void;
 }) => {
   const [passedRecaptcha, setPassedRecaptcha] = useState(false);
-  const [agreedToPolicies, setAgreedToPolicies] = useState(false);
+  // const [agreedToPolicies, setAgreedToPolicies] = useState(false);
 
   const primitives = ["Cone", "Cube", "Sphere"];
   const colors = ["Red", "Green", "Blue"];
