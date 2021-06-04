@@ -47,7 +47,7 @@ function SignOutButton() {
 function CreateObjectButton() {
   return (
     <Link href="/admin">
-      <button className="p-4 text-white bg-primary-500 mr-4">Create an Object</button>
+      <button className="p-4 text-white bg-primary-500 mr-4">Create an Experiment</button>
     </Link>
   );
 }
