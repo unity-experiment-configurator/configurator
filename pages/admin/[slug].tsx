@@ -191,6 +191,7 @@ function ExperimentForm({ defaultValues, postRef }) {
     };
     const config = {
       ...data,
+      createdAt: data.createdAt.toDate(),
       updatedAt: data.updatedAt.toDate(),
       url: `${site}/${data.username}/${data.slug}`,
       ...uxfSettings
