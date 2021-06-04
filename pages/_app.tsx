@@ -1,6 +1,6 @@
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
-import Navbar from '../components/NavBar'
+import Navbar from '../components/Navbar'
 import { UserContext } from '../lib/Context'
 import '../styles/globals.css'
 import { useUserData } from '../lib/Hooks';
