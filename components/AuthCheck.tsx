@@ -1,31 +1,18 @@
-import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import Link from "next/link";
+import { useContext } from "react";
 import { UserContext } from "../lib/Context";
-// import { auth } from "../lib/Firebase";
+import Message from "../components/Message";
+import Main from "../components/Main";
 
 // Component's children only shown to logged-in users
 export default function AuthCheck(props) {
-  const { user } = useContext(UserContext);
-  const router = useRouter();
+  const { username } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   if (auth) {
-  //     auth.signInAnonymously();
-  //   }
-  // }, [auth]);
-
-  useEffect(() => {
-    console.log("authcheck");
-    if (!user) {
-      router.push(
-        {
-          pathname: "/enter",
-          query: { from: location.href },
-        },
-        "/"
+  return username
+    ? props.children
+    : props.fallback || (
+        <Main>
+          <Link href="/enter">Please sign in</Link>
+        </Main>
       );
-    }
-  }, []);
-
-  return user !== null ? props.children : null;
 }

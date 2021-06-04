@@ -16,42 +16,36 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navbar">
-      <ul>
-        <li>
-          <Link href="/">
-            <button className="btn-logo">NXT</button>
-          </Link>
-        </li>
+    <nav className="container mx-auto shadow flex items-center justify-between bg-white py-2 px-4 mb-4 max-w-5xl">
+      <Link href="/">
+        <button className="text-3xl font-black pl-2" style={{
+          marginTop: "-4px"
+        }}>
+          Experiment Configurator
+        </button>
+      </Link>
 
+      <div>
         {/* user is signed-in and has username */}
         {username && (
           <>
-            <li className="push-left">
-              <button onClick={signOut}>Sign Out</button>
-            </li>
-            <li>
-              <Link href="/admin">
-                <button className="btn-blue">Write Posts</button>
-              </Link>
-            </li>
-            <li>
-              <Link href={`/${username}`}>
-                <img src={user?.photoURL || '/hacker.png'} />
-              </Link>
-            </li>
+            <button onClick={signOut} className="p-4 border border-black mr-4">Sign Out</button>
+            <Link href="/admin">
+              <button className="p-4 text-white bg-primary-500 mr-4">My Experiments</button>
+            </Link>
+            <Link href={`/${username}`}>
+              <img className="inline-block h-12 w-12 rounded-full" src={user?.photoURL || '/hacker.png'} />
+            </Link>
           </>
         )}
 
         {/* user is not signed OR has not created username */}
         {!username && (
-          <li>
-            <Link href="/enter">
-              <button className="btn-blue">Log in</button>
-            </Link>
-          </li>
+          <Link href="/enter">
+            <button className="p-4 text-white bg-primary-500">Sign in</button>
+          </Link>
         )}
-      </ul>
+      </div>
     </nav>
   );
 }

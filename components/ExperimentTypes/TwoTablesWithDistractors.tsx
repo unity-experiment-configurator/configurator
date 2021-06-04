@@ -6,7 +6,7 @@ import {
   Label,
   Select,
   NumberInput,
-} from "../../FormControls";
+} from "../FormControls";
 
 const TwoTablesWithDistractors = ({
   onSubmit,

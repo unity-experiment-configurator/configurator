@@ -19,7 +19,7 @@ import { Button } from "../../components/FormControls";
 const TwoTablesWithDistractors = dynamic(
   () =>
     import(
-      "../../components/Experiments/ExperimentTypes/TwoTablesWithDistractors"
+      "../../components/ExperimentTypes/TwoTablesWithDistractors"
     )
 );
 

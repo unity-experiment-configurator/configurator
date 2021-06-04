@@ -1,77 +1,74 @@
-import React from "react";
-import Footer from "../components/Footer";
-import Metatags from "../components/Metatags";
-import NavMenu from "../components/NavMenu";
-import classNames from "classnames";
+import PostFeed from '../components/PostFeed';
+import Metatags from '../components/Metatags';
+import Main from '../components/Main';
+import Loader from '../components/Loader';
+import { firestore, fromMillis, postToJSON } from '../lib/Firebase';
+import { useState } from 'react';
 
-export async function getStaticProps(context) {
+// Max post to query per page
+const LIMIT = 10;
+
+export async function getServerSideProps(context) {
+  const postsQuery = firestore
+    .collectionGroup('posts')
+    .where('published', '==', true)
+    .orderBy('createdAt', 'desc')
+    .limit(LIMIT);
+
+  const posts = (await postsQuery.get()).docs.map(postToJSON);
+
   return {
-    props: {},
+    props: { posts }, // will be passed to the page component as props
   };
 }
 
 export default function Home(props) {
-  const LinkButton = ({
-    link,
-    text,
-    icon,
-    classes,
-    disabled,
-  }: {
-    link: string;
-    text: string;
-    icon: any;
-    classes?: string | undefined;
-    disabled?: boolean;
-  }) => {
-    const c = classNames(
-      "rounded focus:outline-none shadow-md font-bold leading-8",
-      classes,
-      {
-        "opacity-25": disabled,
-      }
-    );
-    return (
-      <a href={link} className={c}>
-        {text}&nbsp;{icon}
-      </a>
-    );
+  const [posts, setPosts] = useState(props.posts);
+  const [loading, setLoading] = useState(false);
+
+  const [postsEnd, setPostsEnd] = useState(false);
+
+  // Get next page in pagination query
+  const getMorePosts = async () => {
+    setLoading(true);
+    const last = posts[posts.length - 1];
+
+    if (!last) {
+      return;
+    }
+
+    const cursor = typeof last.createdAt === 'number' ? fromMillis(last.createdAt) : last.createdAt;
+
+    const query = firestore
+      .collectionGroup('posts')
+      .where('published', '==', true)
+      .orderBy('createdAt', 'desc')
+      .startAfter(cursor)
+      .limit(LIMIT);
+
+    const newPosts = (await query.get()).docs.map((doc) => doc.data());
+
+    setPosts(posts.concat(newPosts));
+    setLoading(false);
+
+    if (newPosts.length < LIMIT) {
+      setPostsEnd(true);
+    }
   };
 
   return (
-    <>
-      <Metatags title="Interaction Design for the Masses" description="." />
+    <Main>
+      <Metatags title="Home Page" description="Get the latest posts on our site" />
 
-      <NavMenu />
+      <PostFeed posts={posts} />
 
-      <section id="about" className="bg-gray-100 py-16">
-        <div className="container mx-auto flex flex-wrap py-8 px-8 text-gray-900">
-          <LinkButton
-            link={`/experiments/create`}
-            text="Create an Experiment"
-            classes="bg-blue-500 py-4 px-8 text-white text-xl"
-            icon={
-              // heroicons arrow-right
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="md:block inline pl-2 float-right h-full w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            }
-          />
-        </div>
-      </section>
+      <div className="container mx-auto flex py-4">
+        {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
 
-      <Footer />
-    </>
+        <Loader show={loading} />
+
+        {postsEnd && 'no more experiments!'}
+      </div>
+    </Main>
   );
 }

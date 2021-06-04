@@ -57,27 +57,21 @@ export async function getUserWithUsername(username: string) {
  * Converts a firestore document to JSON
  * @param  {DocumentSnapshot} doc
  */
-// export function postToJSON(doc) {
-//   const data = doc.data();
-//   return {
-//     ...data,
-//     // Gotcha! firestore timestamp NOT serializable to JSON. Must convert to milliseconds
-//     createdAt: data?.createdAt.toMillis() || 0,
-//     updatedAt: data?.updatedAt.toMillis() || 0,
-//   };
-// }
+export function postToJSON(doc) {
+  const data = doc.data();
+  return {
+    ...data,
+    // Gotcha! firestore timestamp NOT serializable to JSON. Must convert to milliseconds
+    createdAt: data?.createdAt.toMillis() || 0,
+    updatedAt: data?.updatedAt.toMillis() || 0,
+  };
+}
 
-export const getStats = async () => {
-  // @ts-ignore
-  const fn = functions.httpsCallable("getStats");
-  return fn();
-};
-
-export const getExperiment = async (publicId: string) => {
-  // @ts-ignore
-  const fn = functions.httpsCallable("getExperiment");
-  return fn({ publicId });
-};
+// export const getImage = async (publicId: string) => {
+//   // @ts-ignore
+//   const fn = functions.httpsCallable("getImage");
+//   return fn({ publicId });
+// };
 
 export const timestamp = () => {
   return firebase.firestore.Timestamp.now();

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { ExperimentType } from "../../lib/Types";
-import { recaptchaSiteKey } from "../../lib/Utils";
+import { ExperimentType } from "../lib/Types";
+import { recaptchaSiteKey } from "../lib/Utils";
 import { useController, useForm } from "react-hook-form";
 
 function NumberInput(props) {
