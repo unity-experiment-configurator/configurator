@@ -552,6 +552,7 @@ export const NumberInput = ({
   value,
   min,
   max,
+  step = 1,
   onChange,
   errors,
   classes,
@@ -560,6 +561,7 @@ export const NumberInput = ({
   value: string;
   min: number;
   max: number;
+  step?: number;
   onChange?: OnChange;
   errors?: Errors | undefined;
   classes?: string | undefined;
@@ -583,6 +585,7 @@ export const NumberInput = ({
         value={value}
         min={min}
         max={max}
+        step={step}
         className={c}
         onChange={onChange}
       />

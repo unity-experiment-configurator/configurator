@@ -10,7 +10,7 @@ import {
 } from "./FormControls";
 
 const Metadata = ({
-  title = "",
+  // title = "",
   description = "",
   duplicationEnabled,
   maxTitleChars = 200,
@@ -20,7 +20,7 @@ const Metadata = ({
   disabled,
   onSubmit,
 }: {
-  title?: string;
+  // title?: string;
   description?: string;
   duplicationEnabled: boolean;
   maxTitleChars?: number;
@@ -35,9 +35,9 @@ const Metadata = ({
   // const [agreedToPolicies, setAgreedToPolicies] = useState(false);
 
   const validationSchema = Yup.object({
-    title: Yup.string()
-      .max(maxTitleChars, `Please limit to ${maxTitleChars} characters`)
-      .required("Please enter a value"),
+    // title: Yup.string()
+    //   .max(maxTitleChars, `Please limit to ${maxTitleChars} characters`)
+    //   .required("Please enter a value"),
     description: Yup.string()
       .max(
         maxDescriptionChars,
@@ -60,7 +60,7 @@ const Metadata = ({
     errors,
   } = useFormik({
     initialValues: {
-      title,
+      // title,
       description,
       duplicationEnabled,
     },
@@ -82,7 +82,7 @@ const Metadata = ({
       onSubmit={handleSubmit}
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
-      <FormItem>
+      {/* <FormItem>
         <Label value="Title" />
         <TextInput
           id="title"
@@ -90,7 +90,7 @@ const Metadata = ({
           onChange={handleChange}
           errors={errors}
         />
-      </FormItem>
+      </FormItem> */}
       <FormItem>
         <Label value="Description" />
         <RichTextInput

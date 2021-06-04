@@ -48,7 +48,7 @@ const TwoTablesWithDistractors = ({
     },
   ];
 
-  const sounds: Option[] = [
+  const globalSounds: Option[] = [
     {
       label: "Beep",
       value: "beep",
@@ -59,10 +59,25 @@ const TwoTablesWithDistractors = ({
     }
   ];
 
+  const targetSounds: Option[] = [
+    {
+      label: "Beep",
+      value: "beep",
+    },
+    {
+      label: "Boop",
+      value: "boop",
+    }
+  ];
+
+  const globalSound = globalSounds[0].value;
+  const targetSize = 0.5;
   const targetColor = colors[0].value;
   const targetModel = primitives[0].value;
-  const targetSound = sounds[0].value;
+  const targetSound = targetSounds[0].value;
+  const distractorSize = 0.5;
   const distractorCount = 1;
+  const distractorColourRange = 0;
   const distractorModels = [primitives[0].value];
 
   const validationSchema = Yup.object({
@@ -72,10 +87,14 @@ const TwoTablesWithDistractors = ({
 
   const formik = useFormik({
     initialValues: {
+      globalSound,
+      targetSize,
       targetColor,
       targetModel,
       targetSound,
+      distractorSize,
       distractorCount,
+      distractorColourRange,
       distractorModels,
     },
     validationSchema,
@@ -90,6 +109,28 @@ const TwoTablesWithDistractors = ({
       onSubmit={formik.handleSubmit}
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
+      <FormItem>
+        <Label value="Global Sound" />
+        <Select
+          name="globalSound"
+          options={globalSounds}
+          form={formik}
+        />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target Size" />
+        <NumberInput
+          id="targetSize"
+          value={formik.values.targetSize}
+          min={0}
+          max={1}
+          step={0.1}
+          onChange={formik.handleChange}
+          errors={formik.errors}
+        />
+      </FormItem>
+
       <FormItem>
         <Label value="Target Colour" />
         <Select
@@ -112,8 +153,21 @@ const TwoTablesWithDistractors = ({
         <Label value="Target Sound" />
         <Select
           name="targetSound"
-          options={sounds}
+          options={targetSounds}
           form={formik}
+        />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Distractor Size" />
+        <NumberInput
+          id="distractorSize"
+          value={formik.values.distractorSize}
+          min={0}
+          max={1}
+          step={0.1}
+          onChange={formik.handleChange}
+          errors={formik.errors}
         />
       </FormItem>
 
@@ -124,6 +178,19 @@ const TwoTablesWithDistractors = ({
           value={formik.values.distractorCount}
           min={1}
           max={25}
+          onChange={formik.handleChange}
+          errors={formik.errors}
+        />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Distractor Colour Range" />
+        <NumberInput
+          id="distractorColourRange"
+          value={formik.values.distractorColourRange}
+          min={0}
+          max={3}
+          step={1}
           onChange={formik.handleChange}
           errors={formik.errors}
         />
