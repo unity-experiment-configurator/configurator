@@ -9,6 +9,7 @@ import { firestore, getUserWithUsername, postToJSON } from '../../lib/Firebase';
 import Link from 'next/link';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useContext } from 'react';
+import { downloadConfig } from '../../lib/Utils';
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -67,7 +68,20 @@ export default function Post(props) {
         <PostContent post={post} />
       </section>
 
-      <aside>
+      <aside className="mt-16">
+        {
+          post.duplicationEnabled && (
+            <Link href={`/admin?duplicate=${post.slug}`}>
+              <button className="p-4 text-white bg-primary-500 mr-4">Duplicate Experiment</button>
+            </Link>
+          )
+        }
+        <button className="p-4 text-white bg-primary-500 mr-4" onClick={() => {
+          downloadConfig(post);
+        }}>Download Config</button>
+      </aside>
+
+      {/* <aside>
         <div className="my-4">
           <strong>{post.heartCount || 0} 🤍</strong>
         </div>
@@ -91,7 +105,7 @@ export default function Post(props) {
             <HeartButton postRef={postRef} />
           </AuthCheck>
         </div>
-      </aside>
+      </aside> */}
     </Main>
   );
 }

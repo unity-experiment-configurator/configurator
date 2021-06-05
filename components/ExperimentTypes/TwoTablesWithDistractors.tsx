@@ -11,9 +11,11 @@ import {
 const TwoTablesWithDistractors = ({
   onSubmit,
   submitText = "Submit",
+  options,
 }: {
   onSubmit: (values: any) => void;
   submitText?: string;
+  options: any;
 }) => {
 
   type Option = { label: string; value: string };
@@ -86,15 +88,15 @@ const TwoTablesWithDistractors = ({
     }
   ];
 
-  const globalSound = globalSounds[0].value;
-  const targetSize = 0.5;
-  const targetColor = colors[0].value;
-  const targetModel = primitives[0].value;
-  const targetSound = targetSounds[0].value;
-  const distractorSize = 0.5;
-  const distractorCount = 1;
-  const distractorColourRange = 0;
-  const distractorModels = [primitives[0].value];
+  const globalSound = options?.globalSound || globalSounds[0].value;
+  const targetSize = options?.targetSize || 0.5;
+  const targetColor = options?.targetColor || colors[0].value;
+  const targetModel = options?.targetModel || primitives[0].value;
+  const targetSound = options?.targetSound || targetSounds[0].value;
+  const distractorSize = options?.distractorSize || 0.5;
+  const distractorCount = options?.distractorCount || 1;
+  const distractorColors = options?.distractorColors || [colors[0].value];
+  const distractorModels = options?.distractorModels || [primitives[0].value];
 
   const validationSchema = Yup.object({
     distractorCount: Yup.string()
@@ -110,7 +112,7 @@ const TwoTablesWithDistractors = ({
       targetSound,
       distractorSize,
       distractorCount,
-      distractorColourRange,
+      distractorColors,
       distractorModels,
     },
     validationSchema,
@@ -200,16 +202,8 @@ const TwoTablesWithDistractors = ({
       </FormItem>
 
       <FormItem>
-        <Label value="Distractor Colour Range" />
-        <NumberInput
-          id="distractorColourRange"
-          value={formik.values.distractorColourRange}
-          min={0}
-          max={3}
-          step={1}
-          onChange={formik.handleChange}
-          errors={formik.errors}
-        />
+        <Label value="Distractor Colours" />
+        <Select name="distractorColors" isMulti form={formik} options={colors} />
       </FormItem>
 
       <FormItem>

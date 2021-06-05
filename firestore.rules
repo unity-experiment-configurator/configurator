@@ -18,7 +18,6 @@ service cloud.firestore {
         allow create: if isValidUsername(username);
       }
 
-      
       match /users/{userId}/posts/{postId} {
       	allow read;
         allow create: if canCreatePost(userId); 
@@ -54,20 +53,20 @@ service cloud.firestore {
       function canCreatePost(userId) {
         let isOwner = request.auth.uid == userId;
         let isNow = request.time == request.resource.data.createdAt;
-        let isValidContent = request.resource.data.content.size() < 20000 && request.resource.data.heartCount == 0;
+        // let isValidContent = request.resource.data.content.size() < 20000 && request.resource.data.heartCount == 0;
         let username = get(/databases/$(database)/documents/users/$(request.auth.uid)).data.username;
         let usernameMatches = username == request.resource.data.username;
 
-      	return isOwner && isNow && isValidContent && usernameMatches;
+      	return isOwner && isNow && usernameMatches;
       }
       
       function canUpdatePost(userId) {
         let isOwner = request.auth.uid == userId;
       	let isNow = request.time == request.resource.data.updatedAt;
-        let isValidContent = request.resource.data.content.size() < 20000;
+        // let isValidContent = request.resource.data.content.size() < 20000;
         let doesNotUpdateForbidden = !request.resource.data.diff(resource.data).affectedKeys().hasAny(['uid', 'username', 'heartCount']);
         
-        return isOwner && isNow && isValidContent && doesNotUpdateForbidden;
+        return isOwner && isNow && doesNotUpdateForbidden;
       }
 
       // Hearts

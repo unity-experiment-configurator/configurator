@@ -28,7 +28,7 @@ export const Select = ({
     form.setFieldValue(
       name,
       isMulti
-        ? (option as Option[]).map((item: Option) => item.value)
+        ? ((option as Option[]) || []).map((item: Option) => item.value)
         : (option as Option).value
     );
   };

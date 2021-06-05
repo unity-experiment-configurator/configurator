@@ -4,7 +4,6 @@ import {
   FormItem,
   Label,
   RichTextInput,
-  TextInput,
   Button,
   Checkbox,
 } from "./FormControls";
@@ -12,23 +11,25 @@ import {
 const Metadata = ({
   // title = "",
   description = "",
-  duplicationEnabled,
-  maxTitleChars = 200,
+  instructions = "",
+  // duplicationEnabled,
+  // maxTitleChars = 200,
   maxDescriptionChars = 1000,
   maxInstructionsChars = 1000,
   submitText = "Submit",
-  disabled,
+  // disabled,
   onSubmit,
 }: {
   // title?: string;
   description?: string;
-  duplicationEnabled: boolean;
-  maxTitleChars?: number;
+  instructions?: string;
+  // duplicationEnabled: boolean;
+  // maxTitleChars?: number;
   maxDescriptionChars?: number;
   maxInstructionsChars?: number;
   maxRightsChars?: number;
   submitText?: string;
-  disabled?: boolean;
+  // disabled?: boolean;
   onSubmit: (values: any) => void;
 }) => {
   // const [passedRecaptcha, setPassedRecaptcha] = useState(false);
@@ -62,7 +63,8 @@ const Metadata = ({
     initialValues: {
       // title,
       description,
-      duplicationEnabled,
+      instructions,
+      // duplicationEnabled,
     },
     validationSchema,
     validateOnChange: false,
@@ -121,7 +123,7 @@ const Metadata = ({
           errors={errors}
         />
       </FormItem> */}
-      <FormItem>
+      {/* <FormItem>
         <Checkbox
           id="duplicationEnabled"
           label="Allow Duplication"
@@ -131,7 +133,7 @@ const Metadata = ({
             setFieldValue("duplicationEnabled", e.target.checked)
           }
         />
-      </FormItem>
+      </FormItem> */}
       {/* <div className="pt-0">
         <ReCAPTCHA
           sitekey={recaptchaSiteKey}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { sanitizeSSR } from "../lib/Utils";
 
 export default function PostFeed({
   posts,
@@ -18,17 +19,17 @@ export default function PostFeed({
 
 function PostItem({ post, admin = false }: { post: any; admin?: boolean }) {
   // Naive method to calc word count and read time
-  const wordCount = post?.content.trim().split(/\s+/g).length;
+  // const wordCount = post?.content.trim().split(/\s+/g).length;
   // const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
   return (
-    <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+    <div className="py-5">
       <dt>
         <Link href={`/${post.username}/${post.slug}`}>
           <img src={post.thumbnailURL} className="cursor-pointer" />
         </Link>
       </dt>
-      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+      <dd className="mt-1 text-sm text-gray-900">
 
         <header>
           <Link href={`/${post.username}/${post.slug}`}>
@@ -45,17 +46,19 @@ function PostItem({ post, admin = false }: { post: any; admin?: boolean }) {
           </Link>
         </header>
 
-        <main className="pt-2 text-md">{post.description}</main>
+        <main className="pt-2 text-md">
+          <div dangerouslySetInnerHTML={sanitizeSSR(post.description)}></div>
+        </main>
 
-        <footer className="py-2">
-          {/* <span>
-          {wordCount} words. {minutesToRead} min read
-        </span> */}
+        {/* <footer className="py-2">
+          <span>
+            {wordCount} words. {minutesToRead} min read
+          </span>
           <span>💗 {post.heartCount || 0} Hearts</span>
-        </footer>
+        </footer> */}
 
         {/* If admin view, show extra controls for user */}
-        {admin && (
+        {/* {admin && (
           <>
             <Link href={`/admin/${post.slug}`}>
               <button className="p-4 bg-primary-500 text-white">Edit</button>
@@ -67,7 +70,7 @@ function PostItem({ post, admin = false }: { post: any; admin?: boolean }) {
               <p className="text-red">Unpublished</p>
             )}
           </>
-        )}
+        )} */}
       </dd>
     </div>
   );

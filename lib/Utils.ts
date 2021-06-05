@@ -54,3 +54,30 @@ export const urlsEqual = (url1: string, url2: string): boolean => {
   const URL2 = new URL(url2);
   return URL1.hostname === URL2.hostname && URL1.pathname === URL2.pathname;
 };
+
+export const downloadConfig = async (data) => {
+  const uxfSettings = {
+    "UXF": {
+      "trials_per_block": 10,
+      "catch_trials_per_block": 3,
+      "delay_time": 0.6
+    }
+  };
+  const config = {
+    ...data,
+    createdAt: data.createdAt.toDate(),
+    updatedAt: data.updatedAt.toDate(),
+    url: `${site}/${data.username}/${data.slug}`,
+    ...uxfSettings
+  };
+
+  download(JSON.stringify(config, null, 2), "config.json", "text/plain");
+}
+
+export function download(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+}

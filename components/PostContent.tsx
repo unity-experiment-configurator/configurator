@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
+import { sanitizeSSR } from '../lib/Utils';
 
 // UI component for main post content
 export default function PostContent({ post }) {
@@ -14,9 +14,9 @@ export default function PostContent({ post }) {
         <Link href={`/${post.username}/`}>
           <a>@{post.username}</a>
         </Link>{' '}
-        on {createdAt.toISOString()}
+        on {createdAt.toLocaleString('en-GB')}
       </div>
-      <ReactMarkdown>{post?.content}</ReactMarkdown>
+      <div dangerouslySetInnerHTML={sanitizeSSR(post.description)}></div>
     </div>
   );
 }
