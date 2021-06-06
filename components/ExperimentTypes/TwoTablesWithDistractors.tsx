@@ -6,6 +6,7 @@ import {
   Label,
   Select,
   NumberInput,
+  RangeInput,
 } from "../FormControls";
 
 const TwoTablesWithDistractors = ({
@@ -138,7 +139,7 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Target Size" />
-        <NumberInput
+        <RangeInput
           id="targetSize"
           value={formik.values.targetSize}
           min={0}
@@ -178,7 +179,7 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Distractor Size" />
-        <NumberInput
+        <RangeInput
           id="distractorSize"
           value={formik.values.distractorSize}
           min={0}
@@ -203,12 +204,12 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Distractor Colours" />
-        <Select name="distractorColors" isMulti form={formik} options={colors} />
+        <Select name="distractorColors" isMulti form={formik} options={colors} menuPlacement="top" />
       </FormItem>
 
       <FormItem>
         <Label value="Distractor Models" />
-        <Select name="distractorModels" isMulti form={formik} options={primitives} />
+        <Select name="distractorModels" isMulti form={formik} options={primitives} menuPlacement="top" />
       </FormItem>
 
       <Button

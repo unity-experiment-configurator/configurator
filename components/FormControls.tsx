@@ -18,11 +18,13 @@ export const Select = ({
   form,
   options,
   isMulti,
+  menuPlacement = "bottom",
 }: {
   name: string;
   form: any;
   options: Option[];
   isMulti?: boolean;
+  menuPlacement?: "top" | "bottom" | "auto";
 }) => {
   const onChange = (option: ValueType<Option | Option[]>) => {
     form.setFieldValue(
@@ -58,6 +60,7 @@ export const Select = ({
       value={getValue()}
       options={options}
       onChange={onChange}
+      menuPlacement={menuPlacement}
       className="basic-multi-select"
       classNamePrefix="select"
     />
@@ -581,6 +584,47 @@ export const NumberInput = ({
     <>
       <input
         type="number"
+        id={id}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        className={c}
+        onChange={onChange}
+      />
+    </>
+  );
+};
+
+export const RangeInput = ({
+  id,
+  value,
+  min = 0,
+  max = 100,
+  step = 1,
+  onChange,
+  errors,
+  classes,
+}: {
+  id: string;
+  value: string;
+  min: number;
+  max: number;
+  step?: number;
+  onChange?: OnChange;
+  errors?: Errors | undefined;
+  classes?: string | undefined;
+}) => {
+
+  const c = classNames(
+    classes,
+    "appearance-none w-full py-1 px-1 text-gray-900 leading-tight focus:outline-none focus:ring border border-gray-400",
+  );
+
+  return (
+    <>
+      <input
+        type="range"
         id={id}
         value={value}
         min={min}

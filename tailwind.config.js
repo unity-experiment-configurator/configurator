@@ -302,7 +302,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Inter',
+        'IBM Plex Sans',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
