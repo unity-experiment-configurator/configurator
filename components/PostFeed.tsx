@@ -33,7 +33,7 @@ function PostItem({ post, admin = false }: { post: any; admin?: boolean }) {
 
         <header>
           <Link href={`/${post.username}/${post.slug}`}>
-            <h2 className="w-full cursor-pointer py-2 text-xl font-bold">
+            <h2 className="w-full cursor-pointer py-2 text-2xl font-bold">
               <a className="text-black">{post.title}</a>
             </h2>
           </Link>

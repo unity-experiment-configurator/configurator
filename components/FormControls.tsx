@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useRef } from "react";
 import { FormikErrors } from "formik";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -621,6 +621,8 @@ export const RangeInput = ({
     "appearance-none w-full py-1 px-1 text-gray-900 leading-tight focus:outline-none focus:ring border border-gray-400",
   );
 
+  const outputRef = useRef();
+
   return (
     <>
       <input
@@ -632,7 +634,10 @@ export const RangeInput = ({
         step={step}
         className={c}
         onChange={onChange}
+        // @ts-ignore
+        onInput={e => outputRef.current!.value = e.currentTarget.value}
       />
+      <output ref={outputRef}>{value}</output>
     </>
   );
 };

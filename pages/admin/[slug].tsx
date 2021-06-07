@@ -39,8 +39,8 @@ function PostManager() {
   return (
     <Main>
       {post && (
-        <section className="overflow-hidden mb-16">
-          {/* <h1 className="py-4 text-2xl font-bold">{post.title}</h1> */}
+        <section className="overflow-hidden">
+          {/* <h1 className="py-4 text-3xl font-bold">{post.title}</h1> */}
           {/* <div>ID: {post.slug}</div> */}
           <ExperimentForm postRef={postRef} defaultValues={post} duplicate={duplicate as string} />
         </section>
@@ -169,7 +169,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
     <>
       {state.step === 0 && (
         <>
-          <h2 className="font-medium text-xl mb-8">
+          <h2 className="font-medium text-2xl mb-8">
             What type of experiment would you like to conduct?
           </h2>
           <Select
@@ -197,7 +197,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       )}
       {state.step === 1 && (
         <>
-          <h2 className="font-medium text-xl mb-8">
+          <h2 className="font-medium text-2xl mb-8">
             Please enter some basic information about your experiment
           </h2>
           <Metadata
@@ -212,7 +212,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       )}
       {state.step === 2 && (
         <>
-          <h2 className="font-medium text-xl mb-8">
+          <h2 className="font-medium text-2xl mb-8">
             Please select which options you'd like to use for this experiment
           </h2>
           <ExperimentType type={state.experimentType.value} options={defaultValues?.options} />
@@ -220,7 +220,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       )}
       {state.step === 3 && (
         <>
-          <h2 className="font-medium text-xl mb-8">
+          <h2 className="font-medium text-2xl mb-8">
             Your experiment has been created. Please download your config file
             below
           </h2>

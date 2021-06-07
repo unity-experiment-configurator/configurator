@@ -192,7 +192,7 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Distractor Count" />
-        <NumberInput
+        <RangeInput
           id="distractorCount"
           value={formik.values.distractorCount}
           min={1}

@@ -28,7 +28,7 @@ function ExperimentList() {
 
   return (
     <>
-      <h1 className="mt-4 pb-4 text-2xl font-bold">My Experiments</h1>
+      <h1 className="mt-4 pb-4 text-3xl font-bold">My Experiments</h1>
       <PostFeed posts={posts} admin />
     </>
   );

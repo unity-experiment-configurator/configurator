@@ -7,7 +7,7 @@ export default function PostContent({ post }) {
 
   return (
     <div>
-      <h1 className="py-4 text-2xl font-bold">{post?.title}</h1>
+      <h1 className="py-4 text-3xl font-bold">{post?.title}</h1>
       <img src={post.thumbnailURL} />
       <div className="text-sm mb-8 text-gray-700">
         Created by{' '}

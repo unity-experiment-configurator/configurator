@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <nav className="container mx-auto shadow flex items-center justify-between bg-white py-2 px-4 mb-4 max-w-5xl">
       <Link href="/">
-        <button className="text-3xl font-semibold pl-2" style={{
+        <button className="text-3xl pl-2" style={{
           marginTop: "-4px"
         }}>
           Experiment Configurator
