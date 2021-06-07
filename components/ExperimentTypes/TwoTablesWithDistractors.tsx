@@ -5,9 +5,9 @@ import {
   FormItem,
   Label,
   Select,
-  NumberInput,
   RangeInput,
 } from "../FormControls";
+import chroma from "chroma-js";
 
 const TwoTablesWithDistractors = ({
   onSubmit,
@@ -19,28 +19,33 @@ const TwoTablesWithDistractors = ({
   options: any;
 }) => {
 
-  type Option = { label: string; value: string };
+  type Option = { label: string; value: string; color?: string };
 
   const colors: Option[] = [
     {
       label: "Red",
       value: "red",
+      color: "#ff0000",
     },
     {
       label: "Orange",
       value: "orange",
+      color: "#fca503",
     },
     {
       label: "Yellow",
       value: "yellow",
+      color: "#e3d400",
     },
     {
       label: "Green",
       value: "green",
+      color: "#00ff00",
     },
     {
       label: "Blue",
       value: "blue",
+      color: "#0000ff",
     },
   ];
 
@@ -123,6 +128,55 @@ const TwoTablesWithDistractors = ({
     },
   });
 
+  const dot = (color = '#ccc') => ({
+    alignItems: 'center',
+    display: 'flex',
+  
+    ':before': {
+      backgroundColor: color,
+      borderRadius: 10,
+      content: '" "',
+      display: 'block',
+      marginRight: 8,
+      height: 10,
+      width: 10,
+    },
+  });
+  
+  const colourStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? data.color
+          : isFocused
+          ? color.alpha(0.1).css()
+          : null,
+        color: isDisabled
+          ? '#ccc'
+          : isSelected
+          ? chroma.contrast(color, 'white') > 2
+            ? 'white'
+            : 'black'
+          : data.color,
+        cursor: isDisabled ? 'not-allowed' : 'default',
+  
+        ':active': {
+          ...styles[':active'],
+          backgroundColor:
+            !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
+        },
+      };
+    },
+    input: styles => ({ ...styles, ...dot() }),
+    placeholder: styles => ({ ...styles, ...dot() }),
+    singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+  };
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -156,6 +210,7 @@ const TwoTablesWithDistractors = ({
           name="targetColor"
           form={formik}
           options={colors}
+          styles={colourStyles}
         />
       </FormItem>
 

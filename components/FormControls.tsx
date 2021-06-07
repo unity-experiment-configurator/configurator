@@ -19,12 +19,14 @@ export const Select = ({
   options,
   isMulti,
   menuPlacement = "bottom",
+  styles
 }: {
   name: string;
   form: any;
   options: Option[];
   isMulti?: boolean;
   menuPlacement?: "top" | "bottom" | "auto";
+  styles?: any;
 }) => {
   const onChange = (option: ValueType<Option | Option[]>) => {
     form.setFieldValue(
@@ -63,6 +65,11 @@ export const Select = ({
       menuPlacement={menuPlacement}
       className="basic-multi-select"
       classNamePrefix="select"
+      styles={styles}
+      theme={(theme) => ({
+        ...theme,
+        borderRadius: 0,
+      })}
     />
   );
 };
