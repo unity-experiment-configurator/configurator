@@ -18,6 +18,7 @@ export const Select = ({
   form,
   options,
   isMulti,
+  closeMenuOnSelect,
   menuPlacement = "bottom",
   styles
 }: {
@@ -25,6 +26,7 @@ export const Select = ({
   form: any;
   options: Option[];
   isMulti?: boolean;
+  closeMenuOnSelect?: false;
   menuPlacement?: "top" | "bottom" | "auto";
   styles?: any;
 }) => {
@@ -59,6 +61,7 @@ export const Select = ({
     <ReactSelect
       name={name}
       isMulti={isMulti}
+      closeMenuOnSelect={closeMenuOnSelect}
       value={getValue()}
       options={options}
       onChange={onChange}

@@ -21,7 +21,8 @@ export default function Navbar() {
         <button className="text-3xl pl-2" style={{
           marginTop: "-4px"
         }}>
-          Experiment Configurator
+          <span className="block md:hidden">UXC</span>
+          <span className="hidden md:block">Unity Experiment Configurator</span>
         </button>
       </Link>
 

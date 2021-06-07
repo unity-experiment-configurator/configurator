@@ -143,7 +143,7 @@ const TwoTablesWithDistractors = ({
     },
   });
   
-  const colourStyles = {
+  const singleColourStyles = {
     control: styles => ({ ...styles, backgroundColor: 'white' }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = chroma(data.color);
@@ -175,6 +175,56 @@ const TwoTablesWithDistractors = ({
     input: styles => ({ ...styles, ...dot() }),
     placeholder: styles => ({ ...styles, ...dot() }),
     singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+  };
+
+  const multiColourStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? data.color
+          : isFocused
+          ? color.alpha(0.1).css()
+          : null,
+        color: isDisabled
+          ? '#ccc'
+          : isSelected
+          ? chroma.contrast(color, 'white') > 2
+            ? 'white'
+            : 'black'
+          : data.color,
+        cursor: isDisabled ? 'not-allowed' : 'default',
+  
+        ':active': {
+          ...styles[':active'],
+          backgroundColor:
+            !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
+        },
+      };
+    },
+    multiValue: (styles, { data }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: color.alpha(0.1).css(),
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+      ':hover': {
+        backgroundColor: data.color,
+        color: 'white',
+      },
+    }),
   };
 
   return (
@@ -210,7 +260,7 @@ const TwoTablesWithDistractors = ({
           name="targetColor"
           form={formik}
           options={colors}
-          styles={colourStyles}
+          styles={singleColourStyles}
         />
       </FormItem>
 
@@ -259,12 +309,12 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Distractor Colours" />
-        <Select name="distractorColors" isMulti form={formik} options={colors} menuPlacement="top" />
+        <Select name="distractorColors" isMulti closeMenuOnSelect={false} form={formik} options={colors} menuPlacement="top" styles={multiColourStyles} />
       </FormItem>
 
       <FormItem>
         <Label value="Distractor Models" />
-        <Select name="distractorModels" isMulti form={formik} options={primitives} menuPlacement="top" />
+        <Select name="distractorModels" isMulti closeMenuOnSelect={false} form={formik} options={primitives} menuPlacement="top" />
       </FormItem>
 
       <Button
