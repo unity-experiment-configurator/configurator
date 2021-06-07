@@ -1,3 +1,3 @@
-# Interaction Design for the Masses Web Configurator
+# Unity Experiment Configurator
 
-https://interaction-design-configurator.vercel.app/
+https://unity-experiment-configurator.vercel.app/
