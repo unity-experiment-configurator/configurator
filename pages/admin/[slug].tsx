@@ -182,7 +182,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
                 payload: type,
               });
             }}
-            className="basic-multi-select"
+            className="basic-multi-select pb-8"
             classNamePrefix="select"
           />
           <Button
@@ -221,8 +221,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       {state.step === 3 && (
         <>
           <h2 className="font-medium text-2xl mb-8">
-            Your experiment has been created. Please download your config file
-            below
+            Your experiment has been created. Please download your config file.
           </h2>
           <Button
             text="Download Config"

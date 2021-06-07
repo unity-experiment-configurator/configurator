@@ -30,12 +30,12 @@ export default function Navbar() {
         {/* user is signed-in and has username */}
         {username && (
           <>
-            <button onClick={signOut} className="p-4 border border-black mr-4">Sign Out</button>
+            <button onClick={signOut} className="p-2 md:p-4 border border-black mr-4">Sign Out</button>
             <Link href="/admin">
-              <button className="p-4 text-white bg-primary-500 mr-4">My Experiments</button>
+              <button className="p-2 md:p-4 text-white bg-primary-500 mr-4">My Experiments</button>
             </Link>
             <Link href={`/${username}`}>
-              <img className="inline-block h-12 w-12 rounded-full" src={user?.photoURL || '/hacker.png'} />
+              <img className="inline-block h-10 w-10 md:h-12 md:w-12 rounded-full" src={user?.photoURL || '/hacker.png'} />
             </Link>
           </>
         )}
