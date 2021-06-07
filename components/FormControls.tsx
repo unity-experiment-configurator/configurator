@@ -508,23 +508,24 @@ export const RichTextInput = ({
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      [{ color: [] }],
-      ["link"],
+      //[{ header: [1, 2, false] }],
+      //["bold", "italic", "blockquote"],
+      ["bold", "italic"],
+      //[{ list: "ordered" }, { list: "bullet" }],
+      //[{ color: [] }],
+      //["link"],
     ],
   };
 
   const formats = [
-    "header",
+    //"header",
     "bold",
     "italic",
-    "blockquote",
-    "list",
-    "bullet",
-    "color",
-    "link",
+    //"blockquote",
+    //"list",
+    //"bullet",
+    //"color",
+    //"link",
   ];
 
   const c = classNames(classes, {

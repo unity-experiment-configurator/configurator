@@ -1,8 +1,10 @@
+import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { UserContext } from '../lib/Context';
 import { auth } from '../lib/Firebase';
+import { useOnClickOutside } from '../lib/Hooks';
 
 // Top navbar
 export default function Navbar() {
@@ -15,6 +17,14 @@ export default function Navbar() {
     router.reload();
   }
 
+  router.events?.on("routeChangeStart", () => {
+    setProfileMenuOpen(false);
+  });
+
+  const profileMenuRef = useRef();
+  const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
+  useOnClickOutside(profileMenuRef, () => setProfileMenuOpen(false));
+  
   return (
     <nav className="container mx-auto shadow flex items-center justify-between bg-white py-2 px-4 mb-4 max-w-5xl">
       <Link href="/">
@@ -26,17 +36,31 @@ export default function Navbar() {
         </button>
       </Link>
 
-      <div>
+      <div className="flex">
         {/* user is signed-in and has username */}
         {username && (
           <>
-            <button onClick={signOut} className="p-2 md:p-4 border border-black mr-4">Sign Out</button>
             <Link href="/admin">
-              <button className="p-2 md:p-4 text-white bg-primary-500 mr-4">My Experiments</button>
+              <button className="inline-block p-2 md:p-4 text-white bg-primary-500 mr-4">My Experiments</button>
             </Link>
-            <Link href={`/${username}`}>
-              <img className="inline-block h-10 w-10 md:h-12 md:w-12 rounded-full" src={user?.photoURL || '/hacker.png'} />
-            </Link>
+            <div ref={profileMenuRef} className="inline-block relative">
+              <div>
+                <button type="button" className="bg-gray-800 flex text-sm focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                  <span className="sr-only">Open user menu</span>
+                  <img onClick={() => {
+                    setProfileMenuOpen(!isProfileMenuOpen);
+                  }} className="inline-block h-10 w-10 md:h-14 md:w-14 rounded-full" src={user?.photoURL || '/hacker.png'} /> 
+                </button>
+              </div>
+              <div className={classNames("origin-top-right absolute right-0 mt-2 w-48 shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none", {
+                "hidden": !isProfileMenuOpen
+              })} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex={-1}>
+                <Link href={`/${username}`}>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">Your Profile</a>
+                </Link>
+                <a href="#" onClick={signOut} className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</a>
+              </div>
+            </div>
           </>
         )}
 
