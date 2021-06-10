@@ -12,8 +12,8 @@ export default function AdminPostsPage(props) {
   return (
     <Main>
       <AuthCheck>
-        <ExperimentList />
         <CreateNewExperiment />
+        <ExperimentList />
       </AuthCheck>
     </Main>
   );
