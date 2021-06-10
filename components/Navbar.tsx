@@ -45,7 +45,7 @@ export default function Navbar() {
             </Link>
             <div ref={profileMenuRef} className="inline-block relative">
               <div>
-                <button type="button" className="bg-gray-800 flex text-sm focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button type="button" className="flex text-sm focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
                   <img onClick={() => {
                     setProfileMenuOpen(!isProfileMenuOpen);

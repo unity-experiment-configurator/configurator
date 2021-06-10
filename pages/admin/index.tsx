@@ -28,7 +28,7 @@ function ExperimentList() {
 
   return (
     <>
-      <h1 className="mt-4 pb-4 text-3xl font-bold">My Experiments</h1>
+      <h1 className="mt-16 pb-4 text-2xl font-bold">My Experiments</h1>
       <PostFeed posts={posts} admin />
     </>
   );
@@ -110,7 +110,7 @@ function CreateNewExperiment() {
 
   return (
     <form onSubmit={createPost}>
-      <h1 className="mt-8 pb-4 text-xl font-bold">{
+      <h1 className="mt-8 pb-4 text-2xl font-bold">{
         duplicate ? <>Duplicate "{duplicate}"</> : <>Create a New Experiment</>
       }</h1>
       <input
