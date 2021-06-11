@@ -72,7 +72,7 @@ const Experiment = ({
   const targetSounds = ["Beep", "Boop"];
   const uxfSettings = {
     "sessionBlockCount": 10,
-    "blockTrialCount": 3
+    "blockTrialCount": 3,
   };
 
   function download(content, fileName, contentType) {
