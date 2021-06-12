@@ -57,11 +57,8 @@ export const urlsEqual = (url1: string, url2: string): boolean => {
 
 export const downloadConfig = async (data) => {
   const uxfSettings = {
-    "UXF": {
-      "trials_per_block": 10,
-      "catch_trials_per_block": 3,
-      "delay_time": 0.6
-    }
+    "sessionBlockCount": 10,
+    "blockTrialCount": 3,
   };
   const config = {
     ...data,
