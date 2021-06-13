@@ -1,12 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  Button,
-  FormItem,
-  Label,
-  Select,
-  RangeInput,
-} from "../FormControls";
+import { Button, FormItem, Label, Select, RangeInput } from "../FormControls";
 import chroma from "chroma-js";
 
 const TwoTablesWithDistractors = ({
@@ -18,34 +12,33 @@ const TwoTablesWithDistractors = ({
   submitText?: string;
   options: any;
 }) => {
-
   type Option = { label: string; value: string; color?: string };
 
   const colors: Option[] = [
     {
       label: "Red",
       value: "red",
-      color: "#ff0000",
+      color: "#E55353",
     },
     {
       label: "Orange",
       value: "orange",
-      color: "#fca503",
+      color: "#F79437",
     },
     {
       label: "Yellow",
       value: "yellow",
-      color: "#e3d400",
+      color: "#FCC244",
     },
     {
       label: "Green",
       value: "green",
-      color: "#00ff00",
+      color: "#76C161",
     },
     {
       label: "Blue",
       value: "blue",
-      color: "#0000ff",
+      color: "#31AFE1",
     },
   ];
 
@@ -80,7 +73,7 @@ const TwoTablesWithDistractors = ({
     {
       label: "Boop",
       value: "boop",
-    }
+    },
   ];
 
   const targetSounds: Option[] = [
@@ -91,7 +84,7 @@ const TwoTablesWithDistractors = ({
     {
       label: "Boop",
       value: "boop",
-    }
+    },
   ];
 
   const globalSound = options?.globalSound || globalSounds[0].value;
@@ -105,8 +98,7 @@ const TwoTablesWithDistractors = ({
   const distractorModels = options?.distractorModels || [primitives[0].value];
 
   const validationSchema = Yup.object({
-    distractorCount: Yup.string()
-      .required("Please enter a value"),
+    distractorCount: Yup.string().required("Please enter a value"),
   });
 
   const formik = useFormik({
@@ -128,23 +120,23 @@ const TwoTablesWithDistractors = ({
     },
   });
 
-  const dot = (color = '#ccc') => ({
-    alignItems: 'center',
-    display: 'flex',
-  
-    ':before': {
+  const dot = (color = "#ccc") => ({
+    alignItems: "center",
+    display: "flex",
+
+    ":before": {
       backgroundColor: color,
       borderRadius: 10,
       content: '" "',
-      display: 'block',
+      display: "block",
       marginRight: 8,
       height: 10,
       width: 10,
     },
   });
-  
+
   const singleColourStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = chroma(data.color);
       return {
@@ -157,28 +149,28 @@ const TwoTablesWithDistractors = ({
           ? color.alpha(0.1).css()
           : null,
         color: isDisabled
-          ? '#ccc'
+          ? "#ccc"
           : isSelected
-          ? chroma.contrast(color, 'white') > 2
-            ? 'white'
-            : 'black'
+          ? chroma.contrast(color, "white") > 2
+            ? "white"
+            : "black"
           : data.color,
-        cursor: isDisabled ? 'not-allowed' : 'default',
-  
-        ':active': {
-          ...styles[':active'],
+        cursor: isDisabled ? "not-allowed" : "default",
+
+        ":active": {
+          ...styles[":active"],
           backgroundColor:
             !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
         },
       };
     },
-    input: styles => ({ ...styles, ...dot() }),
-    placeholder: styles => ({ ...styles, ...dot() }),
+    input: (styles) => ({ ...styles, ...dot() }),
+    placeholder: (styles) => ({ ...styles, ...dot() }),
     singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
   };
 
   const multiColourStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = chroma(data.color);
       return {
@@ -191,16 +183,16 @@ const TwoTablesWithDistractors = ({
           ? color.alpha(0.1).css()
           : null,
         color: isDisabled
-          ? '#ccc'
+          ? "#ccc"
           : isSelected
-          ? chroma.contrast(color, 'white') > 2
-            ? 'white'
-            : 'black'
+          ? chroma.contrast(color, "white") > 2
+            ? "white"
+            : "black"
           : data.color,
-        cursor: isDisabled ? 'not-allowed' : 'default',
-  
-        ':active': {
-          ...styles[':active'],
+        cursor: isDisabled ? "not-allowed" : "default",
+
+        ":active": {
+          ...styles[":active"],
           backgroundColor:
             !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
         },
@@ -220,9 +212,9 @@ const TwoTablesWithDistractors = ({
     multiValueRemove: (styles, { data }) => ({
       ...styles,
       color: data.color,
-      ':hover': {
+      ":hover": {
         backgroundColor: data.color,
-        color: 'white',
+        color: "white",
       },
     }),
   };
@@ -234,11 +226,7 @@ const TwoTablesWithDistractors = ({
     >
       <FormItem>
         <Label value="Global Sound" />
-        <Select
-          name="globalSound"
-          options={globalSounds}
-          form={formik}
-        />
+        <Select name="globalSound" options={globalSounds} form={formik} />
       </FormItem>
 
       <FormItem>
@@ -266,20 +254,12 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Target Model" />
-        <Select
-          name="targetModel"
-          form={formik}
-          options={primitives}
-        />
+        <Select name="targetModel" form={formik} options={primitives} />
       </FormItem>
 
       <FormItem>
         <Label value="Target Sound" />
-        <Select
-          name="targetSound"
-          options={targetSounds}
-          form={formik}
-        />
+        <Select name="targetSound" options={targetSounds} form={formik} />
       </FormItem>
 
       <FormItem>
@@ -309,19 +289,30 @@ const TwoTablesWithDistractors = ({
 
       <FormItem>
         <Label value="Distractor Colours" />
-        <Select name="distractorColors" isMulti closeMenuOnSelect={false} form={formik} options={colors} menuPlacement="top" styles={multiColourStyles} />
+        <Select
+          name="distractorColors"
+          isMulti
+          closeMenuOnSelect={false}
+          form={formik}
+          options={colors}
+          menuPlacement="top"
+          styles={multiColourStyles}
+        />
       </FormItem>
 
       <FormItem>
         <Label value="Distractor Models" />
-        <Select name="distractorModels" isMulti closeMenuOnSelect={false} form={formik} options={primitives} menuPlacement="top" />
+        <Select
+          name="distractorModels"
+          isMulti
+          closeMenuOnSelect={false}
+          form={formik}
+          options={primitives}
+          menuPlacement="top"
+        />
       </FormItem>
 
-      <Button
-        text={submitText}
-        type="submit"
-        classes="md:mt-4 float-right"
-      />
+      <Button text={submitText} type="submit" classes="md:mt-4 float-right" />
     </form>
   );
 };
