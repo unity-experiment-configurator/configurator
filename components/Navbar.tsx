@@ -31,8 +31,9 @@ export default function Navbar() {
         <button className="text-3xl pl-2" style={{
           marginTop: "-4px"
         }}>
-          <span className="block md:hidden">UXC</span>
-          <span className="hidden md:block">Unity Experiment Configurator</span>
+          <img src="/svg/flask.svg" className="inline-block h-6 mr-2 md:mr-4 -mt-1" />
+          <span className="md:hidden inline-block">UXC</span>
+          <span className="hidden md:inline-block">Unity Experiment Configurator</span>
         </button>
       </Link>
 
