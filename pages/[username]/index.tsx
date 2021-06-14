@@ -40,7 +40,7 @@ export default function UserProfilePage({ user, posts }) {
     <Main>
       <Metatags title={user.username} description={`${user.username}'s public profile`} />
       <UserProfile user={user} />
-      <PostFeed posts={posts} />
+      {/* <PostFeed posts={posts} /> */}
     </Main>
   );
 }
