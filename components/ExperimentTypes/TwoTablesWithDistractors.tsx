@@ -87,11 +87,31 @@ const TwoTablesWithDistractors = ({
     },
   ];
 
+  const targetSoundPlaybackEvents: Option[] = [
+    {
+      label: "Always",
+      value: "always",
+    },
+    {
+      label: "When grabbed",
+      value: "ongrab",
+    },
+    {
+      label: "When dropped",
+      value: "ondrop",
+    },
+    {
+      label: "When placed on goal",
+      value: "ongoal",
+    },
+  ];
+
   const globalSound = options?.globalSound || globalSounds[0].value;
   const targetSize = options?.targetSize || 0.5;
   const targetColor = options?.targetColor || colors[0].value;
   const targetModel = options?.targetModel || primitives[0].value;
   const targetSound = options?.targetSound || targetSounds[0].value;
+  const targetSoundPlaybackEvent = options?.targetSoundPlaybackEvent || targetSoundPlaybackEvents[0].value;
   const distractorSize = options?.distractorSize || 0.5;
   const distractorCount = options?.distractorCount || 1;
   const distractorColors = options?.distractorColors || [colors[0].value];
@@ -108,6 +128,7 @@ const TwoTablesWithDistractors = ({
       targetColor,
       targetModel,
       targetSound,
+      targetSoundPlaybackEvent,
       distractorSize,
       distractorCount,
       distractorColors,
@@ -260,6 +281,11 @@ const TwoTablesWithDistractors = ({
       <FormItem>
         <Label value="Target Sound" />
         <Select name="targetSound" options={targetSounds} form={formik} />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target Sound Playback Event" />
+        <Select name="targetSoundPlaybackEvent" options={targetSoundPlaybackEvents} form={formik} />
       </FormItem>
 
       <FormItem>
