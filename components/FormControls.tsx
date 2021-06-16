@@ -320,7 +320,7 @@ export const TextArea = ({
   const err: boolean = hasError(id, errors);
   const c = classNames(
     classes,
-    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring",
+    "appearance-none w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:ring border",
     {
       "border-red-500": err,
       "border-gray-400": !err,

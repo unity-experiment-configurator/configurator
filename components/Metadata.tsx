@@ -3,9 +3,8 @@ import * as Yup from "yup";
 import {
   FormItem,
   Label,
-  RichTextInput,
+  TextArea,
   Button,
-  Checkbox,
 } from "./FormControls";
 
 const Metadata = ({
@@ -40,7 +39,7 @@ const Metadata = ({
   });
 
   const {
-    setFieldValue,
+    handleChange,
     handleSubmit,
     values,
     errors,
@@ -63,23 +62,37 @@ const Metadata = ({
     >
       <FormItem>
         <Label value="Description" />
-        <RichTextInput
+        <TextArea
+          id="description"
+          value={values.description}
+          // @ts-ignore
+          onChange={handleChange}
+          errors={errors}
+        />
+        {/* <RichTextInput
           id="description"
           value={values.description}
           // @ts-ignore
           onChange={(e) => setFieldValue("description", e)}
           errors={errors}
-        />
+        /> */}
       </FormItem>
       <FormItem>
         <Label value="Instructions" />
-        <RichTextInput
+        <TextArea
+          id="instructions"
+          value={values.instructions}
+          // @ts-ignore
+          onChange={handleChange}
+          errors={errors}
+        />
+        {/* <RichTextInput
           id="instructions"
           value={values.instructions}
           // @ts-ignore
           onChange={(e) => setFieldValue("instructions", e)}
           errors={errors}
-        />
+        /> */}
       </FormItem>
       <div className="pt-4">
         <Button
