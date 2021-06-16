@@ -67,12 +67,12 @@ const TwoTablesWithDistractors = ({
 
   const globalSounds: Option[] = [
     {
-      label: "Beep",
-      value: "beep",
+      label: "Ambient",
+      value: "ambient",
     },
     {
-      label: "Boop",
-      value: "boop",
+      label: "Crowd",
+      value: "crowd",
     },
   ];
 
