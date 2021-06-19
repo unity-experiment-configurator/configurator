@@ -68,7 +68,7 @@ export const downloadConfig = async (data) => {
     ...uxfSettings
   };
 
-  download(JSON.stringify(config, null, 2), `${data.slug}-config.json`, "text/plain");
+  download(JSON.stringify(config, null, 2), `${data.slug}.json`, "text/plain");
 }
 
 export function download(content, fileName, contentType) {
