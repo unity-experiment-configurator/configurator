@@ -7,10 +7,12 @@ const TwoTablesWithDistractors = ({
   onSubmit,
   submitText = "Submit",
   options,
+  isDisabled,
 }: {
   onSubmit: (values: any) => void;
   submitText?: string;
   options: any;
+  isDisabled?: boolean;
 }) => {
   type Option = { label: string; value: string; color?: string };
 
@@ -247,7 +249,7 @@ const TwoTablesWithDistractors = ({
     >
       <FormItem>
         <Label value="Global Sound" />
-        <Select name="globalSound" options={globalSounds} form={formik} />
+        <Select name="globalSound" options={globalSounds} form={formik} isDisabled={isDisabled} />
       </FormItem>
 
       <FormItem>
@@ -270,22 +272,23 @@ const TwoTablesWithDistractors = ({
           form={formik}
           options={colors}
           styles={singleColourStyles}
+          isDisabled={isDisabled}
         />
       </FormItem>
 
       <FormItem>
         <Label value="Target Model" />
-        <Select name="targetModel" form={formik} options={primitives} />
+        <Select name="targetModel" form={formik} options={primitives} isDisabled={isDisabled} />
       </FormItem>
 
       <FormItem>
         <Label value="Target Sound" />
-        <Select name="targetSound" options={targetSounds} form={formik} />
+        <Select name="targetSound" options={targetSounds} form={formik} isDisabled={isDisabled} />
       </FormItem>
 
       <FormItem>
         <Label value="Target Sound Playback Event" />
-        <Select name="targetSoundPlaybackEvent" options={targetSoundPlaybackEvents} form={formik} />
+        <Select name="targetSoundPlaybackEvent" options={targetSoundPlaybackEvents} form={formik} isDisabled={isDisabled} />
       </FormItem>
 
       <FormItem>
@@ -323,6 +326,7 @@ const TwoTablesWithDistractors = ({
           options={colors}
           menuPlacement="top"
           styles={multiColourStyles}
+          isDisabled={isDisabled}
         />
       </FormItem>
 
@@ -335,10 +339,13 @@ const TwoTablesWithDistractors = ({
           form={formik}
           options={primitives}
           menuPlacement="top"
+          isDisabled={isDisabled}
         />
       </FormItem>
 
-      <Button text={submitText} type="submit" classes="md:mt-4 float-right" />
+      {
+        !isDisabled && <Button text={submitText} type="submit" classes="md:mt-4 float-right" />
+      }
     </form>
   );
 };

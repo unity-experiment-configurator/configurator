@@ -20,7 +20,8 @@ export const Select = ({
   isMulti,
   closeMenuOnSelect,
   menuPlacement = "bottom",
-  styles
+  styles,
+  isDisabled,
 }: {
   name: string;
   form: any;
@@ -29,6 +30,7 @@ export const Select = ({
   closeMenuOnSelect?: false;
   menuPlacement?: "top" | "bottom" | "auto";
   styles?: any;
+  isDisabled?: boolean;
 }) => {
   const onChange = (option: ValueType<Option | Option[]>) => {
     form.setFieldValue(
@@ -69,6 +71,7 @@ export const Select = ({
       className="basic-multi-select"
       classNamePrefix="select"
       styles={styles}
+      isDisabled={isDisabled}
       theme={(theme) => ({
         ...theme,
         borderRadius: 0,

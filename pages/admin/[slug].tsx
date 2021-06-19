@@ -4,16 +4,12 @@ import { firestore, auth, serverTimestamp } from "../../lib/Firebase";
 import Main from "../../components/Main";
 import { useRouter } from "next/router";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
-import dynamic from "next/dynamic";
-import { ExperimentType, PublicExperiment } from "../../lib/Types";
-import { downloadConfig, site } from "../../lib/Utils";
+import { ExperimentType } from "../../lib/Types";
+import { downloadConfig } from "../../lib/Utils";
 import Metadata from "../../components/Metadata";
 import { Button } from "../../components/FormControls";
 import Select from "react-select";
-
-const TwoTablesWithDistractors = dynamic(
-  () => import("../../components/ExperimentTypes/TwoTablesWithDistractors")
-);
+import ExperimentEditor from "../../components/ExperimentEditor";
 
 type ExperimentTypeListItem = { label: string; value: ExperimentType };
 
@@ -42,7 +38,11 @@ function PostManager() {
         <section className="overflow-hidden">
           {/* <h1 className="py-4 text-3xl font-bold">{post.title}</h1> */}
           {/* <div>ID: {post.slug}</div> */}
-          <ExperimentForm postRef={postRef} defaultValues={post} duplicate={duplicate as string} />
+          <ExperimentForm
+            postRef={postRef}
+            defaultValues={post}
+            duplicate={duplicate as string}
+          />
         </section>
       )}
     </Main>
@@ -50,7 +50,6 @@ function PostManager() {
 }
 
 function ExperimentForm({ defaultValues, postRef, duplicate }) {
-
   type State = {
     duplicate: string;
     experimentType: ExperimentTypeListItem;
@@ -111,25 +110,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const [state, dispatch] = useReducer(useCallback(reducer, []), initialState);
 
-  function ExperimentType({ type, options }: { type: ExperimentType; options: any }) {
-    switch (type) {
-      case "TwoTablesWithDistractors":
-        return (
-          <TwoTablesWithDistractors
-            onSubmit={(options) => setExperimentOptions(options)}
-            options={options}
-            submitText="Next"
-          />
-        );
-      default:
-        return <p>{`"${type}" is not a supported experiment type`}</p>;
-    }
-  }
-
-  const updateExperimentMetadata = async ({
-    description,
-    instructions,
-  }) => {
+  const updateExperimentMetadata = async ({ description, instructions }) => {
     await postRef.update({
       description,
       instructions,
@@ -215,7 +196,12 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
           <h2 className="font-medium text-2xl mb-8">
             Please select which options you'd like to use for this experiment
           </h2>
-          <ExperimentType type={state.experimentType.value} options={defaultValues?.options} />
+          <ExperimentEditor
+            type={state.experimentType.value}
+            options={defaultValues?.options}
+            onSubmit={(options) => setExperimentOptions(options)}
+            submitText="Next"
+          />
         </>
       )}
       {state.step === 3 && (
