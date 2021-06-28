@@ -16,6 +16,17 @@ const TwoTablesWithDistractors = ({
 }) => {
   type Option = { label: string; value: string; color?: string };
 
+  const interactionTypes: Option[] = [
+    {
+      label: "Grab",
+      value: "grab",
+    },
+    {
+      label: "Point",
+      value: "point",
+    },
+  ];
+
   const colors: Option[] = [
     {
       label: "Red",
@@ -108,6 +119,7 @@ const TwoTablesWithDistractors = ({
     },
   ];
 
+  const interactionType = options?.interactionType || interactionTypes[0].value;
   const globalSound = options?.globalSound || globalSounds[0].value;
   const targetSize = options?.targetSize || 0.5;
   const targetColor = options?.targetColor || colors[0].value;
@@ -125,6 +137,7 @@ const TwoTablesWithDistractors = ({
 
   const formik = useFormik({
     initialValues: {
+      interactionType,
       globalSound,
       targetSize,
       targetColor,
@@ -247,6 +260,11 @@ const TwoTablesWithDistractors = ({
       onSubmit={formik.handleSubmit}
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
+      <FormItem>
+        <Label value="Interaction Type" />
+        <Select name="interactionType" options={interactionTypes} form={formik} isDisabled={isDisabled} />
+      </FormItem>
+
       <FormItem>
         <Label value="Global Sound" />
         <Select name="globalSound" options={globalSounds} form={formik} isDisabled={isDisabled} />

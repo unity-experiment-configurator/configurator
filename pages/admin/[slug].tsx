@@ -30,6 +30,7 @@ function PostManager() {
     .doc(auth.currentUser.uid)
     .collection("posts")
     .doc(slug as any);
+    
   const [post] = useDocumentDataOnce(postRef);
 
   return (
@@ -66,7 +67,8 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
   const initialState: State = {
     duplicate: duplicate,
     experimentType: experimentTypes[0],
-    step: duplicate ? 1 : 0,
+    // step: duplicate ? 1 : 0,
+    step: 1 // only one type of experiment at the moment, set to 0 when there are more
   };
 
   type Action =
@@ -110,10 +112,11 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const [state, dispatch] = useReducer(useCallback(reducer, []), initialState);
 
-  const updateExperimentMetadata = async ({ description, instructions }) => {
+  const updateExperimentMetadata = async ({ description, instructions, blockTrialCount }) => {
     await postRef.update({
       description,
       instructions,
+      blockTrialCount,
       updatedAt: serverTimestamp(),
     });
 

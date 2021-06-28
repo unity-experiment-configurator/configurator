@@ -5,11 +5,13 @@ import {
   Label,
   TextArea,
   Button,
+  NumberInput,
 } from "./FormControls";
 
 const Metadata = ({
   description = "",
   instructions = "",
+  blockTrialCount = 1,
   maxDescriptionChars = 1000,
   maxInstructionsChars = 1000,
   submitText = "Submit",
@@ -17,6 +19,7 @@ const Metadata = ({
 }: {
   description?: string;
   instructions?: string;
+  blockTrialCount?: number;
   maxDescriptionChars?: number;
   maxInstructionsChars?: number;
   maxRightsChars?: number;
@@ -47,6 +50,7 @@ const Metadata = ({
     initialValues: {
       description,
       instructions,
+      blockTrialCount,
     },
     validationSchema,
     validateOnChange: false,
@@ -93,6 +97,18 @@ const Metadata = ({
           onChange={(e) => setFieldValue("instructions", e)}
           errors={errors}
         /> */}
+      </FormItem>
+      <FormItem>
+        <Label value="Trials" />
+        <NumberInput
+          id="blockTrialCount"
+          value={values.blockTrialCount}
+          min={1}
+          max={100}
+          // @ts-ignore
+          onChange={handleChange}
+          errors={errors}
+        />
       </FormItem>
       <div className="pt-4">
         <Button

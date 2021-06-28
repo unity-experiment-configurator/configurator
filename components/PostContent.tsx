@@ -34,6 +34,12 @@ export default function PostContent({ post }) {
               ></span>
             </td>
           </tr>
+          <tr>
+            <td className="border px-4 py-2 align-top">trials</td>
+            <td className="border px-4 py-2 align-top">
+              <span>{ post.blockTrialCount }</span>
+            </td>
+          </tr>
           {Object.entries(post.options).map(([key, value]) => {
             return (
               <tr key={key}>
