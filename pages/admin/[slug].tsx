@@ -198,6 +198,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
           <Metadata
             description={defaultValues.description}
             instructions={defaultValues.instructions}
+            blockTrialCount={defaultValues.blockTrialCount}
             submitText="Next"
             onSubmit={async (values) => {
               updateExperimentMetadata(values);
@@ -226,8 +227,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
           <Button
             text="Download Config"
             onClick={async () => {
-              const doc = await postRef.get();
-              const post = postToJSON(doc.data())
+              const post = postToJSON(await postRef.get());
               downloadConfig(post);
             }}
           />
