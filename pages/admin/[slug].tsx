@@ -1,6 +1,6 @@
 import { useReducer, useCallback } from "react";
 import AuthCheck from "../../components/AuthCheck";
-import { firestore, auth, serverTimestamp } from "../../lib/Firebase";
+import { firestore, auth, serverTimestamp, postToJSON } from "../../lib/Firebase";
 import Main from "../../components/Main";
 import { useRouter } from "next/router";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
@@ -227,8 +227,8 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
             text="Download Config"
             onClick={async () => {
               const doc = await postRef.get();
-              const data = doc.data();
-              downloadConfig(data);
+              const post = postToJSON(doc.data())
+              downloadConfig(post);
             }}
           />
         </>

@@ -18,7 +18,7 @@ export default function PostContent({ post }) {
           </tr>
         </thead>
         <tbody>
-        <tr>
+          <tr>
             <td className="border px-4 py-2 align-top">type</td>
             <td className="border px-4 py-2 align-top">
               <span
