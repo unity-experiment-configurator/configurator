@@ -19,6 +19,14 @@ export default function PostContent({ post }) {
         </thead>
         <tbody>
           <tr>
+            <td className="border px-4 py-2 align-top">type</td>
+            <td className="border px-4 py-2 align-top">
+              <span
+                dangerouslySetInnerHTML={sanitizeSSR(post.type)}
+              ></span>
+            </td>
+          </tr>
+          <tr>
             <td className="border px-4 py-2 align-top">description</td>
             <td className="border px-4 py-2 align-top">
               <span

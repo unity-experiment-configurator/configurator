@@ -1,6 +1,6 @@
 import { useReducer, useCallback } from "react";
 import AuthCheck from "../../components/AuthCheck";
-import { firestore, auth, serverTimestamp } from "../../lib/Firebase";
+import { firestore, auth, serverTimestamp, postToJSON } from "../../lib/Firebase";
 import Main from "../../components/Main";
 import { useRouter } from "next/router";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
@@ -10,6 +10,7 @@ import Metadata from "../../components/Metadata";
 import { Button } from "../../components/FormControls";
 import Select from "react-select";
 import ExperimentEditor from "../../components/ExperimentEditor";
+import { useEffect } from "react";
 
 type ExperimentTypeListItem = { label: string; value: ExperimentType };
 
@@ -67,8 +68,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
   const initialState: State = {
     duplicate: duplicate,
     experimentType: experimentTypes[0],
-    // step: duplicate ? 1 : 0,
-    step: 1 // only one type of experiment at the moment, set to 0 when there are more
+    step: duplicate ? 1 : 0,
   };
 
   type Action =
@@ -133,6 +133,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       updatedAt: serverTimestamp(),
     });
 
+    // moves to the next step
     dispatch({
       type: "setExperimentType",
     });
@@ -148,6 +149,16 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       type: "setExperimentOptions",
     });
   };
+
+  // todo: remove this initial set when more experiment types are added
+  useEffect(() => {
+    dispatch({
+      type: "updateExperimentType",
+      payload: experimentTypes[0],
+    });
+
+    updateExperimentType();
+  }, []);
 
   return (
     <>
@@ -187,6 +198,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
           <Metadata
             description={defaultValues.description}
             instructions={defaultValues.instructions}
+            blockTrialCount={defaultValues.blockTrialCount}
             submitText="Next"
             onSubmit={async (values) => {
               updateExperimentMetadata(values);
@@ -215,9 +227,8 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
           <Button
             text="Download Config"
             onClick={async () => {
-              const doc = await postRef.get();
-              const data = doc.data();
-              downloadConfig(data);
+              const post = postToJSON(await postRef.get());
+              downloadConfig(post);
             }}
           />
         </>

@@ -46,7 +46,7 @@ function PostItem({ post, admin = false }: { post: any; admin?: boolean }) {
           </Link>
         </header>
 
-        <main className="pt-2 text-md">
+        <main className="pt-2 text-md overflow-hidden">
           <div dangerouslySetInnerHTML={sanitizeSSR(post.description)}></div>
         </main>
 

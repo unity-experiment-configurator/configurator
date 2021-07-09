@@ -65,8 +65,8 @@ export const downloadConfig = async (data) => {
   };
   const config = {
     ...data,
-    createdAt: data.createdAt.toDate(),
-    updatedAt: data.updatedAt.toDate(),
+    createdAt: new Date(data.createdAt).toString(),
+    updatedAt: new Date(data.updatedAt).toString(),
     url: `${site}/${data.username}/${data.slug}`,
     ...uxfSettings
   };
