@@ -25,7 +25,6 @@ export async function getServerSideProps(context) {
 export default function Home(props) {
   const [posts, setPosts] = useState(props.posts);
   const [loading, setLoading] = useState(false);
-
   const [postsEnd, setPostsEnd] = useState(false);
 
   // Get next page in pagination query
