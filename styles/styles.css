@@ -5,17 +5,17 @@ body {
 
 h1 {
   @apply text-3xl font-bold;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 h2 {
   @apply text-xl;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 h3 {
   @apply text-lg;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 a {

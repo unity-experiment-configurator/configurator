@@ -28,12 +28,12 @@ export default function Navbar() {
   return (
     <nav className="container mx-auto shadow flex items-center justify-between bg-white py-2 px-4 mb-4 max-w-5xl">
       <Link href="/">
-        <button className="text-3xl pl-2" style={{
+        <button className="text-3xl pl-2 focus:outline-none" style={{
           marginTop: "-4px"
         }}>
-          <img src="/svg/flask.svg" className="inline-block h-6 mr-2 md:mr-4 -mt-1" />
-          <span className="md:hidden inline-block">UXC</span>
-          <span className="hidden md:inline-block">Unity Experiment Configurator</span>
+          <img src="/svg/flask.svg" className="inline-block h-6 mr-2 md:mr-4" />
+          <h1 className="md:hidden inline-block text-lg font-semibold text-blue-500 mb-2">UXC</h1>
+          <h1 className="hidden md:inline-block text-lg font-semibold text-blue-500 mb-2">Unity Experiment Configurator</h1>
         </button>
       </Link>
 
