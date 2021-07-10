@@ -1,14 +1,15 @@
 import PostContent from '../../components/PostContent';
-import HeartButton from '../../components/HeartButton';
-import AuthCheck from '../../components/AuthCheck';
+// import HeartButton from '../../components/HeartButton';
+// import AuthCheck from '../../components/AuthCheck';
 import Metatags from '../../components/Metatags';
 import Main from '../../components/Main';
-import { UserContext } from '../../lib/Context';
+// import { UserContext } from '../../lib/Context';
 import { firestore, getUserWithUsername, postToJSON } from '../../lib/Firebase';
+import { Button } from "../../components/FormControls";
 
 import Link from 'next/link';
-import { useDocumentData } from 'react-firebase-hooks/firestore';
-import { useContext } from 'react';
+// import { useDocumentData } from 'react-firebase-hooks/firestore';
+// import { useContext } from 'react';
 import { downloadConfig } from '../../lib/Utils';
 
 // export async function getStaticProps({ params }) {
@@ -96,13 +97,13 @@ export default function Post({ user, post }) {
         {
           post.duplicationEnabled && (
             <Link href={`/admin?duplicate=${post.slug}`}>
-              <button className="p-4 text-white bg-primary-500 mr-4">Duplicate Experiment</button>
+              <Button text="Duplicate Experiment" classes="mr-4" />
             </Link>
           )
         }
-        <button className="p-4 text-white bg-primary-500 mr-4" onClick={() => {
+        <Button text="Download Config" classes="mr-4" onClick={() => {
           downloadConfig(post);
-        }}>Download Config</button>
+        }} />
       </aside>
 
       {/* <aside>

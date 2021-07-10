@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import kebabCase from 'lodash.kebabcase';
 import Main from "../../components/Main";
+import { Button } from "../../components/FormControls";
 
 export default function AdminPostsPage(props) {
   return (
@@ -123,9 +124,7 @@ function CreateNewExperiment() {
       <p className="pt-4">
         <strong>ID:</strong> {slug}
       </p>
-      <button type="submit" disabled={!isValid} className="mt-8 p-4 text-white bg-blue-500">
-        Create
-      </button>
+      <Button text="Create" type="submit" disabled={!isValid} classes="mt-8" />
     </form>
   );
 }

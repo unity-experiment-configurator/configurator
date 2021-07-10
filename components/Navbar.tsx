@@ -24,16 +24,22 @@ export default function Navbar() {
   const profileMenuRef = useRef();
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
   useOnClickOutside(profileMenuRef, () => setProfileMenuOpen(false));
-  
+
+  const { pathname } = router;
+
+  if (pathname === "/") {
+    return <></>
+  }
+
   return (
-    <nav className="container mx-auto shadow flex items-center justify-between bg-white py-2 px-4 mb-4 max-w-5xl">
+    <nav className="container mx-auto flex items-center justify-between py-4 max-w-5xl">
       <Link href="/">
         <button className="text-3xl pl-2 focus:outline-none" style={{
           marginTop: "-4px"
         }}>
-          <img src="/svg/flask.svg" className="inline-block h-6 mr-2 md:mr-4" />
-          <h1 className="md:hidden inline-block text-lg font-semibold text-blue-500 mb-2">UXC</h1>
-          <h1 className="hidden md:inline-block text-lg font-semibold text-blue-500 mb-2">Unity Experiment Configurator</h1>
+          <img src="/svg/Flask.svg" className="inline-block h-6 mr-2 md:mr-4" />
+          <h1 className="md:hidden inline-block text-xl font-semibold text-white mb-2">UXC</h1>
+          <h1 className="hidden md:inline-block text-xl font-semibold text-white mb-2">Unity Experiment Configurator</h1>
         </button>
       </Link>
 
@@ -42,7 +48,9 @@ export default function Navbar() {
         {username && (
           <>
             <Link href="/admin">
-              <button className="inline-block p-2 md:p-4 text-white bg-primary-500 mr-4">My Experiments</button>
+              <button className="inline-block mr-4 transition bg-transparent border-2 border-white border-opacity-60 font-semibold hover:border-opacity-100 duration-300 text-white py-2 px-4 focus:outline-none focus:ring">
+                My Experiments
+              </button>
             </Link>
             <div ref={profileMenuRef} className="inline-block relative">
               <div>

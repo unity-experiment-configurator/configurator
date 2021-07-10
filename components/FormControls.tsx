@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 // @ts-ignore
 import classNames from "classnames";
 import ReactSelect, { ValueType } from "react-select";
+import { classNames2 } from "../lib/ClassNames";
 
 interface Option {
   label: string;
@@ -103,7 +104,7 @@ export const Button = ({
 }) => {
   const c = classNames(
     classes,
-    "transition duration-300 bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 focus:outline-none focus:ring",
+    "transition bg-transparent border-2 border-blue-500 border-opacity-60 font-semibold hover:border-opacity-100 duration-300 text-blue-500 font-bold py-3 px-4 focus:outline-none focus:ring",
     {
       "opacity-25": disabled,
     }

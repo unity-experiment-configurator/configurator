@@ -12,11 +12,11 @@ export default function Enter(props) {
 
   // 1. user signed out <SignInButton />
   // 2. user signed in, but missing username <UsernameForm />
-  // 3. user signed in, has username <CreateObjectButton />
+  // 3. user signed in, has username <CreateExperimentButton />
   return (
     <Main>
       <Metatags title="Enter" description="Sign up for this amazing app!" />
-      {user ? !username ? <UsernameForm /> : <CreateObjectButton /> : <SignInButton />}
+      {user ? !username ? <UsernameForm /> : <CreateExperimentButton /> : <SignInButton />}
     </Main>
   );
 }
@@ -44,7 +44,7 @@ function SignOutButton() {
   return <button onClick={() => auth.signOut()} className="p-4 border border-1 border-black">Sign Out</button>;
 }
 
-function CreateObjectButton() {
+function CreateExperimentButton() {
   return (
     <Link href="/admin">
       <button className="p-4 text-white bg-primary-500 mr-4">Create an Experiment</button>

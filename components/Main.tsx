@@ -1,7 +1,14 @@
-const Main = ({ children }: { children?: any }) => {
+import classNames from "classnames";
+
+const Main = ({ classes, children } : 
+  { 
+    classes?: string | undefined;
+    children?: any;
+  }) => {
+  const c = classNames(classes, "container mx-auto bg-white shadow p-8 mb-8 max-w-5xl min-h-screen");
   return (
     <main
-      className="container mx-auto bg-white shadow p-8 mb-8 max-w-5xl"
+      className={c}
     >
       {children}
     </main>
