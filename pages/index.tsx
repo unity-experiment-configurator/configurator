@@ -2,6 +2,7 @@ import Metatags from '../components/Metatags';
 import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import CarouselSection from '../components/Carousel';
+import StepsSection from '../components/Steps';
 import "intersection-observer";
 
 // Max post to query per page
@@ -73,6 +74,8 @@ export default function Home(props) {
           { id: 3, imageUrl: 'photo-1540206395-68808572332f?ixlib=rb-1.2.1&w=1181&q=80' },
         ]
       } />
+
+      <StepsSection />
 
       {/* <PostFeed posts={posts} />
 

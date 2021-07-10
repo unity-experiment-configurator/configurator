@@ -28,13 +28,12 @@ const CookiesPolicy = ({ classes }: { classes?: string | undefined }) => {
         </p>
       </div>
       <div className="w-4/12">
-        <Button
-          text="Dismiss"
-          classes="float-right m-4"
+        <button
+          className="float-right m-2 mt-3 md:mt-2 transition bg-transparent border-2 border-blue-500 border-opacity-60 font-semibold hover:border-opacity-100 duration-300 text-blue-500 py-3 px-4 focus:outline-none focus:ring"
           onClick={() => {
             setCookiesAccepted(true);
           }}
-        />
+        >Dismiss</button>
       </div>
     </div>
   );

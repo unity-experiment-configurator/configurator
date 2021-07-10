@@ -3,6 +3,7 @@ import { auth, firestore, googleAuthProvider } from '../lib/Firebase';
 import { UserContext } from '../lib/Context';
 import Metatags from '../components/Metatags';
 import Main from '../components/Main';
+import { Button } from "../components/FormControls";
 
 import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
@@ -47,7 +48,7 @@ function SignOutButton() {
 function CreateExperimentButton() {
   return (
     <Link href="/admin">
-      <button className="p-4 text-white bg-primary-500 mr-4">Create an Experiment</button>
+      <Button text="Create an Experiment" classes="mr-4" />
     </Link>
   );
 }
@@ -121,9 +122,7 @@ function UsernameForm() {
           <input type="text" className="py-2 px-3 text-gray-900 w-full border border-gray-400" name="username" placeholder="myname" value={formValue} onChange={onChange} />
           <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
           <div className="mt-8">
-            <button type="submit" className="bg-primary-500 text-white p-4" disabled={!isValid}>
-              Create Account
-            </button>
+            <Button type="submit" text="Create Account" disabled={!isValid} />
           </div>
 
           {/* <h3>Debug State</h3>

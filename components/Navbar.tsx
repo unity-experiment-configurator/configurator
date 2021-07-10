@@ -76,7 +76,7 @@ export default function Navbar() {
         {/* user is not signed OR has not created username */}
         {!username && (
           <Link href="/enter">
-            <button className="p-4 text-white bg-primary-500">Sign in</button>
+            <button className="inline-block mr-4 transition bg-transparent border-2 border-white border-opacity-60 font-semibold hover:border-opacity-100 duration-300 text-white py-2 px-4 focus:outline-none focus:ring">Sign in</button>
           </Link>
         )}
       </div>
