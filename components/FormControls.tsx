@@ -7,7 +7,6 @@ import "react-quill/dist/quill.snow.css";
 // @ts-ignore
 import classNames from "classnames";
 import ReactSelect, { ValueType } from "react-select";
-import { classNames2 } from "../lib/ClassNames";
 
 interface Option {
   label: string;
