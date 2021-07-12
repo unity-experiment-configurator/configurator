@@ -14,7 +14,7 @@ const Feature = ({
   const FeatureContents = () => {
     return (
       <>
-        <h2 className="font-medium md:h-32 w-full text-2xl text-white px-4 py-4">
+        <h2 className="font-medium md:h-24 w-full text-2xl text-white px-4 py-4">
           {title}
         </h2>
         <p className="text-white text-base px-4 mb-8">{children}</p>
@@ -23,7 +23,7 @@ const Feature = ({
   };
 
   return (
-    <div className="w-full md:w-1/4 p-2 flex flex-col flex-grow flex-shrink text-center md:text-left">
+    <div className="w-full md:w-1/4 px-4 flex flex-col flex-grow flex-shrink text-center md:text-left">
       <div className="flex-1 overflow-hidden">
         {link ? (
           <a
@@ -40,7 +40,7 @@ const Feature = ({
   );
 };
 
-const StepsSection = () => {
+const FeaturesSection = () => {
   const { ref, inView } = useInView({
     threshold: 0.25,
     triggerOnce: true,
@@ -55,21 +55,18 @@ const StepsSection = () => {
       })}
     >
       <div className="container mx-auto flex flex-wrap py-8 px-8">
-        <Feature title="Zoom and describe">
-          Use Exhibit's "zoom and describe" feature to create a close-look
-          experience of your images and 3D models.
+        <Feature title="Step 1">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu orci nunc. Nunc vel rhoncus purus, sed suscipit justo. Donec rutrum sapien augue, a dictum nisi congue quis. Vivamus eu dolor molestie, aliquet libero id, ornare libero. Aenean a orci lacus. 
         </Feature>
-        <Feature title="Zoom and describe">
-          Use Exhibit's "zoom and describe" feature to create a close-look
-          experience of your images and 3D models.
+        <Feature title="Step 2">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu orci nunc. Nunc vel rhoncus purus, sed suscipit justo. Donec rutrum sapien augue, a dictum nisi congue quis. Vivamus eu dolor molestie, aliquet libero id, ornare libero. Aenean a orci lacus. 
         </Feature>
-        <Feature title="Zoom and describe">
-          Use Exhibit's "zoom and describe" feature to create a close-look
-          experience of your images and 3D models.
+        <Feature title="Step 3">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu orci nunc. Nunc vel rhoncus purus, sed suscipit justo. Donec rutrum sapien augue, a dictum nisi congue quis. Vivamus eu dolor molestie, aliquet libero id, ornare libero. Aenean a orci lacus. 
         </Feature>
       </div>
     </section>
   );
 };
 
-export default StepsSection;
+export default FeaturesSection;

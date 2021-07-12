@@ -2,7 +2,7 @@ import Metatags from '../components/Metatags';
 import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import CarouselSection from '../components/Carousel';
-import StepsSection from '../components/Steps';
+import FeaturesSection from '../components/Features';
 import "intersection-observer";
 
 // Max post to query per page
@@ -75,7 +75,7 @@ export default function Home(props) {
         ]
       } />
 
-      <StepsSection />
+      <FeaturesSection />
 
       {/* <PostFeed posts={posts} />
 

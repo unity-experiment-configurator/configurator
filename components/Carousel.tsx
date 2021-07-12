@@ -40,8 +40,8 @@ const CarouselSection = ({
         "opacity-0": !inView,
       })}
     >
-      <div className="container mx-auto flex flex-wrap flex-col border-2 border-black justify-center min-h-screen relative">
-        {/* <div className="border-black relative"> */}
+      <div className="container mx-auto flex flex-wrap flex-col justify-center min-h-screen">
+        <div className="relative min-h-[85vh]">
         {
           transitions((props, item) => (
             <animated.div
@@ -51,7 +51,7 @@ const CarouselSection = ({
             />
           ))
         }
-        {/* </div> */}
+        </div>
       </div>
     </section>
   );

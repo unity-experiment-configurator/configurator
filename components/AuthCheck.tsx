@@ -9,6 +9,6 @@ export default function AuthCheck(props) {
   return username
     ? props.children
     : props.fallback || (
-        <Link href="/enter">Please sign in</Link>
+        <Link href="/enter">Please sign in to start creating!</Link>
       );
 }
