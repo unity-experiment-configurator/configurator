@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useWindowSize } from "react-use";
 
 const Hero = ({}: {}) => {
@@ -7,7 +7,7 @@ const Hero = ({}: {}) => {
 
   const scrollDownRef = useRef();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (scrollDownRef.current) {
       if (height > 500) {
         // @ts-ignore
