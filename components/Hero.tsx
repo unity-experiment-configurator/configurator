@@ -48,7 +48,7 @@ const Hero = ({}: {}) => {
       >
         <div className="hero-text text-gray-100 px-4 container h-screen mx-auto flex flex-wrap flex-col items-center">
           <div className="flex flex-col my-auto w-full justify-center items-start text-center ">
-            <img src="/svg/Flask.svg" className="h-16 lg:h-20 mx-auto svg-shadow" />
+            <img src="/svg/flask.svg" className="h-16 lg:h-20 mx-auto svg-shadow" />
             <h1 className="text-white font-semibold text-3xl lg:text-4xl mx-auto text-center my-8">
               Unity Experiment Configurator
             </h1>
