@@ -5,7 +5,7 @@ export default function UserProfile({ user }) {
       <p>
         <i>@{user.username}</i>
       </p>
-      <h1 className="py-4 text-2xl">{user.displayName || 'Anonymous User'}</h1>
+      <h1 className="py-4 text-xl">{user.displayName || 'Anonymous User'}</h1>
     </div>
   );
 }

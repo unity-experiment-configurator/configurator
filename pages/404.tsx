@@ -8,7 +8,7 @@ export default function Custom404() {
       <Metatags title="404" description="Page not found" />
 
       <Main>
-        <h1 className="py-4 text-2xl">404</h1>
+        <h1 className="py-4 text-xl">404</h1>
         <p className="pt-4">The page you requested does not exist.</p>
         <p className="pt-4">
           <Link href="/">

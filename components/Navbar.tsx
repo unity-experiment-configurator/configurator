@@ -32,7 +32,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="container mx-auto flex items-center justify-between py-4 max-w-5xl">
+    <nav className="container mx-auto flex items-center justify-between px-8 lg:px-0 py-4 max-w-5xl">
       <Link href="/">
         <button className="text-3xl pl-2 focus:outline-none" style={{
           marginTop: "-4px"

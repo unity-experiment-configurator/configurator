@@ -3,12 +3,12 @@ import ActiveLink from "../ActiveLink";
 
 const SideMenuItem = ({ path, text }: { path: string; text: string }) => {
   return (
-    <li className="py-2 md:my-0 hover:bg-secondary-100 lg:hover:bg-transparent">
+    <li className="py-2 md:my-0 hover:bg-secondary-100 md:hover:bg-transparent">
       <ActiveLink
-        activeClassName="block pl-4 align-middle text-gray-700 no-underline hover:text-secondary-500 border-l-4 border-transparent lg:border-secondary-500 lg:hover:border-secondary-500 text-gray-900 font-bold"
+        activeClassName="block pl-4 align-middle text-gray-700 no-underline hover:text-secondary-500 border-l-4 border-transparent md:border-secondary-500 md:hover:border-secondary-500 text-gray-900 font-bold"
         href={path}
       >
-        <a className="font-normal block pl-4 align-middle text-gray-700 no-underline hover:text-secondary-500 border-l-4 border-transparent lg:hover:border-gray-300 pb-1 md:pb-0 text-sm">{text}</a>
+        <a className="font-normal block pl-4 align-middle text-gray-700 no-underline hover:text-secondary-500 border-l-4 border-transparent md:hover:border-gray-300 pb-1 md:pb-0 text-sm">{text}</a>
       </ActiveLink>
     </li>
   );
@@ -55,13 +55,13 @@ const SideMenu = () => {
   useCollapsibleNavMenu();
 
   return (
-    <div className="col-span-3 text-xl text-gray-800 leading-normal">
-      <div className="block lg:hidden sticky inset-0">
+    <div className="text-xl text-gray-800 leading-normal">
+      <div className="block md:hidden sticky inset-0">
         <button
           id="menu-toggle"
           type="button"
           aria-label="Menu"
-          className="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-gray-600 hover:border-secondary-500 appearance-none focus:outline-none"
+          className="flex w-full justify-end px-3 py-3 bg-white md:bg-transparent border rounded border-gray-600 hover:border-secondary-500 appearance-none focus:outline-none"
         >
           <svg
             className="fill-current h-3 float-right"
@@ -73,7 +73,7 @@ const SideMenu = () => {
         </button>
       </div>
       <div
-        className="w-full sticky inset-0 hidden lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-600 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20"
+        className="w-full sticky inset-0 hidden md:h-auto overflow-x-hidden overflow-y-auto md:overflow-y-hidden md:block mt-0 border border-gray-600 md:border-transparent bg-white shadow md:shadow-none md:bg-transparent z-20"
         id="menu-content"
       >
         <ul className="list-reset list-none pl-0 pt-4">

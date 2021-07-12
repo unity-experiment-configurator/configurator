@@ -14,10 +14,10 @@ const FooterMenuItem = ({ link, text }: { link: string; text: string }) => {
 const Footer = () => {
   return (
     <footer className="bg-blue-600">
-      <div className="container mx-auto max-w-5xl pt-8 pb-16">
+      <div className="container mx-auto max-w-5xl pt-8 pb-16 px-8">
         <div className="grid grid-cols-12 gap-4">
           <div className="hidden md:block col-span-9">
-            <img src="/images/Logos.png" className="mt-16" />
+            <img src="/images/Logos.png" className="mt-24 pr-8" />
           </div>
 
           {/* <div className="col-span-3">
@@ -30,7 +30,7 @@ const Footer = () => {
             </ul>
           </div> */}
 
-          <div className="col-span-12 px-8 md:col-span-3 md:px-0 md:mx-0">
+          <div className="col-span-12 px-8 md:col-span-3 mt-8 md:px-0 md:mx-0">
             <p className="uppercase mb-4 text-white">Help</p>
             <ul className="list-reset p-0">
               <FooterMenuItem link="/docs" text="Docs" />

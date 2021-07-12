@@ -10,6 +10,11 @@ export default function PostFeed({
 }) {
   return posts ? (
     <dl className="space-y-4">
+      {
+        posts.length === 0 && (
+          <>No experiments have been created yet</>
+        )
+      }
       {posts.map((post) => (
         <PostItem post={post} key={post.slug} admin={admin} />
       ))}

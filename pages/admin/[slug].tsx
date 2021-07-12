@@ -164,7 +164,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
     <>
       {state.step === 0 && (
         <>
-          <h2 className="font-medium text-2xl mb-8">
+          <h2 className="font-medium text-xl mb-8">
             What type of experiment would you like to conduct?
           </h2>
           <Select
@@ -192,7 +192,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       )}
       {state.step === 1 && (
         <>
-          <h2 className="font-medium text-2xl mb-8">
+          <h2 className="font-medium text-xl mb-8">
             Please enter some basic information about your experiment
           </h2>
           <Metadata
@@ -208,7 +208,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       )}
       {state.step === 2 && (
         <>
-          <h2 className="font-medium text-2xl mb-8">
+          <h2 className="font-medium text-xl mb-8">
             Please select which options you'd like to use for this experiment
           </h2>
           <ExperimentEditor
@@ -221,7 +221,7 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
       )}
       {state.step === 3 && (
         <>
-          <h2 className="font-medium text-2xl mb-8">
+          <h2 className="font-medium text-xl mb-8">
             Your experiment has been created. Please download your config file.
           </h2>
           <Button
