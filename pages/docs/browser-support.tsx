@@ -10,28 +10,17 @@ export async function getStaticProps(context) {
 export default function Doc(props) {
   return (
     <Page
-      title="Browser Support"
-      text={
-        <>
-          <p>This site supports the following browsers:</p>
-          <ul>
-            <li>
-              <a href="https://www.microsoft.com/en-us/edge">Microsoft Edge</a>
-            </li>
-            <li>
-              <a href="https://www.google.co.uk/chrome/">Google Chrome</a>
-            </li>
-            <li>
-              <a href="https://www.mozilla.org/en-GB/firefox/new/">
-                Mozilla Firefox
-              </a>
-            </li>
-            <li>
-              <a href="https://www.apple.com/uk/safari/">Safari</a>
-            </li>
-          </ul>
-        </>
-      }
+      text={`
+Browser Support
+===============
+
+This site supports the following browsers:
+
+* [Microsoft Edge](https://www.microsoft.com/en-us/edge)
+* [Google Chrome](https://www.google.co.uk/chrome/)
+* [Mozilla Firefox](https://www.mozilla.org/en-GB/firefox/new/)
+* [Safari](https://www.apple.com/uk/safari/)
+`}
     />
   );
 }

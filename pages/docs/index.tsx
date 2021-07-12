@@ -10,12 +10,12 @@ export async function getStaticProps(context) {
 export default function Home(props) {
   return (
     <Page
-      title="Docs"
-      text={
-        <>
-          
-        </>
-      }
+      text={`
+Docs 
+====
+
+Welcome to our documentation pages.
+      `}
     />
   );
 }

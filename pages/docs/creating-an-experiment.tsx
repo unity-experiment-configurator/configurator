@@ -10,11 +10,12 @@ export async function getStaticProps(context) {
 export default function Doc(props) {
   return (
     <Page
-      title="Creating an Experiment"
-      text={
-        <>
-        </>
-      }
+      text={`
+Creating an Experiment
+======================
+
+Coming soon
+      `}
     />
   );
 }

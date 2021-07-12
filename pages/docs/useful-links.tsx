@@ -10,11 +10,7 @@ export async function getStaticProps(context) {
 export default function Doc(props) {
   return (
     <Page
-      title="Useful Links"
-      text={
-        <>
-        </>
-      }
+      text={``}
     />
   );
 }

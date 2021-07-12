@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 // @ts-ignore
 import classNames from "classnames";
-import { Button } from "./FormControls";
 import { useLocalStorage } from "react-use";
 
 const CookiesPolicy = ({ classes }: { classes?: string | undefined }) => {

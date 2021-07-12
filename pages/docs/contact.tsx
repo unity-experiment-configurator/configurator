@@ -10,15 +10,11 @@ export async function getStaticProps(context) {
 export default function Doc(props) {
   return (
     <Page
-      title="Contact"
-      text={
-        <>
-          <p>
-            Please send all enquiries to{" "}
-            <a href="mailto:itservicedesk@royalholloway.ac.uk">itservicedesk@royalholloway.ac.uk</a>
-          </p>
-        </>
-      }
+      text={`
+Contact 
+=======
+Please send all enquiries to <itservicedesk@royalholloway.ac.uk>
+      `}
     />
   );
 }

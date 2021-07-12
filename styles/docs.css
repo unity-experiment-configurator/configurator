@@ -13,7 +13,7 @@ body {
 }
 
 .docs h1 {
-  font-size: x-large;
+  font-size: large;
   font-weight: 700;
   margin-top: 1.67em;
   margin-bottom: 1.67em;
@@ -21,6 +21,7 @@ body {
 
 .docs h1:first-of-type {
   margin-top: 1em;
+  font-size: x-large;
 }
 
 .docs h2 {

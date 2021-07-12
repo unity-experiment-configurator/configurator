@@ -35,8 +35,8 @@ const Footer = () => {
             <ul className="list-reset p-0">
               <FooterMenuItem link="/docs" text="Docs" />
               <FooterMenuItem
-                link="/docs/terms-of-service"
-                text="Terms of Service"
+                link="/docs/terms-and-conditions"
+                text="Terms and Conditions"
               />
               <FooterMenuItem
                 link="/docs/privacy-policy"
