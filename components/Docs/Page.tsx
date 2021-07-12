@@ -13,7 +13,7 @@ const Page = ({ text }: { text: string }) => {
           <div className="col-span-12 md:col-span-3">
             <SideMenu />
           </div>
-          <div className="col-span-12 lg:col-span-9 docs text-gray-900 leading-normal overflow-hidden">
+          <div className="col-span-12 md:col-span-9 docs text-gray-900 leading-normal overflow-hidden">
             {/* @ts-ignore */}
             <ReactMarkdown remarkPlugins={[gfm]}>
               {text}

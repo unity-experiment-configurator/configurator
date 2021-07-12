@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="container mx-auto max-w-5xl pt-8 pb-16 px-8">
         <div className="grid grid-cols-12 gap-4">
           <div className="hidden md:block col-span-9">
-            <img src="/images/Logos.png" className="mt-24 pr-8" />
+            <img src="/images/Logos.png" id="logos1" className="mt-24 pr-8" />
           </div>
 
           {/* <div className="col-span-3">
@@ -55,7 +55,7 @@ const Footer = () => {
           </div>
 
           <div className="col-span-12 block md:hidden px-8 mx-auto">
-            <img src="/images/Logos.png" className="mt-16" />
+            <img src="/images/Logos.png" id="logos2" className="mt-16" />
           </div>
 
           {/* <div className="flex-1 p-4">
