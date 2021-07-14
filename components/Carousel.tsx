@@ -40,8 +40,8 @@ const CarouselSection = ({
         "opacity-0": !inView,
       })}
     >
-      <div className="container mx-auto flex flex-wrap flex-col min-h-screen">
-        <div className="relative h-[80vh] lg:h-[70vh] w-full lg:w-[70vw] mx-auto mt-[10vh]">
+      <div className="container mx-auto flex flex-wrap flex-col min-h-screen max-w-5xl">
+        <div className="relative h-[80vh] lg:h-[70vh] w-full lg:w-[70vw] mx-auto mt-[10vh] max-w-5xl">
           {
             transitions((props, item) => (
               <animated.div

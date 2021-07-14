@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect } from "react";
 
 const NavMenuItem = ({ link, text }: { link: string; text: string }) => {
@@ -74,17 +75,27 @@ const NavMenu = () => {
       id="nav"
       className="fixed w-full z-30 top-0 bg-blue-600 lg:bg-transparent"
     >
-      <div className="container w-full mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+      <div className="container w-full mx-auto flex flex-wrap items-center justify-between mt-0 py-2 max-w-5xl">
         <div className="pl-4 flex items-center">
-          <a
-            className="text-white no-underline hover:no-underline font-bold text-xl lg:text-2xl"
-            href="/"
-          >
-            <img
-              src="/svg/flask.svg"
-              className="h-6 w-6 svg-shadow"
-            />
-          </a>
+          <Link href="/">
+            <button
+              className="text-3xl pl-2 focus:outline-none"
+              style={{
+                marginTop: "-4px",
+              }}
+            >
+              <img
+                src="/svg/flask.svg"
+                className="inline-block h-6 mr-2 md:mr-4"
+              />
+              <h1 className="md:hidden inline-block text-xl font-semibold text-white mb-2">
+                UXC
+              </h1>
+              <h1 className="hidden md:inline-block text-xl font-semibold text-white mb-2">
+                Unity Experiment Configurator
+              </h1>
+            </button>
+          </Link>
         </div>
 
         <div className="block lg:hidden pr-4">
