@@ -44,7 +44,7 @@ const FeaturesSection = () => {
         "opacity-0": !inView,
       })}
     >
-      <div className="container mx-auto flex flex-wrap pt-40 px-8">
+      <div className="container mx-auto flex flex-wrap pt-24 md:pt-40 px-8">
         <Feature>
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
