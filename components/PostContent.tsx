@@ -1,76 +1,59 @@
 import Link from "next/link";
 import { sanitizeSSR } from "../lib/Utils";
 
+function ExperimentRow({ name, value }) {
+  return (
+    <tr key={name}>
+      <td className="border px-4 py-2 align-top">{ name }</td>
+      <td className="border px-4 py-2 align-top">
+        {Array.isArray(value)
+          ? value.map((v, i) => {
+              return (
+                <span key={i}>
+                  <>{v}</>
+                  <>{i >= 0 && i < value.length - 1 && <>, </>}</>
+                </span>
+              );
+            })
+          : value}
+      </td>
+    </tr>
+  )
+}
+
+function ExperimentDetails({ post }) {
+  return (
+    <table className="table-fixed w-full max-w-lg">
+      <thead>
+        <tr>
+          <th className="w-1/2 border px-4 py-2 align-top text-left">property</th>
+          <th className="w-1/2 border px-4 py-2 align-top text-left">value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ExperimentRow name={"type"} value={post.type} />
+        <ExperimentRow name={"description"} value={post.description} />
+        <ExperimentRow name={"instructions"} value={post.instructions} />
+        <ExperimentRow name={"blockTrialCount"} value={post.blockTrialCount} />
+        {
+          (post.options) ? 
+            Object.entries(post.options).map(([key, value]) => {
+              return (
+                <ExperimentRow name={key} value={value} />
+              )})
+          : null
+        }
+      </tbody>
+    </table>
+  );
+}
+
 // UI component for main post content
 export default function PostContent({ post }) {
   const createdAt =
     typeof post?.createdAt === "number"
       ? new Date(post.createdAt)
       : post.createdAt.toDate();
-
-  function ExperimentDetails({ post }) {
-    return (
-      <table className="table-fixed w-full max-w-lg">
-        <thead>
-          <tr>
-            <th className="w-1/2 border px-4 py-2 align-top text-left">property</th>
-            <th className="w-1/2 border px-4 py-2 align-top text-left">value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border px-4 py-2 align-top">type</td>
-            <td className="border px-4 py-2 align-top">
-              <span
-                dangerouslySetInnerHTML={sanitizeSSR(post.type)}
-              ></span>
-            </td>
-          </tr>
-          <tr>
-            <td className="border px-4 py-2 align-top">description</td>
-            <td className="border px-4 py-2 align-top">
-              <span
-                dangerouslySetInnerHTML={sanitizeSSR(post.description)}
-              ></span>
-            </td>
-          </tr>
-          <tr>
-            <td className="border px-4 py-2 align-top">instructions</td>
-            <td className="border px-4 py-2 align-top">
-              <span
-                dangerouslySetInnerHTML={sanitizeSSR(post.instructions)}
-              ></span>
-            </td>
-          </tr>
-          <tr>
-            <td className="border px-4 py-2 align-top">trials</td>
-            <td className="border px-4 py-2 align-top">
-              <span>{ post.blockTrialCount }</span>
-            </td>
-          </tr>
-          {Object.entries(post.options).map(([key, value]) => {
-            return (
-              <tr key={key}>
-                <td className="border px-4 py-2 align-top">{key}</td>
-                <td className="border px-4 py-2 align-top">
-                  {Array.isArray(value)
-                    ? value.map((v, i) => {
-                        return (
-                          <span key={i}>
-                            <>{v}</>
-                            <>{i >= 0 && i < value.length - 1 && <>, </>}</>
-                          </span>
-                        );
-                      })
-                    : value}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    );
-  }
 
   return (
     <div>

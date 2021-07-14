@@ -4,7 +4,7 @@ import CookiesPolicy from "./CookiesPolicy";
 const FooterMenuItem = ({ link, text }: { link: string; text: string }) => {
   return (
     <li className="mt-2 mr-2 block">
-      <a href={link} className="no-underline hover:underline text-white">
+      <a href={link} className="text-white no-underline transition duration-200 hover:text-blue-900">
         {text}
       </a>
     </li>

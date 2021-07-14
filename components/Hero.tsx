@@ -40,24 +40,22 @@ const Hero = ({}: {}) => {
 
   return (
     <>
-      <div
-        className="relative h-screen"
-        // style={{
-        //   height: `${height}px`,
-        // }}
-      >
+      <div className="relative h-screen">
         <div className="hero-text text-gray-100 px-4 container h-screen mx-auto flex flex-wrap flex-col items-center">
           <div className="flex flex-col my-auto w-full justify-center items-start text-center ">
-            <img src="/svg/flask.svg" className="h-16 lg:h-20 mx-auto svg-shadow" />
+            <img
+              src="/svg/flask.svg"
+              className="h-16 lg:h-20 mx-auto svg-shadow"
+            />
             <h1 className="text-white font-semibold text-3xl lg:text-4xl mx-auto text-center my-8">
               Unity Experiment Configurator
             </h1>
             <p className="text-center text-white max-w-lg mx-auto text-xl">
-              Design user interaction experiments and analyse their results with our visual editor 
+              Design and measure user interaction experiments in Virtual Reality
             </p>
-            <Link href="/admin">
+            <Link href="/docs/getting-started">
               <button className="block mx-auto mt-10 transition bg-transparent border-2 border-white border-opacity-60 font-semibold hover:border-opacity-100 duration-300 text-white py-4 px-4 focus:outline-none focus:ring">
-                Create an Experiment
+                Get Started
               </button>
             </Link>
           </div>

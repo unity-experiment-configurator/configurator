@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import CarouselSection from '../components/Carousel';
 import FeaturesSection from '../components/Features';
 import "intersection-observer";
+import NavMenu from '../components/NavMenu';
 
 // Max post to query per page
 // const LIMIT = 10;
@@ -63,6 +64,8 @@ export default function Home(props) {
   return (
     <>
       <Metatags title="Home Page" description="Get the latest posts on our site" />
+
+      <NavMenu />
 
       <Hero />
 

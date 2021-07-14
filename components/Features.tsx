@@ -39,6 +39,7 @@ const FeaturesSection = () => {
   return (
     <section
       ref={ref}
+      id="features"
       className={classNames("min-h-screen duration-1000 ease-in-out", {
         "transform translate-y-12": !inView,
         "opacity-0": !inView,

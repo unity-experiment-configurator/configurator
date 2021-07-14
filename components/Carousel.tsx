@@ -40,17 +40,17 @@ const CarouselSection = ({
         "opacity-0": !inView,
       })}
     >
-      <div className="container mx-auto flex flex-wrap flex-col justify-center min-h-screen">
-        <div className="relative min-h-[85vh]">
-        {
-          transitions((props, item) => (
-            <animated.div
-              key={item.id}
-              className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
-              style={{ ...props, backgroundImage: `url(${item.imageUrl})` }}
-            />
-          ))
-        }
+      <div className="container mx-auto flex flex-wrap flex-col min-h-screen">
+        <div className="relative h-[80vh] lg:h-[70vh] w-full lg:w-[70vw] mx-auto mt-[10vh]">
+          {
+            transitions((props, item) => (
+              <animated.div
+                key={item.id}
+                className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+                style={{ ...props, backgroundImage: `url(${item.imageUrl})` }}
+              />
+            ))
+          }
         </div>
       </div>
     </section>

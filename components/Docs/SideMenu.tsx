@@ -78,11 +78,11 @@ const SideMenu = () => {
       >
         <ul className="list-reset list-none pl-0 pt-4">
           <SideMenuItem path="/docs/" text="Home" />
-          {/* <SideMenuItem path="/docs/getting-started" text="Getting Started" /> */}
-          <SideMenuItem
+          <SideMenuItem path="/docs/getting-started" text="Getting Started" />
+          {/* <SideMenuItem
             path="/docs/creating-an-experiment"
             text="Creating an Experiment"
-          />
+          /> */}
           <SideMenuItem path="/docs/browser-support" text="Browser Support" />
           {/* <SideMenuItem path="/docs/useful-links" text="Useful Links" /> */}
           <SideMenuItem path="/docs/terms-and-conditions" text="Terms and Conditions" />
