@@ -24,6 +24,10 @@ Using a simple form you can specify interaction types and the shapes, colours, s
 
 Once downloaded, return to the interaction lab application on your machine and place the config file into the InputElements Folder.
 
+Your experiments will be stored online via your user account. 
+
+You can also repurpose existing experiments using the duplicate feature.
+
 Double clicking the interaction lab executable runs the VR experience with your configuration applied.
 
 The VR experience currently supports the Oculus Rift S. 

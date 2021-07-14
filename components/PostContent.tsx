@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { sanitizeSSR } from "../lib/Utils";
 
 function ExperimentRow({ name, value }) {
   return (

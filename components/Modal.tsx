@@ -1,34 +1,22 @@
 import React, { useEffect, useRef } from "react";
-import classNames from "classnames";
-import { useKey } from "react-use";
+import { useWindowSize } from "react-use";
+// import { useKey } from "react-use";
 
 export const Modal = ({
-  title,
   show,
   body,
-  footer,
   onClose,
 }: {
-  title: string;
   show: boolean;
   body: any;
-  footer?: any;
   onClose: () => void;
 }) => {
   // esc
-  useKey((e) => e.which === 27, () => {
-    if (show && onClose) {
-      onClose();
-    }
-  });
-
-  const bgClasses = classNames(
-    "justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-  );
-
-  const contentClasses = classNames(
-    "transition duration-300 opacity-0 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
-  );
+  // useKey((e) => e.which === 27, () => {
+  //   if (show && onClose) {
+  //     onClose();
+  //   }
+  // });
 
   useEffect(() => {
     setTimeout(() => {
@@ -46,48 +34,53 @@ export const Modal = ({
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
+  const { height } = useWindowSize();
+
   return (
     <>
       {show ? (
         <>
           <div
             role="dialog"
-            className={bgClasses}
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
             onClick={() => {
               // onClose();
             }}
           >
-            <div className="relative w-11/12 sm:w-11/12 md:w-auto lg:w-auto xl:w-auto m-6 max-w-8xl">
+            <div className="relative w-full" style={{
+              height: height
+            }}>
               {/* content */}
-              <div ref={contentRef} className={contentClasses}>
+              <div ref={contentRef} className="table transition duration-300 opacity-0 border-0 shadow-lg relative w-full bg-black outline-none focus:outline-none">
                 {/* header */}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-200 rounded-t">
-                  <h2 className="font-semibold">{title}</h2>
-                  <button
-                    type="button"
-                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-4 font-semibold outline-none focus:outline-none"
-                    onClick={() => onClose()}
-                  >
-                    <i className="bg-transparent text-black not-italic h-6 w-6 block outline-none focus:outline-none">
-                      ×
-                    </i>
-                    <span className="sr-only">Close</span>
-                  </button>
+                <div className="table-row">
+                  <div className="table-cell" style={{
+                    height: height / 8
+                  }}>
+                    <button
+                      type="button"
+                      className="ml-auto bg-transparent border-0 p-6 pr-8 text-white float-right text-md lg:text-lg font-semibold outline-none focus:outline-none"
+                      onClick={() => onClose()}
+                    >
+                      <i className="bg-transparent text-white not-italic block outline-none focus:outline-none tracking-wider">
+                        close&nbsp;<span>x</span>
+                      </i>
+                      {/* <span className="sr-only">Close</span> */}
+                    </button>
+                  </div>
                 </div>
                 {/* body */}
-                <div className="relative p-6 flex-auto">{body}</div>
-                {/* footer */}
-                {footer ? (
-                  <div className="flex items-center justify-end p-6 border-t border-solid border-gray-200 rounded-b">
-                    {footer}
+                <div className="table-row">
+                  <div className="table-cell align-middle" style={{
+                    height: height - (height / 8)
+                  }}>
+                    {body}
                   </div>
-                ) : (
-                  <div className="flex rounded-b h-10" />
-                )}
+                </div>
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black" />
+          <div className="opacity-100 fixed inset-0 z-40 bg-black" />
         </>
       ) : null}
     </>

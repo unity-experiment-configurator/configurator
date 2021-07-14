@@ -1,8 +1,9 @@
 import Metatags from '../components/Metatags';
 import { useEffect } from 'react';
 import Hero from '../components/Hero';
-import CarouselSection from '../components/Carousel';
-import FeaturesSection from '../components/Features';
+import CarouselSection from '../components/CarouselSection';
+import FeaturesSection from '../components/FeaturesSection';
+import VimeoSection from '../components/VimeoSection';
 import "intersection-observer";
 import NavMenu from '../components/NavMenu';
 
@@ -79,6 +80,8 @@ export default function Home(props) {
       } />
 
       <FeaturesSection />
+
+      {/* <VimeoSection vimeoId="575105264" title="Unity Experiment Configurator" /> */}
 
       {/* <PostFeed posts={posts} />
 
