@@ -47,7 +47,7 @@ const CarouselSection = ({
             <animated.div
               key={item.id}
               className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
-              style={{ ...props, backgroundImage: `url(https://images.unsplash.com/${item.imageUrl}&auto=format&fit=crop)` }}
+              style={{ ...props, backgroundImage: `url(${item.imageUrl})` }}
             />
           ))
         }
