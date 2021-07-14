@@ -64,3 +64,7 @@ body {
 .docs table {
   margin: 0 0 2rem 0;
 }
+
+.docs a {
+  @apply text-primary-500 font-bold;
+}

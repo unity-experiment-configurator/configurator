@@ -18,24 +18,24 @@ export async function getServerSideProps({ query }) {
 
   // JSON serializable data
   let user = null;
-  let posts = null;
+  // let posts = null;
 
   if (userDoc) {
     user = userDoc.data();
-    const postsQuery = userDoc.ref
-      .collection('posts')
-      .where('published', '==', true)
-      .orderBy('createdAt', 'desc')
-      .limit(5);
-    posts = (await postsQuery.get()).docs.map(postToJSON);
+    // const postsQuery = userDoc.ref
+    //   .collection('posts')
+    //   .where('published', '==', true)
+    //   .orderBy('createdAt', 'desc')
+    //   .limit(5);
+    // posts = (await postsQuery.get()).docs.map(postToJSON);
   }
 
   return {
-    props: { user, posts }, // will be passed to the page component as props
+    props: { user }, // will be passed to the page component as props
   };
 }
 
-export default function UserProfilePage({ user, posts }) {
+export default function UserProfilePage({ user }) {
   return (
     <Main>
       <Metatags title={user.username} description={`${user.username}'s public profile`} />

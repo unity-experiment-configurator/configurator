@@ -14,7 +14,7 @@ export default function Doc(props) {
 Getting Started
 ======================
 
-Coming soon
+[Download the Interaction Lab Unity App](/downloads/InteractionLab.zip)
       `}
     />
   );

@@ -9,7 +9,7 @@ function ExperimentRow({ name, value }) {
         {Array.isArray(value)
           ? value.map((v, i) => {
               return (
-                <span key={i}>
+                <span key={`${name}-${i}`}>
                   <>{v}</>
                   <>{i >= 0 && i < value.length - 1 && <>, </>}</>
                 </span>
@@ -39,7 +39,7 @@ function ExperimentDetails({ post }) {
           (post.options) ? 
             Object.entries(post.options).map(([key, value]) => {
               return (
-                <ExperimentRow name={key} value={value} />
+                <ExperimentRow key={key} name={key} value={value} />
               )})
           : null
         }

@@ -6,11 +6,10 @@ import Main from '../../components/Main';
 // import { UserContext } from '../../lib/Context';
 import { firestore, getUserWithUsername, postToJSON } from '../../lib/Firebase';
 import { Button } from "../../components/FormControls";
-
-import Link from 'next/link';
 // import { useDocumentData } from 'react-firebase-hooks/firestore';
 // import { useContext } from 'react';
 import { downloadConfig } from '../../lib/Utils';
+import { useRouter } from 'next/router';
 
 // export async function getStaticProps({ params }) {
 //   const { username, slug } = params;
@@ -85,6 +84,8 @@ export default function Post({ user, post }) {
 
   // const { user: currentUser } = useContext(UserContext);
 
+  const router = useRouter();
+
   return (
     <Main>
       <Metatags title={post.title} description={post.title} />
@@ -96,9 +97,9 @@ export default function Post({ user, post }) {
       <aside className="mt-16">
         {
           post.duplicationEnabled && (
-            <Link href={`/admin?duplicate=${post.slug}`}>
-              <Button text="Duplicate Experiment" classes="mr-4" />
-            </Link>
+            <Button text="Duplicate Experiment" classes="mr-4" onClick={() => {
+              router.push(`/admin?duplicate=${post.slug}`);
+            }} />
           )
         }
         <Button text="Download Config" classes="mr-4" onClick={() => {
