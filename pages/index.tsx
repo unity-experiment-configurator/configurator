@@ -64,7 +64,7 @@ export default function Home(props) {
     
   return (
     <>
-      <Metatags title="Home Page" description="Get the latest posts on our site" />
+      <Metatags title="Home Page" description="Conduct and measure user interaction experiments in Virtual Reality" />
 
       <NavMenu />
 
