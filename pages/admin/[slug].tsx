@@ -160,6 +160,11 @@ function ExperimentForm({ defaultValues, postRef, duplicate }) {
     updateExperimentType();
   }, []);
 
+  useEffect(() => {
+    // scroll to top when the step changes
+    window.scrollTo(0, 0);
+  }, [state.step]);
+
   return (
     <>
       {state.step === 0 && (
