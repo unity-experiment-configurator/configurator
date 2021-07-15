@@ -75,7 +75,9 @@ export default function Home(props) {
           { id: 0, imageUrl: '/images/carousel/carousel1.png' },
           { id: 1, imageUrl: '/images/carousel/carousel2.png' },
           { id: 2, imageUrl: '/images/carousel/carousel3.png' },
-          { id: 2, imageUrl: '/images/carousel/carousel4.png' },
+          { id: 3, imageUrl: '/images/carousel/carousel4.png' },
+          { id: 4, imageUrl: '/images/carousel/carousel5.png' },
+          { id: 5, imageUrl: '/images/carousel/carousel6.png' },
         ]
       } />
 
