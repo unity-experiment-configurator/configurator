@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/video',
-        destination: 'https://youtu.be/3YdfZOonRGY',
+        destination: 'https://vimeo.com/575105264',
         permanent: true,
       },
     ]
