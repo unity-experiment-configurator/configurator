@@ -30,7 +30,7 @@ const CarouselSection = ({
     config: config.molasses,
   });
 
-  const intervalRef = useRef<Timeout | undefined>();
+  const intervalRef = useRef<any>();
 
   useEffect(() => {
     intervalRef.current = setInterval(() => set(state => (state + 1) % items.length), delay);
