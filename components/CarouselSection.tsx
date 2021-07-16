@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useInView } from "react-intersection-observer";
 import { useTransition, animated, config } from 'react-spring';
 
@@ -30,7 +30,14 @@ const CarouselSection = ({
     config: config.molasses,
   });
 
-  useEffect(() => void setInterval(() => set(state => (state + 1) % items.length), delay), []);
+  const intervalRef = useRef<Timeout | undefined>();
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => set(state => (state + 1) % items.length), delay);
+    return () => {
+      clearInterval(intervalRef.current);
+    }
+  }, []);
 
   return (
     <section

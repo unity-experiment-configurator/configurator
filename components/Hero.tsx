@@ -30,7 +30,7 @@ const Hero = ({}: {}) => {
         });
 
         // @ts-ignore
-        scrollDownRef.current.style.top = `${height - 100}px`;
+        scrollDownRef.current.style.top = `${height - 70}px`;
       } else {
         // @ts-ignore
         scrollDownRef.current.classList.add("hidden");
@@ -72,8 +72,8 @@ const Hero = ({}: {}) => {
               marginTop: "0.25rem",
             }}
             width="17"
-            height="82"
-            viewBox="0 0 17 82"
+            height="50"
+            viewBox="0 0 17 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
