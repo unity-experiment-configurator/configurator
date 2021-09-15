@@ -16,7 +16,7 @@ Getting Started
 
 The Unity Experiment Configurator allows you to conduct and measure user interaction experiments in virtual reality.
 
-To get started, [download the Interaction Lab application](https://github.com/unity-experiment-configurator/InteractionLab/releases/download/v1.1/InteractionLab.zip). You can find this via the getting started guide.
+To get started, [download the Interaction Lab application](https://github.com/unity-experiment-configurator/InteractionLab/releases/download/v2/InteractionLab.zip). You can find this via the getting started guide.
 
 Next, log in to the website to start creating your own experiment configurations. 
 

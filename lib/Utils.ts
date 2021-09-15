@@ -55,20 +55,65 @@ export const urlsEqual = (url1: string, url2: string): boolean => {
   return URL1.hostname === URL2.hostname && URL1.pathname === URL2.pathname;
 };
 
+/*
+  "userMovement": true,
+  "experimentTrialCount": 5,
+  "targetOnGrabAudio": "CorrectTypeI",
+  "goalAudio": "DoubleBeep",
+  "experimentCreationDate": "1 / 9 / 2021",
+  "userDirectGrab": false,
+  "distractorColours": [
+      "White"
+  ],
+  "experimentInstructions": "<color=#00FF00>Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. </color>",
+  "targetModel": "Sphere",
+  "experimentDescription": "<color=#FF0000>Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red.</color>",
+  "distractorSize": 0.5,
+  "experimentTitle": "Test Configuration File 2",
+  "environmentAudio": "BusyStreet",
+  "targetColour": "Yellow",
+  "experimentURL": "",
+  "experimentType": "FindTargetAmongstDistractorsExperiment",
+  "targetConstantAudio": "PhoneRing",
+  "distractorModels": [
+      "Cube"
+  ],
+  "userRayGrab": true,
+  "experimentAuthor": "Stelios Petrakos",
+  "targetSize": 0.5,
+  "targetOnReleaseAudio": "FalseTypeF",
+  "experimentUID": "00000000000000",
+  "distractorCount": 10,
+  "experimentUpdateDate": "3 / 9 / 2021"
+*/
+
 export const downloadConfig = async (data) => {
-  // const uxfSettings = {
-  //   "sessionBlockCount": 10,
-  //   "blockTrialCount": 3,
-  // };
-  const uxfSettings = {
-    "blockTrialCount": data.blockTrialCount,
-  };
   const config = {
-    ...data,
-    createdAt: new Date(data.createdAt).toString(),
-    updatedAt: new Date(data.updatedAt).toString(),
-    url: `${site}/${data.username}/${data.slug}`,
-    ...uxfSettings
+    userMovement: data.options.userMovement,
+    experimentTrialCount: data.blockTrialCount,
+    targetOnGrabAudio: data.options.targetOnGrabAudio,
+    goalAudio: data.options.goalAudio,
+    experimentCreationDate: new Date(data.createdAt).toLocaleString("en-GB").split(',')[0],
+    userDirectGrab: data.options.userDirectGrab,
+    distractorColours: data.options.distractorColors,
+    experimentInstructions: data.instructions,
+    targetModel: data.options.targetModel,
+    experimentDescription: data.description,
+    distractorSize: data.options.distractorSize,
+    experimentTitle: data.title,
+    environmentAudio: data.options.environmentAudio,
+    targetColour: data.options.targetColor,
+    experimentURL: `${site}/${data.username}/${data.slug}`,
+    experimentType: data.type,
+    targetConstantAudio: data.options.targetConstantAudio,
+    distractorModels: data.options.distractorModels,
+    userRayGrab: data.options.userRayGrab,
+    experimentAuthor: data.username,
+    targetSize: data.options.targetSize,
+    targetOnReleaseAudio: data.options.targetOnReleaseAudio,
+    experimentUID: data.uid,
+    distractorCount: data.options.distractorCount,
+    experimentUpdateDate: new Date(data.updatedAt).toLocaleString("en-GB").split(',')[0],
   };
 
   download(JSON.stringify(config, null, 2), `${data.slug}.json`, "text/plain");

@@ -14,7 +14,7 @@ function ExperimentRow({ name, value }) {
                 </span>
               );
             })
-          : value}
+          : String(value) ? String(value) : "None"}
       </td>
     </tr>
   )

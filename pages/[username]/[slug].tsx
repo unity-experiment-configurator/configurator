@@ -4,7 +4,7 @@ import PostContent from '../../components/PostContent';
 import Metatags from '../../components/Metatags';
 import Main from '../../components/Main';
 // import { UserContext } from '../../lib/Context';
-import { firestore, getUserWithUsername, postToJSON } from '../../lib/Firebase';
+import { getUserWithUsername, postToJSON } from '../../lib/Firebase';
 import { Button } from "../../components/FormControls";
 // import { useDocumentData } from 'react-firebase-hooks/firestore';
 // import { useContext } from 'react';

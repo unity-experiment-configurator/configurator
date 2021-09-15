@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, FormItem, Label, Select, RangeInput } from "../FormControls";
+import { Button, FormItem, Label, Select, RangeInput, Checkbox } from "../FormControls";
 import chroma from "chroma-js";
 
 const TwoTablesWithDistractors = ({
@@ -58,96 +58,105 @@ const TwoTablesWithDistractors = ({
   const primitives: Option[] = [
     {
       label: "Cone",
-      value: "cone",
+      value: "Cone",
     },
     {
       label: "Cube",
-      value: "cube",
+      value: "Cube",
     },
     {
       label: "Sphere",
-      value: "sphere",
+      value: "Sphere",
     },
     {
       label: "Torus",
-      value: "torus",
+      value: "Torus",
     },
     {
       label: "Cylinder",
-      value: "cylinder",
+      value: "Cylinder",
     },
   ];
 
-  const globalSounds: Option[] = [
+  const environmentSounds: Option[] = [
     {
-      label: "Ambient",
-      value: "ambient",
+      label: "None",
+      value: "",
     },
     {
-      label: "Crowd",
-      value: "crowd",
+      label: "Ambient",
+      value: "Ambient",
+    },
+    {
+      label: "Busy Street",
+      value: "BusyStreet",
+    },
+    {
+      label: "Crowd Chatter",
+      value: "CrowdChatter",
     },
   ];
 
   const targetSounds: Option[] = [
     {
+      label: "None",
+      value: "",
+    },
+    {
       label: "Beep",
-      value: "beep",
+      value: "Beep",
     },
     {
-      label: "Boop",
-      value: "boop",
+      label: "Buzz",
+      value: "BuzzTypeA",
+    },
+    {
+      label: "Correct",
+      value: "CorrectTypeA",
+    },
+    {
+      label: "Incorrect",
+      value: "FalseTypeA",
     },
   ];
 
-  const targetSoundPlaybackEvents: Option[] = [
-    {
-      label: "Always",
-      value: "always",
-    },
-    {
-      label: "When grabbed",
-      value: "ongrab",
-    },
-    {
-      label: "When dropped",
-      value: "ondrop",
-    },
-    {
-      label: "When placed on goal",
-      value: "ongoal",
-    },
-  ];
-
-  const interactionType = options?.interactionType || interactionTypes[0].value;
-  const globalSound = options?.globalSound || globalSounds[0].value;
-  const targetSize = options?.targetSize || 0.5;
-  const targetColor = options?.targetColor || colors[0].value;
-  const targetModel = options?.targetModel || primitives[0].value;
-  const targetSound = options?.targetSound || targetSounds[0].value;
-  const targetSoundPlaybackEvent = options?.targetSoundPlaybackEvent || targetSoundPlaybackEvents[0].value;
-  const distractorSize = options?.distractorSize || 0.5;
-  const distractorCount = options?.distractorCount || 1;
   const distractorColors = options?.distractorColors || [colors[0].value];
+  const distractorCount = options?.distractorCount || 1;
   const distractorModels = options?.distractorModels || [primitives[0].value];
-
+  const distractorSize = options?.distractorSize || 0.5;
+  const environmentAudio = options?.environmentAudio || environmentSounds[0].value;
+  const goalAudio = options?.goalAudio || targetSounds[0].value;
+  const targetColor = options?.targetColor || colors[0].value;
+  const targetConstantAudio = options?.targetConstantAudio || targetSounds[0].value;
+  const targetModel = options?.targetModel || primitives[0].value;
+  const targetOnGrabAudio = options?.targetOnGrabAudio || targetSounds[0].value;
+  const targetOnReleaseAudio = options?.targetOnReleaseAudio || targetSounds[0].value;
+  const targetSize = options?.targetSize || 0.5;
+  const userDirectGrab = options?.userDirectGrab !== undefined ? options.userDirectGrab : true;
+  const userMovement = options?.userMovement !== undefined ? options.userMovement : false;
+  const userRayGrab = options?.userRayGrab !== undefined ? options.userRayGrab : false;
+  
   const validationSchema = Yup.object({
     distractorCount: Yup.string().required("Please enter a value"),
   });
 
   const formik = useFormik({
     initialValues: {
-      interactionType,
-      globalSound,
-      targetSize,
-      targetColor,
-      targetModel,
-      targetSound,
-      targetSoundPlaybackEvent,
-      distractorSize,
-      distractorCount,
       distractorColors,
+      distractorCount,
       distractorModels,
+      distractorSize,
+      environmentAudio,
+      goalAudio,
+      targetColor,
+      targetConstantAudio,
+      targetModel,
+      targetOnGrabAudio,
+      targetOnReleaseAudio,
+      targetSize,
+      userDirectGrab,
+      userMovement,
+      userRayGrab,
     },
     validationSchema,
     validateOnChange: false,
@@ -261,13 +270,47 @@ const TwoTablesWithDistractors = ({
       className="md:pr-8 lg:pr-8 pb-8 overflow-hidden max-w-xl"
     >
       <FormItem>
-        <Label value="Interaction Type" />
-        <Select name="interactionType" options={interactionTypes} form={formik} isDisabled={isDisabled} />
+        <Label value="Thumbstick Movement Enabled" />
+        <Checkbox
+          id="userMovement"
+          label="Allow the user to navigate using thumbsticks"
+          checked={formik.values.userMovement}
+          // @ts-ignore
+          onChange={(e: any) =>
+            formik.setFieldValue("userMovement", e.target.checked)
+          }
+        />
       </FormItem>
 
       <FormItem>
-        <Label value="Global Sound" />
-        <Select name="globalSound" options={globalSounds} form={formik} isDisabled={isDisabled} />
+        <Label value="Grab Enabled" />
+        <Checkbox
+          id="userDirectGrab"
+          label="Allow the user to grab objects"
+          checked={formik.values.userDirectGrab}
+          // @ts-ignore
+          onChange={(e: any) =>
+            formik.setFieldValue("userDirectGrab", e.target.checked)
+          }
+        />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Pointer Grab Enabled" />
+        <Checkbox
+          id="userRayGrab"
+          label="Allow the user to grab objects using a pointer"
+          checked={formik.values.userRayGrab}
+          // @ts-ignore
+          onChange={(e: any) =>
+            formik.setFieldValue("userRayGrab", e.target.checked)
+          }
+        />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target Model" />
+        <Select name="targetModel" form={formik} options={primitives} isDisabled={isDisabled} />
       </FormItem>
 
       <FormItem>
@@ -295,30 +338,15 @@ const TwoTablesWithDistractors = ({
       </FormItem>
 
       <FormItem>
-        <Label value="Target Model" />
-        <Select name="targetModel" form={formik} options={primitives} isDisabled={isDisabled} />
-      </FormItem>
-
-      <FormItem>
-        <Label value="Target Sound" />
-        <Select name="targetSound" options={targetSounds} form={formik} isDisabled={isDisabled} />
-      </FormItem>
-
-      <FormItem>
-        <Label value="Target Sound Playback Event" />
-        <Select name="targetSoundPlaybackEvent" options={targetSoundPlaybackEvents} form={formik} isDisabled={isDisabled} />
-      </FormItem>
-
-      <FormItem>
-        <Label value="Distractor Size" />
-        <RangeInput
-          id="distractorSize"
-          value={formik.values.distractorSize}
-          min={0}
-          max={1}
-          step={0.1}
-          onChange={formik.handleChange}
-          errors={formik.errors}
+        <Label value="Distractor Models" />
+        <Select
+          name="distractorModels"
+          isMulti
+          closeMenuOnSelect={false}
+          form={formik}
+          options={primitives}
+          menuPlacement="top"
+          isDisabled={isDisabled}
         />
       </FormItem>
 
@@ -349,16 +377,41 @@ const TwoTablesWithDistractors = ({
       </FormItem>
 
       <FormItem>
-        <Label value="Distractor Models" />
-        <Select
-          name="distractorModels"
-          isMulti
-          closeMenuOnSelect={false}
-          form={formik}
-          options={primitives}
-          menuPlacement="top"
-          isDisabled={isDisabled}
+        <Label value="Distractor Size" />
+        <RangeInput
+          id="distractorSize"
+          value={formik.values.distractorSize}
+          min={0}
+          max={1}
+          step={0.1}
+          onChange={formik.handleChange}
+          errors={formik.errors}
         />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Environment Audio" />
+        <Select name="environmentAudio" options={environmentSounds} form={formik} isDisabled={isDisabled} />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target On Grab Audio" />
+        <Select name="targetOnGrabAudio" options={targetSounds} form={formik} isDisabled={isDisabled} />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target On Release Audio" />
+        <Select name="targetOnReleaseAudio" options={targetSounds} form={formik} isDisabled={isDisabled} />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target While Grabbed Audio" />
+        <Select name="targetConstantAudio" options={targetSounds} form={formik} isDisabled={isDisabled} menuPlacement="top" />
+      </FormItem>
+
+      <FormItem>
+        <Label value="Target Dropped On Goal Audio" />
+        <Select name="goalAudio" options={targetSounds} form={formik} isDisabled={isDisabled} menuPlacement="top" />
       </FormItem>
 
       {
